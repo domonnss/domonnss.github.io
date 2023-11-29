@@ -11667,46 +11667,28 @@ figure.highlight .section {
     padding: 1.5rem 1rem;
   }
 }
-.is-2-column {
-  background-image: url("http://172.16.36.4:9000/picture-bucket/20231129011143.png");
+.is-3-column {
+  background-image: url("http://172.16.36.4:9000/picture-bucket/background.png");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 .widget {
-  background-color: rgba(255,255,255,0.812);
+  background-color: rgba(255,255,255,0.6);
 }
-@media screen and (min-width: 1104px), print {
-  .column.is-4,
-  .column.is-4-tablet,
-  .is-4-desktop,
-  .is-4-widescreen {
-    width: 30%;
-    max-width: 25rem;
-  }
-  .column.is-8,
-  .column.is-8-tablet,
-  .is-8-desktop,
-  .is-8-widescreen {
-    width: 70%;
-  }
+.navbar {
+  background-color: #f5f5fa;
 }
-.article {
-  margin-right: 16px;
-  margin-left: 16px;
-}
-.article .content a img {
-  margin: auto;
-  display: block;
-}
-.navbar,
 .footer {
   background-color: #f5f5fa;
 }
 .navbar-main,
 .card.widget {
   box-shadow: none;
+}
+.article.article {
+  background-color: rgba(255,255,255,0);
 }
 @media screen and (max-width: 1399px), print {
   .navbar-menu {

@@ -5,7 +5,9 @@
 
     $('body > .navbar, body > .section, body > .footer').forEach(element => {
         element.style.transition = '0s';
-        element.style.opacity = '0';
+        // 透明度调整
+        // element.style.opacity = '0';
+        element.style.opacity = '0.5';
     });
     document.querySelector('body > .navbar').style.transform = 'translateY(-100px)';
     [
