@@ -20,9 +20,9 @@
 <li>结合律</li>
 <li>分配律 </li>
 </ol>
-<p>用矩阵表达的点乘计算更加简单直接<br>在二维<br>$\vec{a} \cdot \vec{b}=\begin{pmatrix}x_{a} \\ y_{a} \\ \end{pmatrix}\cdot \begin{pmatrix}x_{b} \\ y_{b}\end{pmatrix}=x_{a}x_{b}+y_{a} y_{b}$</p>
+<p>用矩阵表达的点乘计算更加简单直接<br>在二维<br>$\vec{a} \cdot \vec{b}=\begin{pmatrix}x<em>{a} \ y</em>{a} \ \end{pmatrix}\cdot \begin{pmatrix}x<em>{b} \ y</em>{b}\end{pmatrix}=x<em>{a}x</em>{b}+y<em>{a} y</em>{b}$</p>
 <p>同理对于三维</p>
-<p>$\vec{a} \cdot \vec{b}=\begin{pmatrix}x_{a} \\ y_{a} \\z_{a} \end{pmatrix}\cdot \begin{pmatrix}x_{b} \\ y_{b} \\ z_{b}\end{pmatrix}=x_{a} x_{b}+y_{a} y_{b}+z_{a} z_{b}$</p>
+<p>$\vec{a} \cdot \vec{b}=\begin{pmatrix}x<em>{a} \ y</em>{a} \z<em>{a} \end{pmatrix}\cdot \begin{pmatrix}x</em>{b} \ y<em>{b} \ z</em>{b}\end{pmatrix}=x<em>{a} x</em>{b}+y<em>{a} y</em>{b}+z<em>{a} z</em>{b}$</p>
 <p><strong>主要是用来寻找投影</strong></p>
 <p>对于$\vec{b}$在$\vec{a}$上的投影$\vec{b}\perp$<br>$\vec{b}\perp=\lvert\vec{b}\perp\rvert \cdot\hat{a}=\lvert\vec{b}\rvert\hat{a} \cos\theta$<br>若$\vec{a}$为$\hat{a}$,则<br>$\vec{b}\perp=\lvert\vec{b}\rvert \vec{a} \cos\theta =(\vec{b} \cdot \vec{a})\vec{a}$  ^fae5ki</p>
 <p>用处:<br>观察点乘结果判断</p>
@@ -37,18 +37,18 @@
 <p>$\vec{a} \times \vec{a}=\vec{0}$</p>
 <p>是向量,不是单纯的$0$</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231011194217.png" alt=""></p>
-<p>$\vec{a}\times\vec{b}=A^{*}b=\left(\begin{array}{l l l}0&amp;{-z_{a}}&amp;{y_{a}}\\ {z_{a}}&amp;{0}&amp;{-x_{a}}\\ {-y_{a}}&amp;{x_{a}}&amp;0\end{array}\right)\left(\begin{array}{l}{x_{b}}\\ {y_{b}}\\ {z_{b}}\end{array}\right)$</p>
-<p>$\vec{a}\times\vec{b}\;=\;\left(\begin{array}{l l}{y_{a}z_{b}-y_{b}z_{a}}\\ {z_{a}x_{b}-x_{a}z_{b}}\\ {x_{a}y_{b}-y_{a}x_{b}}\end{array}\right)$</p>
+<p>$\vec{a}\times\vec{b}=A^{*}b=\left(\begin{array}{l l l}0&amp;{-z<em>{a}}&amp;{y</em>{a}}\ {z<em>{a}}&amp;{0}&amp;{-x</em>{a}}\ {-y<em>{a}}&amp;{x</em>{a}}&amp;0\end{array}\right)\left(\begin{array}{l}{x<em>{b}}\ {y</em>{b}}\ {z_{b}}\end{array}\right)$</p>
+<p>$\vec{a}\times\vec{b}\;=\;\left(\begin{array}{l l}{y<em>{a}z</em>{b}-y<em>{b}z</em>{a}}\ {z<em>{a}x</em>{b}-x<em>{a}z</em>{b}}\ {x<em>{a}y</em>{b}-y<em>{a}x</em>{b}}\end{array}\right)$</p>
 <p>作用:<br>通过<br>叉乘结果判断</p>
 <ol>
 <li>左和右<br> if($\vec{a} \times \vec{b}=\vec{z}$)<br> then,$\vec{b}$在$\vec{a}$左侧<br> if($\vec{a} \times \vec{b}=-\vec{z}$)<br> then,$\vec{b}$在$\vec{a}$右侧</li>
 <li>内和外<br> 利用左右判断<br> if($\overrightarrow{AP} \times \overrightarrow{AB}=\overrightarrow{BP} \times \overrightarrow{BC}=\overrightarrow{CP} \times \overrightarrow{CA}$)<br> then,p在内侧<br> <img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231011195337.png" alt=""></li>
 </ol>
 <p>在3D情况下寻找投影<br>类似于二维的情况<br><img src="101#^fae5ki" alt=""></p>
-<p>若<br>$\begin{array}{c}{||\overrightarrow{v}||=||\overrightarrow{w}||=||\overrightarrow{v}||=1}\\ {\overrightarrow{u}\cdot\overrightarrow{v}=\overrightarrow{u}\cdot\overrightarrow{w}=\overrightarrow{v}\cdot\overrightarrow{w}=0}\\ {\overrightarrow{w}=\overrightarrow{u}\times\overrightarrow{v}}&amp;{\scriptscriptstyle\mathrm{(右手系)}}\end{array}$<br>则<br>$\vec{p}\perp=(\vec{p}\cdot\vec{u})\vec{u}+(\vec{p}\cdot\vec{v})\vec{v}+(\vec{p}\cdot\vec{w})\vec{w}$</p>
-<h3 id="matrix"><a href="#matrix" class="headerlink" title="matrix"></a>matrix</h3><p>矩阵的乘法<br>$\begin{pmatrix}1&amp;3 \\ 2&amp;4 \\3&amp;3 \\  \end{pmatrix} \begin{pmatrix}2 &amp;5\\ 1&amp;6\end{pmatrix}=\begin{pmatrix}x&amp;x \\ x&amp;x \\ x&amp;x\end{pmatrix}$<br>不符合交换律但符合结合律和分配律<br>将向量vector视作列向量m*1的矩阵</p>
+<p>若<br>$\begin{array}{c}{||\overrightarrow{v}||=||\overrightarrow{w}||=||\overrightarrow{v}||=1}\ {\overrightarrow{u}\cdot\overrightarrow{v}=\overrightarrow{u}\cdot\overrightarrow{w}=\overrightarrow{v}\cdot\overrightarrow{w}=0}\ {\overrightarrow{w}=\overrightarrow{u}\times\overrightarrow{v}}&amp;{\scriptscriptstyle\mathrm{(右手系)}}\end{array}$<br>则<br>$\vec{p}\perp=(\vec{p}\cdot\vec{u})\vec{u}+(\vec{p}\cdot\vec{v})\vec{v}+(\vec{p}\cdot\vec{w})\vec{w}$</p>
+<h3 id="matrix"><a href="#matrix" class="headerlink" title="matrix"></a>matrix</h3><p>矩阵的乘法<br>$\begin{pmatrix}1&amp;3 \ 2&amp;4 \3&amp;3 \  \end{pmatrix} \begin{pmatrix}2 &amp;5\ 1&amp;6\end{pmatrix}=\begin{pmatrix}x&amp;x \ x&amp;x \ x&amp;x\end{pmatrix}$<br>不符合交换律但符合结合律和分配律<br>将向量vector视作列向量m*1的矩阵</p>
 <p>矩阵的转置<br>$(AB)^T=B^{T}A^T$</p>
-<p>单位矩阵$I_{3*3}=\begin{pmatrix}1&amp;0&amp;0 \\ 0&amp;1&amp;0 \\ 0&amp;0&amp;1 \\ \end{pmatrix}$<br>对于逆运算$A^{-1}$<br>$AA^{-1}=A^{-1}A=I$<br>$(AB)^{-1}=B^{-1}A^{-1}$</p>
+<p>单位矩阵$I_{3*3}=\begin{pmatrix}1&amp;0&amp;0 \ 0&amp;1&amp;0 \ 0&amp;0&amp;1 \ \end{pmatrix}$<br>对于逆运算$A^{-1}$<br>$AA^{-1}=A^{-1}A=I$<br>$(AB)^{-1}=B^{-1}A^{-1}$</p>
 <p><strong>将点乘与叉乘转换为矩阵乘法</strong><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015201401.png" alt=""></p>
 <h1 id="Lec3-Transformation-A"><a href="#Lec3-Transformation-A" class="headerlink" title="Lec3 Transformation A"></a>Lec3 Transformation A</h1><ul>
 <li>transformation<ul>
@@ -66,8 +66,8 @@
 </ul>
 <h2 id="homogeneous-coordinate-齐次坐标"><a href="#homogeneous-coordinate-齐次坐标" class="headerlink" title="homogeneous coordinate 齐次坐标"></a>homogeneous coordinate 齐次坐标</h2><p>为解决Translation问题,齐次坐标堂堂登场</p>
 <ul>
-<li>$2D point=\begin{pmatrix}x \\ y \\ 1\end{pmatrix}$</li>
-<li>$2D vector=\begin{pmatrix}x \\ y \\ 0\end{pmatrix}$</li>
+<li>$2D point=\begin{pmatrix}x \ y \ 1\end{pmatrix}$</li>
+<li>$2D vector=\begin{pmatrix}x \ y \ 0\end{pmatrix}$</li>
 </ul>
 <ul>
 <li>为什么 point用1补位 vector用0补位?<br>对于向量来说,人类希望它由平移不变的性质.所以用0来保护它<ul>
@@ -81,26 +81,26 @@
 <li>$vector+vector=vector$</li>
 <li>$point-point=vector$</li>
 <li>$point+vector=point$ 某个点沿着向量平移</li>
-<li>$point+point=midpoint$<br>对于点$\begin{pmatrix}x \\ y \\ w \end{pmatrix}=\begin{pmatrix}x/w \\ y/w \\ 1\end{pmatrix}$</li>
+<li>$point+point=midpoint$<br>对于点$\begin{pmatrix}x \ y \ w \end{pmatrix}=\begin{pmatrix}x/w \ y/w \ 1\end{pmatrix}$</li>
 <li>题外话:<br>trade off是一个在工程学科中必然存在的策略.齐次坐标虽然需要更多的性能<br>但能够将基础的变换统一起来</li>
 </ul>
-<p>增加的储存数据只有最后一列的$\begin{pmatrix}0 \\ 0 \\ 1\end{pmatrix}$与最后一行的$\begin{pmatrix}0,0,1\end{pmatrix}$,而且在大部分情况下,$\begin{pmatrix}0,0,1\end{pmatrix}$只要储存一个1就够了.性能开销不大的情况下实现了相当好的效果</p>
+<p>增加的储存数据只有最后一列的$\begin{pmatrix}0 \ 0 \ 1\end{pmatrix}$与最后一行的$\begin{pmatrix}0,0,1\end{pmatrix}$,而且在大部分情况下,$\begin{pmatrix}0,0,1\end{pmatrix}$只要储存一个1就够了.性能开销不大的情况下实现了相当好的效果</p>
 <h2 id="modeling"><a href="#modeling" class="headerlink" title="modeling"></a>modeling</h2><p><strong>先线性变换再平移</strong></p>
 <h3 id="线性变换"><a href="#线性变换" class="headerlink" title="线性变换"></a>线性变换</h3><p>都可以用一个统一的矩阵来表示<br>$x \prime=ax+by$<br>$y \prime=cx+dy$</p>
-<script type="math/tex; mode=display">\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array} \right] =\left[ \begin{array}{l l}{a}&{b}\\ &\end{array}\right] \left [\begin{array}{l}\\ \end{array} \right]</script><h4 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015214719.png" alt=""><br>缩放矩阵,缩放系数为$S_{x}=0.5,S_{y}=1.0$<br>$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{s_x}&amp;0\\ 0&amp;{s_y}\end{array}\right]\left[\begin{array}{l}\\ \end{array}\right]$</p>
-<h4 id="reflection"><a href="#reflection" class="headerlink" title="reflection"></a>reflection</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015214811.png" alt="">$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}1&amp;0\\ 0&amp;1\end{array}\right]\left[\begin{array}{l}{x}\\ {y}\end{array}\right]$</p>
+<script type="math/tex; mode=display">\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array} \right] =\left[ \begin{array}{l l}{a}&{b}\\ &\end{array}\right] \left [\begin{array}{l}\\ \end{array} \right]</script><h4 id="scale"><a href="#scale" class="headerlink" title="scale"></a>scale</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015214719.png" alt=""><br>缩放矩阵,缩放系数为$S<em>{x}=0.5,S</em>{y}=1.0$<br>$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{s_x}&amp;0\ 0&amp;{s_y}\end{array}\right]\left[\begin{array}{l}\ \end{array}\right]$</p>
+<h4 id="reflection"><a href="#reflection" class="headerlink" title="reflection"></a>reflection</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015214811.png" alt="">$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}1&amp;0\ 0&amp;1\end{array}\right]\left[\begin{array}{l}{x}\ {y}\end{array}\right]$</p>
 <h4 id="sheer-拉伸"><a href="#sheer-拉伸" class="headerlink" title="sheer 拉伸"></a>sheer 拉伸</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023-11-22-19-47-55.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015214940.png" alt=""></p>
-<p>$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}1&amp;{a}\\ 0&amp;{1}\end{array}\right]\left[\begin{array}{l}{x}\\ {y}\end{array}\right]$</p>
-<h4 id="rotate"><a href="#rotate" class="headerlink" title="rotate"></a>rotate</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015215632.png" alt=""><br>写出正确的旋转矩阵,只需要找到前后变化的点的相对位置关系<br>$\left[\begin{array}{l}{x^{ \prime}}\\ {y^{\prime}}\end{array}\right]=R_{\theta}\left[\begin{array}{l}{x}\\ {y}\end{array}\right]$<br>$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{?}&amp;{?}\\ {?}&amp;{?}\end{array}\right]\left[\begin{array}{l}{x}\\ {y}\end{array}\right]$<br>推导$R_{\theta}$的值,可以由特殊到一般,<br>$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=(\cos\theta,\sin\theta)$带入推导随便算<br>对于旋转来说<br>$R_{-\theta}=\left[\begin{array}{c c}\cos\theta&amp;\sin\theta \\ -\sin\theta&amp;\cos\theta\end{array}\right]$<br>存在下列关系:<br>$R_{-\theta}=R_{\theta}^{T}$<br>可以用转秩简单求得$R_{-\theta}$</p>
+<p>$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}1&amp;{a}\ 0&amp;{1}\end{array}\right]\left[\begin{array}{l}{x}\ {y}\end{array}\right]$</p>
+<h4 id="rotate"><a href="#rotate" class="headerlink" title="rotate"></a>rotate</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015215632.png" alt=""><br>写出正确的旋转矩阵,只需要找到前后变化的点的相对位置关系<br>$\left[\begin{array}{l}{x^{ \prime}}\ {y^{\prime}}\end{array}\right]=R<em>{\theta}\left[\begin{array}{l}{x}\ {y}\end{array}\right]$<br>$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{?}&amp;{?}\ {?}&amp;{?}\end{array}\right]\left[\begin{array}{l}{x}\ {y}\end{array}\right]$<br>推导$R</em>{\theta}$的值,可以由特殊到一般,<br>$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=(\cos\theta,\sin\theta)$带入推导随便算<br>对于旋转来说<br>$R<em>{-\theta}=\left[\begin{array}{c c}\cos\theta&amp;\sin\theta \ -\sin\theta&amp;\cos\theta\end{array}\right]$<br>存在下列关系:<br>$R</em>{-\theta}=R<em>{\theta}^{T}$<br>可以用转秩简单求得$R</em>{-\theta}$</p>
 <h4 id="线性变换的齐次坐标表示"><a href="#线性变换的齐次坐标表示" class="headerlink" title="线性变换的齐次坐标表示"></a>线性变换的齐次坐标表示</h4><p>  <img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015231731.png" alt=""></p>
 <h3 id="非线性变换"><a href="#非线性变换" class="headerlink" title="非线性变换"></a>非线性变换</h3><h4 id="Translation-平移变换"><a href="#Translation-平移变换" class="headerlink" title="Translation 平移变换"></a>Translation 平移变换</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015222820.png" alt=""><br>平移不是一个线性变换<br>为了避免这样的情况<br>引入了齐次坐标来解决</p>
-<p>在齐次坐标下平移的表示<br>$\left(\begin{array}{c c c}{x^{\prime}}\\ {y^{\prime}}\\ {w^{\prime}}\end{array}\right)\ =\ \left(\begin{array}{c c c}1&amp;0&amp;{t_{x}}\\ 0&amp;1&amp;{t_{y}}\\ 0&amp;0&amp;1\end{array}\right)\cdot\left(\begin{array}{c}{x}\\ {y}\\ 1\end{array}\right)$</p>
-<h4 id="affine-transform仿射变换"><a href="#affine-transform仿射变换" class="headerlink" title="affine transform仿射变换"></a>affine transform仿射变换</h4><p>仿射变换:线性变换再接上平移<br>对于这样的操作来说,无法简单的写成与上方统一的矩阵相乘的形式<br>只能写成<br>$\left[\begin{array}{l}{x^{\prime}}\\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{a}&amp;{b}\\ {c}&amp;{d}\end{array}\right]\left[\begin{array}{l}{x}\\ {y}\end{array}\right]+\left[\begin{array}{l}{t_{x}}\\ {t_{y}}\end{array}\right]$</p>
+<p>在齐次坐标下平移的表示<br>$\left(\begin{array}{c c c}{x^{\prime}}\ {y^{\prime}}\ {w^{\prime}}\end{array}\right)\ =\ \left(\begin{array}{c c c}1&amp;0&amp;{t<em>{x}}\ 0&amp;1&amp;{t</em>{y}}\ 0&amp;0&amp;1\end{array}\right)\cdot\left(\begin{array}{c}{x}\ {y}\ 1\end{array}\right)$</p>
+<h4 id="affine-transform仿射变换"><a href="#affine-transform仿射变换" class="headerlink" title="affine transform仿射变换"></a>affine transform仿射变换</h4><p>仿射变换:线性变换再接上平移<br>对于这样的操作来说,无法简单的写成与上方统一的矩阵相乘的形式<br>只能写成<br>$\left[\begin{array}{l}{x^{\prime}}\ {y^{\prime}}\end{array}\right]=\left[\begin{array}{l l}{a}&amp;{b}\ {c}&amp;{d}\end{array}\right]\left[\begin{array}{l}{x}\ {y}\end{array}\right]+\left[\begin{array}{l}{t<em>{x}}\ {t</em>{y}}\end{array}\right]$</p>
 <p>但通过齐次坐标<br>可以写成</p>
-<script type="math/tex; mode=display">\left(\begin{array}{c c c}{x^{\prime}}\\ {y^{\prime}}\\ 1\end{array}\right)\ =\ \left(\begin{array}{c c c}&&{t_{x}}\\ &&{t_{y}}\\ 0&0&1\end{array}\right)\cdot\left(\begin{array}{c}\\ \\ 1\end{array}\right)=\ \left(\begin{array}{c}{ax+by+t_{x}}\\ {cx+dy+t_{y}}\\ 1\end{array}\right)\</script><h3 id="composing-transform-组合变换"><a href="#composing-transform-组合变换" class="headerlink" title="composing transform 组合变换"></a>composing transform 组合变换</h3><p>矩阵乘法的顺序会影响结果<br>所以变换顺序的不同也会影响结果<br>$R_{45}\cdot T_{(1,0)} \neq T_{(1,0)} \cdot R_{45}$</p>
-<p>默认情况下先做旋转再做平移<br>对于下式来说<br>$T_{(1,0)}\cdot  R_{45}\ \left [\begin{array}{c}x\\ y\\1\end{array}\right]$<br>先做旋转再做平移</p>
-<p>对于一系列操作来说<br>$A_{n}(A_{n-1}(A_{n-2}…(A_{1})))$可以先合成之前的矩阵,最终变成$A_{(3<em>3)} \cdot \begin{pmatrix}x \\ y \\ 1\end{pmatrix}$<br>$A_{(3</em>3})$能够表达无数多的复杂变换</p>
-<h4 id="非原点旋转"><a href="#非原点旋转" class="headerlink" title="非原点旋转"></a>非原点旋转</h4><p>$T_{c} \cdot R_{\alpha} \cdot T_{-c}$<br>顺序是从左到右<br>先平移到原点,再旋转,最后再平移回去</p>
+<script type="math/tex; mode=display">\left(\begin{array}{c c c}{x^{\prime}}\\ {y^{\prime}}\\ 1\end{array}\right)\ =\ \left(\begin{array}{c c c}&&{t_{x}}\\ &&{t_{y}}\\ 0&0&1\end{array}\right)\cdot\left(\begin{array}{c}\\ \\ 1\end{array}\right)=\ \left(\begin{array}{c}{ax+by+t_{x}}\\ {cx+dy+t_{y}}\\ 1\end{array}\right)\</script><h3 id="composing-transform-组合变换"><a href="#composing-transform-组合变换" class="headerlink" title="composing transform 组合变换"></a>composing transform 组合变换</h3><p>矩阵乘法的顺序会影响结果<br>所以变换顺序的不同也会影响结果<br>$R<em>{45}\cdot T</em>{(1,0)} \neq T<em>{(1,0)} \cdot R</em>{45}$</p>
+<p>默认情况下先做旋转再做平移<br>对于下式来说<br>$T<em>{(1,0)}\cdot  R</em>{45}\ \left [\begin{array}{c}x\ y\1\end{array}\right]$<br>先做旋转再做平移</p>
+<p>对于一系列操作来说<br>$A<em>{n}(A</em>{n-1}(A<em>{n-2}…(A</em>{1})))$可以先合成之前的矩阵,最终变成$A<em>{(3*3)} \cdot \begin{pmatrix}x \ y \ 1\end{pmatrix}$<br>$A</em>{(3*3})$能够表达无数多的复杂变换</p>
+<h4 id="非原点旋转"><a href="#非原点旋转" class="headerlink" title="非原点旋转"></a>非原点旋转</h4><p>$T<em>{c} \cdot R</em>{\alpha} \cdot T_{-c}$<br>顺序是从左到右<br>先平移到原点,再旋转,最后再平移回去</p>
 <h3 id="inverse-transform-逆变换"><a href="#inverse-transform-逆变换" class="headerlink" title="inverse transform 逆变换"></a>inverse transform 逆变换</h3><p>使用逆矩阵就可以完成逆变换<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231015232424.png" alt=""></p>
 <h1 id="Lec4-Transformation-B"><a href="#Lec4-Transformation-B" class="headerlink" title="Lec4 Transformation B"></a>Lec4 Transformation B</h1><p>How to get a photo?</p>
 <ol>
@@ -109,8 +109,8 @@
 <li>按快门 projection transformation<br>MVP!<br>modeling viewing projection</li>
 </ol>
 <h2 id="三维变换"><a href="#三维变换" class="headerlink" title="三维变换"></a>三维变换</h2><h4 id="3D-Transformation"><a href="#3D-Transformation" class="headerlink" title="3D  Transformation"></a>3D  Transformation</h4><ul>
-<li>$3D point=\begin{pmatrix}x \\ y  \\ z\\ 1\end{pmatrix}$</li>
-<li>$3D vector=\begin{pmatrix}x \\ y \\z \\  0\end{pmatrix}$<br>$\begin{pmatrix}x \\ y  \\ z\\ w\end{pmatrix}=\begin{pmatrix}x /w\\ y/w  \\ z/w\\ 1\end{pmatrix}$</li>
+<li>$3D point=\begin{pmatrix}x \ y  \ z\ 1\end{pmatrix}$</li>
+<li>$3D vector=\begin{pmatrix}x \ y \z \  0\end{pmatrix}$<br>$\begin{pmatrix}x \ y  \ z\ w\end{pmatrix}=\begin{pmatrix}x /w\ y/w  \ z/w\ 1\end{pmatrix}$</li>
 </ul>
 <h4 id="仿射变换"><a href="#仿射变换" class="headerlink" title="仿射变换"></a>仿射变换</h4><p>平移仍然在最后一列</p>
 <script type="math/tex; mode=display">\left(\begin{array}{c c c}{x^{\prime}}\\ {y^{\prime}}\\ \\1\end{array}\right)\ =\ \left(\begin{array}{c c c c}{a}&{b}&c&{t_{x}}\\ {d}&{e}&f&{t_{y}}\\g&h&i&t_{z}\\ 0&0&0&1\end{array}\right)\cdot\left(\begin{array}{c}{x}\\ {y}\\z\\ 1\end{array}\right)=\ \left(\begin{array}{c}{ax+by+cz+t_{x}}\\ {dx+ey+fz+t_{y}}\\gx+hy+di+t_{z}\\ 1\end{array}\right)\</script><h4 id="scale-1"><a href="#scale-1" class="headerlink" title="scale"></a>scale</h4><script type="math/tex; mode=display">S_(s_{x},s_{y},s_{z})=\begin{pmatrix}s_{x}&0&0&0 \\ 0&s_{y}&0&0 \\ 0&0&s_{z}&0 \\ 0&0&0&1 \\ \end{pmatrix}</script><h4 id="reflection-1"><a href="#reflection-1" class="headerlink" title="reflection"></a>reflection</h4><h4 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h4><script type="math/tex; mode=display">T_(t_{x},t_{y}t_{z})=\begin{pmatrix}
@@ -120,18 +120,18 @@
 <li>沿着y轴旋转<br>是最特殊的一个,右上角是$\sin\alpha$<br>下见推算过程<script type="math/tex; mode=display">\mathbf{R}_{y}(\alpha)={\left(\begin{array}{l l l l}{\cos\alpha}&{0}&{\sin\alpha}&{0}\\ {0}&{1}&{0}&{0}\\ {-\sin\alpha}&{0}&{\cos\alpha}&{0}\\ {0}&{0}&{0}&{1}\end{array}\right)}</script></li>
 <li>沿着z轴旋转<script type="math/tex; mode=display">\mathbf{R}_{y}(\alpha)={\left(\begin{array}{l l l l}{\cos\alpha}&{-\sin\alpha}&{0}&{0}\\ {\sin\alpha}&{\cos\alpha}&{0}&{0}\\ {0}&{0}&{1}&{0}\\ {0}&{0}&{0}&{1}\end{array}\right)}</script></li>
 </ul>
-<p>对于任意的3D旋转来说,可以分解为一个在3D直角坐标系中的<br>$R_{xyz}(\alpha\beta\gamma)=R_{x}(\alpha)R_{y}(\beta)R_{z}(\gamma)$<br>三个绕各个轴旋转的矩阵相乘<br>$\alpha,\beta,\gamma$叫做欧拉角(Euler Angles)<br>战地中的开飞机也是这样</p>
+<p>对于任意的3D旋转来说,可以分解为一个在3D直角坐标系中的<br>$R<em>{xyz}(\alpha\beta\gamma)=R</em>{x}(\alpha)R<em>{y}(\beta)R</em>{z}(\gamma)$<br>三个绕各个轴旋转的矩阵相乘<br>$\alpha,\beta,\gamma$叫做欧拉角(Euler Angles)<br>战地中的开飞机也是这样</p>
 <ul>
 <li><p>Rodrigues’ Rotation Formula<br>rotation by angle $\alpha$ around axis $n$</p>
-<script type="math/tex; mode=display">\mathrm{R}({\bf n},\alpha)~=~\mathrm{cos}(\alpha){\bf I}~+~(1-\cos(\alpha))~{\bf n}^{T}~+~\sin(\alpha)\left(\begin{array}{l l l}0&{-n_{z}}&{n_{y}}\\ {n_{z}}&0&{-n_{x}}\\ {-n_{y}}&{n_{x}}&0\\ \end{array}\right)</script><p>这部分$\sin\alpha\left(\begin{array}{l l l}0&amp;{-n_{z}}&amp;{n_{y}}\\ {n_{z}}&amp;0&amp;{-n_{x}}\\ {-n_{y}}&amp;{n_{x}}&amp;0\\ \end{array}\right)$是叉乘的矩阵表达形式</p>
+<script type="math/tex; mode=display">\mathrm{R}({\bf n},\alpha)~=~\mathrm{cos}(\alpha){\bf I}~+~(1-\cos(\alpha))~{\bf n}^{T}~+~\sin(\alpha)\left(\begin{array}{l l l}0&{-n_{z}}&{n_{y}}\\ {n_{z}}&0&{-n_{x}}\\ {-n_{y}}&{n_{x}}&0\\ \end{array}\right)</script><p>这部分$\sin\alpha\left(\begin{array}{l l l}0&amp;{-n<em>{z}}&amp;{n</em>{y}}\ {n<em>{z}}&amp;0&amp;{-n</em>{x}}\ {-n<em>{y}}&amp;{n</em>{x}}&amp;0\ \end{array}\right)$是叉乘的矩阵表达形式</p>
 </li>
 </ul>
 <h2 id="viewing-camera-视图变换"><a href="#viewing-camera-视图变换" class="headerlink" title="viewing/camera 视图变换"></a>viewing/camera 视图变换</h2><p>基础:<br>相机的位置      $\vec{e}$          人的位置<br>相机看向的方向  $\hat{g}$          眼睛朝向<br>相机顶部向量    $\hat{t}$          脑袋歪斜方向<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231016210059.png" alt=""></p>
 <p>在物理学的角度,可以将物体的移动看成,相机位置不动,其他物体相对运动.<br>于是把相机固定在标准位置,<br>即<br>相机位于原点,永远看向-z轴,顶部指向y轴正方向<br>即<br>$\vec{e}=(0,0,0)$<br>$\hat{g}=(0,0,-1)$<br>$\hat{t}=(0,1,0)$<br>让操作计简化</p>
 <p>标准化流程<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231016210815.png" alt=""></p>
 <ol>
-<li>$T_{view}=\left[\begin{array}{c c c c}1&amp;0&amp;0&amp;-x_{e}\\ 0&amp;1&amp;0&amp;-y_{e}\\0&amp;0&amp;1&amp;-z_{e}\\0&amp;0&amp;0&amp;1\end{array}\right]$</li>
-<li>将后面几步旋转矩阵计算为同一个矩阵可得逆矩阵$R_{view}^{-1}$.由于矩阵$R_{view}$计算困难,故使用逆矩阵<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231016213934.png" alt=""><br>第一行为(g x t) To X 结果<br>第二行为t To Y的结果<br>第三行为g To -Z的结果</li>
+<li>$T<em>{view}=\left[\begin{array}{c c c c}1&amp;0&amp;0&amp;-x</em>{e}\ 0&amp;1&amp;0&amp;-y<em>{e}\0&amp;0&amp;1&amp;-z</em>{e}\0&amp;0&amp;0&amp;1\end{array}\right]$</li>
+<li>将后面几步旋转矩阵计算为同一个矩阵可得逆矩阵$R<em>{view}^{-1}$.由于矩阵$R</em>{view}$计算困难,故使用逆矩阵<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231016213934.png" alt=""><br>第一行为(g x t) To X 结果<br>第二行为t To Y的结果<br>第三行为g To -Z的结果</li>
 </ol>
 <h2 id="projection-投影变换"><a href="#projection-投影变换" class="headerlink" title="projection  投影变换"></a>projection  投影变换</h2><ul>
 <li>orthographic projection 正交投影</li>
@@ -210,7 +210,7 @@ x \\ y \\ f \\ 1
 \end{pmatrix}=f^{2}</script><p>由上两式可得</p>
 <script type="math/tex; mode=display">\begin{align}A=n+f  \\ B=-nf\end{align}</script><script type="math/tex; mode=display">M_{persp\rightarrow ortho}=\begin{pmatrix}
 n&0&0&0 \\ 0&n&0&0 \\ 0&0&n+f&-nf \\ 0&0&1&0
-\end{pmatrix}</script><p>最后得到透视矩阵<br>$M_{persp}=M_{ortho}M_{persp\rightarrow ortho}$</p>
+\end{pmatrix}</script><p>最后得到透视矩阵<br>$M<em>{persp}=M</em>{ortho}M_{persp\rightarrow ortho}$</p>
 <p>思考题:<br>对于$\frac{n+f}{2}$,经过变形之后,会更加靠近$n$还是$f$?</p>
 <script type="math/tex; mode=display">\begin{align}
 M_{persp\rightarrow ortho}\begin{pmatrix}
@@ -255,7 +255,7 @@ nx \\ ny \\ \frac{n^{2}+f^{2}}{2} \\ \frac{n+f}{2}
 <li>能够用三角形表示其他的多边形</li>
 <li>三角形的三个点确保了他们在同一个平面中</li>
 <li>内部外部很容易区分,可以用向量的叉积进行判断</li>
-<li>定义了三个点$v_{1},v_{2},v_{3}$ value属性的值,就可以判断三角形内部某个点.value</li>
+<li>定义了三个点$v<em>{1},v</em>{2},v_{3}$ value属性的值,就可以判断三角形内部某个点.value</li>
 </ul>
 <h2 id="光栅化方法"><a href="#光栅化方法" class="headerlink" title="光栅化方法"></a>光栅化方法</h2><h3 id="采样"><a href="#采样" class="headerlink" title="采样"></a>采样</h3><p>对风景采样=拍照<br>对时间采样=video</p>
 <p>将函数离散化的方法<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231018164423.png" alt=""><br>采样算法示例<br>判断像素中心点是否在三角形中<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> x = <span class="number">0</span>; x &lt; xmax; ++x)</span><br><span class="line">  <span class="keyword">for</span> (<span class="built_in">int</span> y = <span class="number">0</span>; y &lt; ymax; ++y)</span><br><span class="line">  image[x][y] = inside(tri,</span><br><span class="line">  x + <span class="number">0.5</span>,</span><br><span class="line">  y + <span class="number">0.5</span>);</span><br><span class="line">  <span class="comment"># inside 函数的具体实现,依靠叉积判断点是否在三角形中</span></span><br><span class="line">  <span class="comment"># 对于中心点在边上的情况,可以自行决断</span></span><br></pre></td></tr></table></figure></p>
@@ -404,7 +404,7 @@ x&\in(0,1)
 <script type="math/tex; mode=display">\begin{align}
 u_{0}&=lerp(s,u_{00},u_{10})\\
 u_{1}&=lerp(s,u_{01},u_{11})\\
-\end{align}</script><p>两个单线性插值能够计算出$u_{1},u_{0}$<br>再根据$u_{1},u_{0}$再进行一次插值</p>
+\end{align}</script><p>两个单线性插值能够计算出$u<em>{1},u</em>{0}$<br>再根据$u<em>{1},u</em>{0}$再进行一次插值</p>
 <script type="math/tex; mode=display">f(x,y)=lerp(t,u_{0},u_{1})</script><p>这就是双线性插值,从步骤上看,<br>第一次插值:四个点插值为两个点<br>第二次插值:两个点插值为一个点<br>双线性对应的是$2^{2}$的指数$2$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025191959.png" alt=""></p>
 <h5 id="bicubic"><a href="#bicubic" class="headerlink" title="bicubic"></a>bicubic</h5><p>性能开销太大,效果最好</p>
 <h3 id="big-case"><a href="#big-case" class="headerlink" title="big case"></a>big case</h3><p>texture太大,而screen太小<br>一个像素对应的texture范围过大,会造成走样.<br>从信号的角度看,单个像素对应的texel中,内容变换过快,信号变化频率高,而采样次数太少,从而产生了走样<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025203735.png" alt=""></p>
@@ -419,7 +419,7 @@ u_{1}&=lerp(s,u_{01},u_{11})\\
 <h5 id="mipmap"><a href="#mipmap" class="headerlink" title="mipmap"></a>mipmap</h5><h6 id="what-is-mipmap"><a href="#what-is-mipmap" class="headerlink" title="what is mipmap"></a>what is mipmap</h6><p>Allowing <code>(fast, approximate, square)</code> range queries<br>仅限于正方形,被操作对象为texture<br>“Mip” comes from the Latin “multum in parvo”, meaning a multitude in a small space</p>
 <p>以原图为$n \times n$为例<br>在原图的基础上,削减像素数量,为原来的一半,最后图像$level=log_{2}n$.,例如当$n=128$时,最终图为$level 7$<br>从性能开销上来看,储存仅仅为原来的$\frac{4}{3}$</p>
 <script type="math/tex; mode=display">1^{2}+2^{2}+ \ldots+(\frac{n}{2})^{2}+n^{2}=\frac{4}{3}n^{2}</script><p>mipmap的生成是在range query之前完成<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025210710.png" alt=""></p>
-<p>左边为屏幕像素,右边为纹理上的texel<br>如果要对点$(u,v)_{00}$进行mipmap计算<br>找到这个点周围距离为一个pixel的几个点,计算它们的textue坐标.再计算中心点与周围点的距离,用最大的$L$值画一个正方形,进行range query<br>查询的图像的$level=log_{2}L$.<br>一个像素对应的$L \times L$texel.既然已经对纹理进行过mipmap的操作,那就可以在对应level上查询到$L \times L$的范围内的颜色.<br>例如,当$L=4$的时候,$level=2$,只要查询$level_{2}$上$(u,v)$坐标对应的块的数据就行<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025212345.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025212712.png" alt=""></p>
+<p>左边为屏幕像素,右边为纹理上的texel<br>如果要对点$(u,v)<em>{00}$进行mipmap计算<br>找到这个点周围距离为一个pixel的几个点,计算它们的textue坐标.再计算中心点与周围点的距离,用最大的$L$值画一个正方形,进行range query<br>查询的图像的$level=log</em>{2}L$.<br>一个像素对应的$L \times L$texel.既然已经对纹理进行过mipmap的操作,那就可以在对应level上查询到$L \times L$的范围内的颜色.<br>例如,当$L=4$的时候,$level=2$,只要查询$level_{2}$上$(u,v)$坐标对应的块的数据就行<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025212345.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025212712.png" alt=""></p>
 <h6 id="trilinear-interpolation-三线性插值"><a href="#trilinear-interpolation-三线性插值" class="headerlink" title="trilinear interpolation 三线性插值"></a>trilinear interpolation 三线性插值</h6><p>根据不同位置查询的层数的值进行渲染.<br>但也有这不理想的地方.因为mipmap生成的图是离散的,导致,查询的层数是离散的,两个相邻的像素点,一个查询1,一个查询2,可能结果图像会有一条缝隙,做不到查询1.8层.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025214840.png" alt=""></p>
 <p>优化方法:<br>三线性插值法<br>trilinear interpolation</p>
 <p>查询相邻的两个level的mipmap,对D level进行一次bilinear interpolation,对D+1 level也进行一次bilinear interpolation.最后对双线性插值的结果进行线性插值.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231025215451.png" alt=""></p>
@@ -468,17 +468,17 @@ u_{1}&=lerp(s,u_{01},u_{11})\\
 <h2 id="obj格式"><a href="#obj格式" class="headerlink" title=".obj格式"></a>.obj格式</h2><p>v 储存点信息<br>vt储存纹理<br>vn储存法向量</p>
 <p>f为v/vt/vn</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231104211711.png" alt=""></p>
-<h1 id="Lec11-Curves-and-Surfaces"><a href="#Lec11-Curves-and-Surfaces" class="headerlink" title="Lec11 Curves and Surfaces"></a>Lec11 Curves and Surfaces</h1><h2 id="Bezier-Curves-贝塞尔曲线"><a href="#Bezier-Curves-贝塞尔曲线" class="headerlink" title="Bézier Curves 贝塞尔曲线"></a>Bézier Curves 贝塞尔曲线</h2><h3 id="Bezier-Curves-之-de-Casteljau-算法"><a href="#Bezier-Curves-之-de-Casteljau-算法" class="headerlink" title="Bézier Curves 之 de Casteljau 算法"></a>Bézier Curves 之 de Casteljau 算法</h3><p>进行递归运算,一次减少一个点,最后一个点的轨迹就是该算法得到的贝塞尔曲线<br>使用的是显式几何,引入时间参数$t$,$t\in(0,1)$,来定义贝塞尔曲线<br>先找到在$t$时间,$b_{0},b_{1}$之间的点$b_{0}^{1}$,<br>同理得到$b_{1}^{1},b_{2}^{1}$<br>再处理$t$时间$b_{0}^{1},b_{1}^{1},b_{2}^{1}$三点,得到$b_{0}^{2},b_{1}^{2}$<br>最后同理得到$t$时间的$b_{0}^{3}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231105142852.png" alt=""></p>
+<h1 id="Lec11-Curves-and-Surfaces"><a href="#Lec11-Curves-and-Surfaces" class="headerlink" title="Lec11 Curves and Surfaces"></a>Lec11 Curves and Surfaces</h1><h2 id="Bezier-Curves-贝塞尔曲线"><a href="#Bezier-Curves-贝塞尔曲线" class="headerlink" title="Bézier Curves 贝塞尔曲线"></a>Bézier Curves 贝塞尔曲线</h2><h3 id="Bezier-Curves-之-de-Casteljau-算法"><a href="#Bezier-Curves-之-de-Casteljau-算法" class="headerlink" title="Bézier Curves 之 de Casteljau 算法"></a>Bézier Curves 之 de Casteljau 算法</h3><p>进行递归运算,一次减少一个点,最后一个点的轨迹就是该算法得到的贝塞尔曲线<br>使用的是显式几何,引入时间参数$t$,$t\in(0,1)$,来定义贝塞尔曲线<br>先找到在$t$时间,$b<em>{0},b</em>{1}$之间的点$b<em>{0}^{1}$,<br>同理得到$b</em>{1}^{1},b<em>{2}^{1}$<br>再处理$t$时间$b</em>{0}^{1},b<em>{1}^{1},b</em>{2}^{1}$三点,得到$b<em>{0}^{2},b</em>{1}^{2}$<br>最后同理得到$t$时间的$b_{0}^{3}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231105142852.png" alt=""></p>
 <p>从流程的图来看,<br>a,b,c,d为控制点<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231105142930.png" alt=""></p>
 <h3 id="数学定义"><a href="#数学定义" class="headerlink" title="数学定义"></a>数学定义</h3><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106195554.png" alt=""></p>
-<p>总共有$n+1$个点<br>$b^{n}(t)$为表达最终生成点$b_{0}^{n}(t)$的$n$次多项式.<br>$B_{j}^{n}(t)$是伯恩斯坦多项式</p>
+<p>总共有$n+1$个点<br>$b^{n}(t)$为表达最终生成点$b<em>{0}^{n}(t)$的$n$次多项式.<br>$B</em>{j}^{n}(t)$是伯恩斯坦多项式</p>
 <script type="math/tex; mode=display">\begin{align}
 b^{n}(t)&=b_{0}^{n}(t)=\sum^{n}_{j=0}b_{j}B_{j}^{n}(t)\\
 B_{i}^{n}(t)&=\ {\binom{n}{i}}t^{i}(1-t)^{n-i}
 \end{align}</script><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106195755.png" alt=""></p>
-<p>对于四个控制点的贝塞尔曲线应用<br>${\bf b}^{n}(t)={\bf b}_{0}\,(1-t)^{3}+{\bf b}_{1}\,3t(1-t)^{2}+{\bf b}_{2}\,3t^{2}(1-t)+{\bf b}_{3}\,t^{3}$</p>
+<p>对于四个控制点的贝塞尔曲线应用<br>${\bf b}^{n}(t)={\bf b}<em>{0}\,(1-t)^{3}+{\bf b}</em>{1}\,3t(1-t)^{2}+{\bf b}<em>{2}\,3t^{2}(1-t)+{\bf b}</em>{3}\,t^{3}$</p>
 <p>伯恩斯坦方程具有对称性<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106200742.png" alt=""></p>
-<h3 id="Properties-of-Bezier-Curves"><a href="#Properties-of-Bezier-Curves" class="headerlink" title="Properties of Bézier Curves"></a>Properties of Bézier Curves</h3><p>例子中是四个控制点$b_{0},b_{1},b_{2},b_{3}$的三维贝塞尔曲线<br>三维贝塞尔曲线,起点是$b_{0}$,终点是$b_{3}$<br>在控制点的切线是$b^\prime(n)=3(b_{n+1}-b_{n})$,系数一定为3<br>对于仿射变换具有良好性质.控制点直接生成的贝塞尔曲线经过仿射变换,和仿射变换之后的控制点生成的贝塞尔曲线,一摸一样,但对于其他的变换不适用<br>具有凸包性质.生成的贝塞尔曲线一定在控制点形成的闭包之内.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106200846.png" alt=""></p>
+<h3 id="Properties-of-Bezier-Curves"><a href="#Properties-of-Bezier-Curves" class="headerlink" title="Properties of Bézier Curves"></a>Properties of Bézier Curves</h3><p>例子中是四个控制点$b<em>{0},b</em>{1},b<em>{2},b</em>{3}$的三维贝塞尔曲线<br>三维贝塞尔曲线,起点是$b<em>{0}$,终点是$b</em>{3}$<br>在控制点的切线是$b^\prime(n)=3(b<em>{n+1}-b</em>{n})$,系数一定为3<br>对于仿射变换具有良好性质.控制点直接生成的贝塞尔曲线经过仿射变换,和仿射变换之后的控制点生成的贝塞尔曲线,一摸一样,但对于其他的变换不适用<br>具有凸包性质.生成的贝塞尔曲线一定在控制点形成的闭包之内.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106200846.png" alt=""></p>
 <h4 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h4><p>最外面的一个圈就是</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106201637.png" alt=""></p>
 <h3 id="Piecewise-Bezier-Curves-分段贝塞尔曲线"><a href="#Piecewise-Bezier-Curves-分段贝塞尔曲线" class="headerlink" title="Piecewise Bézier Curves 分段贝塞尔曲线"></a>Piecewise Bézier Curves 分段贝塞尔曲线</h3><p>对于这样的控制点,生成的贝塞尔曲线,难以控制,并且生成难度高<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231106203913.png" alt=""></p>
@@ -579,7 +579,7 @@ B_{i}^{n}(t)&=\ {\binom{n}{i}}t^{i}(1-t)^{n-i}
 <h4 id="Accelerating-Ray-Surface-Intersection"><a href="#Accelerating-Ray-Surface-Intersection" class="headerlink" title="Accelerating Ray-Surface Intersection"></a>Accelerating Ray-Surface Intersection</h4><p>每一个像素发出一条射线,每条射线要与每个objects计算,效果非常差<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231107172144.png" alt=""></p>
 <h5 id="Bounding-Volumes-包围盒"><a href="#Bounding-Volumes-包围盒" class="headerlink" title="Bounding Volumes 包围盒"></a>Bounding Volumes 包围盒</h5><p>将需要计算交点的物体,用包围盒包起来.包围盒一般都是比较简单的物体.长方形,长方体等等<br>长方体包围盒由三对相对的面来定义<br>AABB 包围盒,要求与每个面直角坐标系的某个平面平行,<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231107172649.png" alt=""></p>
 <p>AABB好处在于,计算时间$t$非常简单<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231107174301.png" alt=""></p>
-<p>bounding box本身是由几对面求∩表达<br>光线在bounding box内的时间也是如此<br>先对各对面,求光线进入时间$t_{min}$,出去时间$t_{max}$.<br>再求交集,就是对<br>所有的$t_{min}$求最大值 $max(t_{min})$<br>所有的$t_{max}$求最小值 $min(t_{max})$<br>暂时不考虑$t_{min}&lt;0$的处理<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231107174346.png" alt=""></p>
+<p>bounding box本身是由几对面求∩表达<br>光线在bounding box内的时间也是如此<br>先对各对面,求光线进入时间$t<em>{min}$,出去时间$t</em>{max}$.<br>再求交集,就是对<br>所有的$t<em>{min}$求最大值 $max(t</em>{min})$<br>所有的$t<em>{max}$求最小值 $min(t</em>{max})$<br>暂时不考虑$t_{min}&lt;0$的处理<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231107174346.png" alt=""></p>
 <script type="math/tex; mode=display">\begin{align}
 t_{enter}=max(t_{min})\\
 t_{exit}=min(t_{min})
@@ -631,12 +631,12 @@ t_{exit}=min(t_{min})
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231115162330.png" alt=""></p>
 <p>BRDF<br>描述每一个入射光与每一个出射光的关系<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231115162840.png" alt=""></p>
 <p>The Reflection Equation<br>对于确定的出射方向,计算各个入射方向的积分.<br>入射的光线除了点光源,还会有一次反射,二次反射等等之后产生的光线.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231115162956.png" alt=""></p>
-<h3 id="rendering-equation"><a href="#rendering-equation" class="headerlink" title="rendering equation"></a>rendering equation</h3><p>除了上方的渲染方程之外,还增加了,观测点本身发光的情况下发出的光源.<br>求积分,只对上半球体求,下半球体默认为0<br>$(n \cdot w_{i})$就是$\cos \theta_{i}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231121131456.png" alt=""></p>
+<h3 id="rendering-equation"><a href="#rendering-equation" class="headerlink" title="rendering equation"></a>rendering equation</h3><p>除了上方的渲染方程之外,还增加了,观测点本身发光的情况下发出的光源.<br>求积分,只对上半球体求,下半球体默认为0<br>$(n \cdot w<em>{i})$就是$\cos \theta</em>{i}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231121131456.png" alt=""></p>
 <h4 id="单个点光源"><a href="#单个点光源" class="headerlink" title="单个点光源"></a>单个点光源</h4><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122115851.png" alt=""></p>
 <h4 id="多个点光源"><a href="#多个点光源" class="headerlink" title="多个点光源"></a>多个点光源</h4><p>sum函数求和<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122115920.png" alt=""></p>
 <h4 id="面光源"><a href="#面光源" class="headerlink" title="面光源"></a>面光源</h4><p>integral求积分<br>面光源是点光源的大集合<br>对面光源所在的立体角进行积分<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122115948.png" alt=""></p>
 <h4 id="其他物体反射光源"><a href="#其他物体反射光源" class="headerlink" title="其他物体反射光源"></a>其他物体反射光源</h4><p>光源不一定来自直接光源,也有可能来自其他的物体反射出来的光源<br>计算物体反射光线对应的立体角<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120343.png" alt=""></p>
-<h3 id="式子化简"><a href="#式子化简" class="headerlink" title="式子化简"></a>式子化简</h3><p>对式子进行数学化简<br>$(x,w_{r})=u$ $(x^{\prime},-w_{i})=v$<br>最后化简为只与L,E,K有关的式子<br>E为自发光,L为光线,K为由BRDF得到的转换矩阵,将入射光线L转换为出射光线<br>L, E are vectors, K is the light transport matrix<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120558.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120614.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120829.png" alt=""><br>矩阵也有类似于泰勒展开的性质,对于$(I-K)^{-1}$可以展开为$(I+K+K^{2}+K^{3}+…)$,$I$为单位矩阵.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122130435.png" alt=""><br>$E$ 为自发光<br>$KE$ 为直接光照<br>$K^{2}E$ 为间接光照<br>全局光照=直接光照+间接光照<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122130647.png" alt=""><br>本质就是解方程,计算出变换矩阵$E$和由BFDR定义的$K$就能解出最终$L$的结果</p>
+<h3 id="式子化简"><a href="#式子化简" class="headerlink" title="式子化简"></a>式子化简</h3><p>对式子进行数学化简<br>$(x,w<em>{r})=u$ $(x^{\prime},-w</em>{i})=v$<br>最后化简为只与L,E,K有关的式子<br>E为自发光,L为光线,K为由BRDF得到的转换矩阵,将入射光线L转换为出射光线<br>L, E are vectors, K is the light transport matrix<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120558.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120614.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122120829.png" alt=""><br>矩阵也有类似于泰勒展开的性质,对于$(I-K)^{-1}$可以展开为$(I+K+K^{2}+K^{3}+…)$,$I$为单位矩阵.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122130435.png" alt=""><br>$E$ 为自发光<br>$KE$ 为直接光照<br>$K^{2}E$ 为间接光照<br>全局光照=直接光照+间接光照<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122130647.png" alt=""><br>本质就是解方程,计算出变换矩阵$E$和由BFDR定义的$K$就能解出最终$L$的结果</p>
 <p>普通的rasterization只对自发光和直接光照处理,虽然也可以处理间接光照,但有难度.</p>
 <h2 id="概率论复习"><a href="#概率论复习" class="headerlink" title="概率论复习"></a>概率论复习</h2><h1 id="Lec16-ray-tracing-4"><a href="#Lec16-ray-tracing-4" class="headerlink" title="Lec16 ray tracing 4"></a>Lec16 ray tracing 4</h1><h2 id="黎曼积分"><a href="#黎曼积分" class="headerlink" title="黎曼积分"></a>黎曼积分</h2><p>对于$f(x)$求积分,黎曼积分方法是,先将积分域内,划分为数量众多的等宽的长方形,对每个长方形求面积,再对面积求sum,最终得到的结果近似积分结果<br><strong>微元法</strong></p>
 <h2 id="Monte-Carlo-Integration"><a href="#Monte-Carlo-Integration" class="headerlink" title="Monte Carlo Integration"></a>Monte Carlo Integration</h2><p>对于不定积分,最终的计算结果是一个函数$f(x)$<br>而对于定积分,最终的计算结果是一个值</p>
@@ -670,21 +670,21 @@ t_{exit}=min(t_{min})
 <p>最后一个小问题,可能会有物体阻挡在光源与观察点之间<br>需要增加一个小判断<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Contribution from the light source.</span><br><span class="line">L_dir = <span class="number">0.0</span></span><br><span class="line">Uniformly sample the light at x’ (pdf_light = <span class="number">1</span> / A)</span><br><span class="line">Shoot a ray from p to x’</span><br><span class="line">If the ray is not blocked in the middle</span><br><span class="line">L_dir = …</span><br></pre></td></tr></table></figure></p>
 <h2 id="misc"><a href="#misc" class="headerlink" title="misc"></a>misc</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122194947.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/Pasted%20image%2020231122201435.png" alt=""></p>
 <h1 id="Lec17-Materials-and-appearances"><a href="#Lec17-Materials-and-appearances" class="headerlink" title="Lec17 Materials and appearances"></a>Lec17 Materials and appearances</h1><p>Material == BRDF</p>
-<h2 id="Diffuse-Lambertian-Material-漫反射材质"><a href="#Diffuse-Lambertian-Material-漫反射材质" class="headerlink" title="Diffuse / Lambertian Material 漫反射材质"></a>Diffuse / Lambertian Material 漫反射材质</h2><p>假设:<br>没有自发光<br>每一条入射光的漫反射都是均匀分布<br>同时入射光本身也均匀分布<br>那么某着色点的出射光就等于该点所有入射光在小范围内的积分,再乘上BRDF($f_{r}$).<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129003051.png" alt=""><br>由式子可得,<br>$f=\frac{1}{\pi}$<br>设$\rho$为albedo,即颜色反射系数,$\rho \in [0,1]$.<br>那么完整的$f_{r}=\frac{1}{\pi}$</p>
+<h2 id="Diffuse-Lambertian-Material-漫反射材质"><a href="#Diffuse-Lambertian-Material-漫反射材质" class="headerlink" title="Diffuse / Lambertian Material 漫反射材质"></a>Diffuse / Lambertian Material 漫反射材质</h2><p>假设:<br>没有自发光<br>每一条入射光的漫反射都是均匀分布<br>同时入射光本身也均匀分布<br>那么某着色点的出射光就等于该点所有入射光在小范围内的积分,再乘上BRDF($f<em>{r}$).<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129003051.png" alt=""><br>由式子可得,<br>$f=\frac{1}{\pi}$<br>设$\rho$为albedo,即颜色反射系数,$\rho \in [0,1]$.<br>那么完整的$f</em>{r}=\frac{1}{\pi}$</p>
 <p>$\rho$可以是多通道,针对三原色,也可以针对某种原色</p>
 <h2 id="Glossy-material"><a href="#Glossy-material" class="headerlink" title="Glossy material"></a>Glossy material</h2><p>不完全镜面反射,表面还是存在凹凸<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129004828.png" alt=""></p>
 <h2 id="Ideal-reflective-material"><a href="#Ideal-reflective-material" class="headerlink" title="Ideal reflective material"></a>Ideal reflective material</h2><p>即为Perfect Specular Reflection<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129005006.png" alt=""><br>三维空间中的光线需要两个角度来定义.<br>侧为$\theta$,俯视为$\phi$<br>$\theta$平行四边形法<br>$\phi$俯视角投影</p>
 <p>难点在于求这样条件下的BRDF值为多少,感兴趣可以自己推导</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129182929.png" alt=""></p>
 <h2 id="Specular-refraction"><a href="#Specular-refraction" class="headerlink" title="Specular refraction"></a>Specular refraction</h2><p>折射<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129182947.png" alt=""><br>右下角的海水也是由光的折射导致的.<br>由于海水本身的起伏,多道折射光可能射到同一点上,就出现了高光<br>这种现象叫做caustics,国内翻译作焦散.其实并没有没有散射,翻译不好.</p>
-<p>一样也是用$\theta$,$\phi$定义<br>$n_{i}$,$n_{t}$是折射系数<br>$\frac{n_{i}}{n_{t}} \gt 1$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129183627.png" alt=""></p>
+<p>一样也是用$\theta$,$\phi$定义<br>$n<em>{i}$,$n</em>{t}$是折射系数<br>$\frac{n<em>{i}}{n</em>{t}} \gt 1$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129183627.png" alt=""></p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129184001.png" alt=""><br>仍然存在$\cos \theta_{t}$无意义的情况.<br>光线在这个折射角无法折射.</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129184325.png" alt=""><br>人在水下的fov-y仅有$97.2^{\circ}$</p>
 <h2 id="Fresnel-Reflection-Term"><a href="#Fresnel-Reflection-Term" class="headerlink" title="Fresnel Reflection/Term"></a>Fresnel Reflection/Term</h2><p>不同的入射角,会有不同强度的反射<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129223310.png" alt=""><br>引出概念Fresnel Term<br>对于绝缘且$n=1.5$的material来说,<br>法线夹角与反射率的关系如下,<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129223451.png" alt=""></p>
 <p>而对于导体<br>导体不论任何角度,反射率都极其优秀,镜子都是玻璃再镀银.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129223806.png" alt=""></p>
 <p>S,P极化为光的波动性的体现<br>一般就取极化平均值</p>
 <p>反射率的精准计算:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129223933.png" alt=""></p>
-<p>工程上采用的比较多的是近似方法 Schlick’s approximation<br>确保<br>$R_{0}=R_{eff}$<br>$R_{90}\approx R_{eff}$</p>
+<p>工程上采用的比较多的是近似方法 Schlick’s approximation<br>确保<br>$R<em>{0}=R</em>{eff}$<br>$R<em>{90}\approx R</em>{eff}$</p>
 <h2 id="Microfacet-material"><a href="#Microfacet-material" class="headerlink" title="Microfacet material"></a>Microfacet material</h2><p>神中神,大火都在用的顶级模型.基于物理,模拟光线效果好</p>
 <p>Macroscale是从远处看过来的情况,强调是模型材质,忽略细节,视作<code>平整粗糙</code>的一整块,<br>Microscale,重视表面的<code>凹凸细节</code>,且全部都是<code>镜面反射</code>.采用微元法,把每个微元都看作有自己法线的小镜面<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231129230600.png" alt=""></p>
 <p>由microfacet的原理来定义材质.</p>
@@ -719,7 +719,7 @@ t_{exit}=min(t_{min})
 </ul>
 <h2 id="Measuring-BRDFs"><a href="#Measuring-BRDFs" class="headerlink" title="Measuring BRDFs"></a>Measuring BRDFs</h2><p>计算化简之后的BRDF与现实之间还是存在差距.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000222.png" alt=""></p>
 <p>使用机械测量<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000238.png" alt=""></p>
-<p>鉴于BRDF有$\theta_{i},\theta_{o},\phi_{i},\phi_{o}$四大参数,测量是一个非常复杂繁琐的过程.4D的数据集保存也很困难<br>测量流程与优化方法:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000804.png" alt=""></p>
+<p>鉴于BRDF有$\theta<em>{i},\theta</em>{o},\phi<em>{i},\phi</em>{o}$四大参数,测量是一个非常复杂繁琐的过程.4D的数据集保存也很困难<br>测量流程与优化方法:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000804.png" alt=""></p>
 <p>各种测量方法:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000834.png" alt=""></p>
 <p>存储要求:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231130000951.png" alt=""></p>
 <h1 id="Lec18-Advanced-Topics-in-Rendering"><a href="#Lec18-Advanced-Topics-in-Rendering" class="headerlink" title="Lec18 Advanced Topics in Rendering"></a>Lec18 Advanced Topics in Rendering</h1><p>Advanced Light Transport</p>
@@ -808,7 +808,7 @@ t_{exit}=min(t_{min})
 <h3 id="Exposure"><a href="#Exposure" class="headerlink" title="Exposure"></a>Exposure</h3><p>Exposure = time * irradiance<br>time controlled by shutter<br>irradiance controlled by lens aperture(光圈) and focal length</p>
 <p>除了光圈大小与快门速度外,还有一个ISO增益.<br>三者都能影响最后成像的曝光度<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212153712.png" alt=""></p>
 <ul>
-<li>光圈:<br>$F$越大,光圈越小,挡光越强,越接近于小孔成像,深度信息越少,景深越少<br>对曝光的影响为指数.$(\frac{F_{1}}{F_{2}})^{2}$<br>$F2.0$与$F4.0$,前者亮度为后者4倍,越小光圈越大,越亮</li>
+<li>光圈:<br>$F$越大,光圈越小,挡光越强,越接近于小孔成像,深度信息越少,景深越少<br>对曝光的影响为指数.$(\frac{F<em>{1}}{F</em>{2}})^{2}$<br>$F2.0$与$F4.0$,前者亮度为后者4倍,越小光圈越大,越亮</li>
 <li>快门:<br>快门时间越短,记录的时间信息越少,动作越静止,成像越清晰<br>对曝光的影响为线性.$1/30$与$1/15$,后者为前者亮度的两倍</li>
 </ul>
 <p>标红的几组,在亮度上几乎没有区别,但成像结果也并非是一摸一样<br>景深与动作模糊存在区别<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212161402.png" alt=""></p>
@@ -827,12 +827,12 @@ t_{exit}=min(t_{min})
 <p>简单的光学定理,由相似三角形推导得出<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212163342.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212163428.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212163437.png" alt=""></p>
 <h3 id="Defocus-Blur"><a href="#Defocus-Blur" class="headerlink" title="Defocus Blur"></a>Defocus Blur</h3><p>不能正好出现在成像平面上的物体,会产生一个Circle of Confusion (CoC),造成景深模糊的效果.<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212181830.png" alt=""><br>用相似三角形的原理可以计算得出CoC大小<br>并且光圈越大,即$F$越小,CoC越明显<br>$A$为光圈的直径.<br>将$A=\frac{F}{N}$带入得<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212182515.png" alt=""></p>
 <h3 id="Depth-of-Field"><a href="#Depth-of-Field" class="headerlink" title="Depth of Field"></a>Depth of Field</h3><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212184233.png" alt=""><br>景深大小也受到别的参数的影响</p>
-<p>what is small enough?<br>如果成像大小为一个像素或者比一个像素小,就算是锐利的图像.反应到图上就是<code>Depth of focus</code>这个范围内成像,都被认为没有CoC<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212184334.png" alt=""><br>$D_{F}$为最远,$D_{N}$为最近,$D_{S}$为Sensor所在的位置</p>
+<p>what is small enough?<br>如果成像大小为一个像素或者比一个像素小,就算是锐利的图像.反应到图上就是<code>Depth of focus</code>这个范围内成像,都被认为没有CoC<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212184334.png" alt=""><br>$D<em>{F}$为最远,$D</em>{N}$为最近,$D_{S}$为Sensor所在的位置</p>
 <p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212184346.png" alt=""><br><a target="_blank" rel="noopener" href="http://graphics.stanford.edu/courses/cs178/applets/dof.html">在线演示</a>中还能看出越$F-N,f$等参数的联系</p>
 <h2 id="Renderings-with-Lens-Focus"><a href="#Renderings-with-Lens-Focus" class="headerlink" title="Renderings with Lens Focus"></a>Renderings with Lens Focus</h2><p>示例<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212183227.png" alt=""></p>
 <p>计算过程<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212183241.png" alt=""><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212183251.png" alt=""></p>
 <h1 id="Lec20-Color-and-Perception"><a href="#Lec20-Color-and-Perception" class="headerlink" title="Lec20 Color and Perception"></a>Lec20 Color and Perception</h1><p>Finishing up light field / lumigraph<br>Color<br>• What is color<br>• Color perception<br>• Color reproduction / matching<br>• Color space</p>
-<h2 id="The-Plenoptic-Function-（全光函数）"><a href="#The-Plenoptic-Function-（全光函数）" class="headerlink" title="The Plenoptic Function （全光函数）"></a>The Plenoptic Function （全光函数）</h2><p>最完整的全光函数有七大参数<br>分别表示方向$\theta,\phi$,颜色$\lambda$,时间$t$,位置$V_{x},V_{y},V_{z}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212214453.png" alt=""><br>去掉颜色为黑白<br>去掉时间为静态照片<br>去掉位置为固定位置,不能移动</p>
+<h2 id="The-Plenoptic-Function-（全光函数）"><a href="#The-Plenoptic-Function-（全光函数）" class="headerlink" title="The Plenoptic Function （全光函数）"></a>The Plenoptic Function （全光函数）</h2><p>最完整的全光函数有七大参数<br>分别表示方向$\theta,\phi$,颜色$\lambda$,时间$t$,位置$V<em>{x},V</em>{y},V_{z}$<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212214453.png" alt=""><br>去掉颜色为黑白<br>去掉时间为静态照片<br>去掉位置为固定位置,不能移动</p>
 <h2 id="全光函数的光线表示"><a href="#全光函数的光线表示" class="headerlink" title="全光函数的光线表示"></a>全光函数的光线表示</h2><ul>
 <li>5D,起点与方向五个参数<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212214902.png" alt=""></li>
 <li>4D,2D点与2D方向<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2023/12/12/20231212214949.png" alt=""></li>
