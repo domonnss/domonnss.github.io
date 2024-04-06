@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>创新实践3 - l4rk&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="l4rk"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="l4rk"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="cae仿真数据 标量场可视化 Computer-Aided EngineeringCAE是CAD的升级.CAD注重与Design的过程,而CAE不但支持设计,而且支持一整个工程环节.能够在不需要物理实体的情况下进行模拟仿真.In short, the difference between CAD and CAE can be put this way: CAD is for designing a"><meta property="og:type" content="blog"><meta property="og:title" content="l4rk"><meta property="og:url" content="https://l4rk.cn/"><meta property="og:site_name" content="l4rk"><meta property="og:description" content="cae仿真数据 标量场可视化 Computer-Aided EngineeringCAE是CAD的升级.CAD注重与Design的过程,而CAE不但支持设计,而且支持一整个工程环节.能够在不需要物理实体的情况下进行模拟仿真.In short, the difference between CAD and CAE can be put this way: CAD is for designing a"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/20231128162004.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/20231128161947.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110932.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110826.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235552.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235831.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165016.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165655.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108125712.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108133149.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195504.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195035.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195907.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200605.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200852.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200734.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232240.png"><meta property="og:image" content="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232229.png"><meta property="article:published_time" content="2024-02-23T07:48:58.934Z"><meta property="article:modified_time" content="2024-01-10T02:53:39.386Z"><meta property="article:author" content="l4rk"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="http://dn11.l4rk.cn:52501/picture-bucket/20231128162004.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4rk.cn/2024/02/036a61e72b77.html"},"headline":"创新实践3","image":["http://dn11.l4rk.cn:52501/picture-bucket/20231128162004.png","http://dn11.l4rk.cn:52501/picture-bucket/20231128161947.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110932.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110826.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235552.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235831.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165016.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165655.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108125712.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108133149.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195504.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195035.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195907.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200605.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200852.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200734.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232240.png","http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232229.png"],"datePublished":"2024-02-23T07:48:58.934Z","dateModified":"2024-01-10T02:53:39.386Z","author":{"@type":"Person","name":"l4rk"},"publisher":{"@type":"Organization","name":"l4rk's blog","logo":{"@type":"ImageObject","url":"http://l4rk.cn/img/logo.svg"}},"description":"cae仿真数据 标量场可视化 Computer-Aided EngineeringCAE是CAD的升级.CAD注重与Design的过程,而CAE不但支持设计,而且支持一整个工程环节.能够在不需要物理实体的情况下进行模拟仿真.In short, the difference between CAD and CAE can be put this way: CAD is for designing a"}</script><link rel="canonical" href="http://l4rk.cn/2024/02/036a61e72b77.html"><link rel="alternate" href="/atom.xml" title="l4rk&#039;s blog" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!--!--><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-02-23T07:48:58.934Z" title="2024/2/23 15:48:58">2024-02-23</time>发表</span><span class="level-item"><time dateTime="2024-01-10T02:53:39.386Z" title="2024/1/10 10:53:39">2024-01-10</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/">学校课程</a><span> / </span><a class="link-muted" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B5/">创新实践</a></span><span class="level-item">40 分钟读完 (大约6013个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">创新实践3</h1><div class="content"><p>cae仿真数据 标量场可视化</p>
+<h1 id="Computer-Aided-Engineering"><a href="#Computer-Aided-Engineering" class="headerlink" title="Computer-Aided Engineering"></a>Computer-Aided Engineering</h1><p>CAE是CAD的升级.CAD注重与Design的过程,而CAE不但支持设计,而且支持一整个工程环节.能够在不需要物理实体的情况下进行模拟仿真.<br>In short, the difference between CAD and CAE can be put this way: CAD is for designing a product and CAE is for testing and simulating it.<br>主要应用于</p>
+<ol>
+<li>有限元分析</li>
+<li>计算流体动力学</li>
+<li>热分析</li>
+<li>多体运动分析</li>
+<li>产品优化</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://www.simscale.com/docs/simwiki/general/what-is-cae-computer-aided-engineering/">What is CAE</a><br><a target="_blank" rel="noopener" href="https://www.simscale.com/blog/difference-between-cad-and-cae/">What is the Difference Between CAD and CAE</a></p>
+<h1 id="标量场可视化"><a href="#标量场可视化" class="headerlink" title="标量场可视化"></a>标量场可视化</h1><p>标量场是指空间采样位置上记录单个标量的数据场，通常在二维表面或三维空间上的线性或非结构化网格上空间采样。</p>
+<h2 id="二维标量场"><a href="#二维标量场" class="headerlink" title="二维标量场"></a>二维标量场</h2><p>可视化方法</p>
+<ol>
+<li>颜色映射</li>
+<li>轮廓法</li>
+<li>高度图<br><a target="_blank" rel="noopener" href="https://www.zgbk.com/ecph/words?SiteID=1&amp;ID=186647&amp;SubID=81749">概览</a><h2 id="三维标量场"><a href="#三维标量场" class="headerlink" title="三维标量场"></a>三维标量场</h2>可视化方法</li>
+<li>间接体绘制<br>等值面抽取</li>
+<li>直接体绘制<br>光学贡献积分模型</li>
+</ol>
+<p>找到一篇比较感兴趣的论文A rendering algorithm for visualizing 3D scalar fields就是有点太久远了</p>
+<p>python 包:matplotlib</p>
+<p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/54852.378476"># A rendering algorithm for visualizing 3D scalar fields</a><br><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/192161.192283"># Fast volume rendering using a shear-warp factorization of the viewing transformation</a><br><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/1250384"># Acceleration techniques for GPU-based volume rendering</a><br><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/378456.378484">Volume Rendering</a></p>
+<h1 id="体渲染"><a href="#体渲染" class="headerlink" title="体渲染"></a>体渲染</h1><h2 id="What-is-Volume-Rendering"><a href="#What-is-Volume-Rendering" class="headerlink" title="What is Volume Rendering?"></a>What is Volume Rendering?</h2><p>体渲染属于整个渲染技术的分支，在图形学中,它的目的主要是为了解决云、烟、果冻这类非刚性物体的渲染建模，可以简单理解为是为了处理密度较小的非固体的渲染。<br>渲染天空大气这种场景的时候，比如说光线与云之间的交互就需要考虑内部的影响.因为云这些不规则媒介本质上是由很多微粒构成的，可以理解为光线进入云这个边界范围内之后与那些微粒的表面发生交互，只不过一般把这种称作散射，而且越是复杂的模型不仅会考虑内部的散射也会考虑物体表面的反射还有热辐射。<br>在可视化领域,主要用来处理medical data from CAT or MRI scanners, complex fluid dynamics.等等.在3D标量场中使用较多.</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>类似于pixel的概念,voxel体素,就是把3D空间分割成一个个小元素.<br>Create an RGBA volume, a 3D four-vector data set, from the data<br>对于每个voxel来说,经过处理之后,有四个参数(R,G,B,alpha).alpha用来表示透明度.alpha=0 完全透明 alpha=1,不透明</p>
+<p>同时由于体数据本身是离散的,要对数据进行数学操作,使其从离散成为连续函数</p>
+<h2 id="Why-Volume-Rendering"><a href="#Why-Volume-Rendering" class="headerlink" title="Why Volume Rendering"></a>Why Volume Rendering</h2><p>使用surface rendering来可视化3D数据集的时候,有问题.<br>This process presents obstacles related to determining surface integrity for every volume element. Especially for data sets surrounding objects that are small or describe features that are poorly defined, determining whether the surface passes through a particular voxel can produce spurious surfaces, or false positives, and erroneous surface holes, the result of false negatives.<br>表面渲染依赖确定的表面,但在可视化医疗,地震数据的时候没有确定的表面数据<br>同时表面渲染缺乏内部结构,而体渲染会渲染内部结构.在可视化医疗数据的情况下,显然体渲染技术更加符合需求</p>
+<p>体渲染放弃了几何表示,不需要判断那里有surface,并且能在渲染结果中较好地显示weak surface<br>the nature of the data at each voxel is analyzed. Based on that analysis, colors and opacities are assigned, calculations are made, and the structures are visualized based on optical behavior of the components.<br>体渲染通过识别与分析相关数据,来分配每个体素的颜色与透明度</p>
+<h2 id="3D-volume-rendering-methods"><a href="#3D-volume-rendering-methods" class="headerlink" title="3D volume rendering methods"></a>3D volume rendering methods</h2><p>没有任何一种渲染方法适合任何情况</p>
+<h3 id="Direct-volume-rendering"><a href="#Direct-volume-rendering" class="headerlink" title="Direct volume rendering"></a>Direct volume rendering</h3><ul>
+<li>仅吸收：体被假设为由完全吸收所有撞到他们身上光的冷的黑色粒子组成。他们不发光，也不散射光.</li>
+<li>仅发光：体被假设为由仅发光但不吸收光的粒子组成，因为吸收是可以忽略不计的。</li>
+<li>吸收+发光：这种光学模型是直接体素渲染中最常见的一个。粒子会发光，也会遮挡（吸收）到来的光。然而，没有散射或间接光。</li>
+<li>散射和着色/阴影：这个模型包括体素外部光照的散射。被散射的光可以假定不受远处光源的干扰，它也能被考虑内的光源和体素之间的粒子遮挡。</li>
+<li>多重散射：这种复杂的模型支持能被多个粒子散射的间接光。</li>
+</ul>
+<ul>
+<li>Backward methods<ul>
+<li>Ray Casting</li>
+</ul>
+</li>
+<li>Forward methods<ul>
+<li>slicing</li>
+<li>shear-warp</li>
+<li>splatting.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Ray-Casting"><a href="#Ray-Casting" class="headerlink" title="Ray Casting"></a>Ray Casting</h4><p>Backward method</p>
+<h5 id="Ray-casting"><a href="#Ray-casting" class="headerlink" title="Ray casting"></a>Ray casting</h5><p>we only deal with primary rays, i.e. no secondary rays for shadows, reflection or<br>refraction are considered. Ray Casting is a natural image order technique.<br>Ray-casting可以看作是对要渲染的图片中的每一个像素，从眼睛发出一束光线，传过像素中心，进入体内部，然后对沿着射线遇到的体密度进行光学属性的积分。<br>这种通用的描述假定了体和映射到体上的光学属性是连续的。当然，在实际中，体数据是离散的，并且积分的计算结果是数值近似的。结合多种简化方法，通常使用黎曼和来代替积分。</p>
+<h5 id="over-operation"><a href="#over-operation" class="headerlink" title="over-operation"></a>over-operation</h5><script type="math/tex; mode=display">\begin{align}
+C^{out}&=(1-\alpha)C^{in}+\alpha C\\
+c
+
+(i)^{in}&=c(i-1)^{out}
+\end{align}</script><p>透明度本质上代表着光穿透物体的能力，光穿透一个物体会导致波长比例的变化，如果穿越多个物体，则这种变化是累加的。所以，透明物体的渲染，本质上是将透明物体的颜色和其后物体的颜色进行混合，这被称为 alpha 混合技术。图形硬件实现 alpha 混合技术，使用 over 操作符。<br>by Porter [Porter-1984-CDI]</p>
+<h5 id="Sampling"><a href="#Sampling" class="headerlink" title="Sampling"></a>Sampling</h5><p>根据某个间隔大小进行采样.通常来说,采样的间隔都是相等的.但在importance sampling技术中,采样间隔并不相等.<br>通常来说,采样点位于体素之间.采样点的值一般采用三线性插值的方法.<br>采样沿着视线方向,位于体内部</p>
+<h5 id="shading"><a href="#shading" class="headerlink" title="shading"></a>shading</h5><p>根据采样点的方向与光线的方向，来计算采样点的颜色与亮度</p>
+<h5 id="compositing"><a href="#compositing" class="headerlink" title="compositing"></a>compositing</h5><p>对已经shading过的采样点进行复合</p>
+<h4 id="shear-warp"><a href="#shear-warp" class="headerlink" title="shear-warp"></a>shear-warp</h4><h4 id="texture-slicing"><a href="#texture-slicing" class="headerlink" title="texture slicing"></a>texture slicing</h4><h4 id="splatting"><a href="#splatting" class="headerlink" title="splatting"></a>splatting</h4><h2 id="mics"><a href="#mics" class="headerlink" title="mics"></a>mics</h2><h2 id="Direct-Volume-Rendering"><a href="#Direct-Volume-Rendering" class="headerlink" title="Direct Volume Rendering"></a>Direct Volume Rendering</h2><p><a href="C:\Users\28763\OneDrive\论文\创新实践\大三上\VIS-Modules-06-Direct_Volume_Rendering.pdf">refering</a></p>
+<h2 id="ray-casting-cs563"><a href="#ray-casting-cs563" class="headerlink" title="ray casting cs563"></a>ray casting cs563</h2><p>三大函数:</p>
+<ul>
+<li>density function</li>
+<li>illumination function</li>
+<li>phase function</li>
+</ul>
+<p>The intensity scattered along the ray to the eye depends on this value, a reflection function or phase function P, and the local density D(x,y,z).</p>
+<p>The density function is parameterized along the ray as:<br><strong>D(x(t), y(t), z(t)) = D(t)</strong></p>
+<p>the illumination from the source as:<br><strong>I(x(t), y(t), z(t)) = I(t)</strong></p>
+<p>the illumination scattered along <em><strong>R</strong></em> from a point distance <em>t</em> along the ray is:<br><strong>I(<em>t</em>)D(<em>t</em>)P(cos Ø)</strong></p>
+<p>由于医疗数据当中存在骨头这样无法被穿透的,大密度的东西,必须在这里生成阴影,所以才会有了密度函数.</p>
+<p>在常规的illumination函数中,光照强度在体内被设置成均匀的.而在医疗数据中,存在阴影遮挡,导致光照不会是均匀的.</p>
+<p>衰减与密度的关系</p>
+<script type="math/tex; mode=display">
+\exp(-\tau \int^{t_{2}}_{t_{1}}D(s)ds)</script><p>$\tau$是一个常数,将density转化为attenuation</p>
+<script type="math/tex; mode=display">
+B=\int_{t_{\mathrm{1}}}^{t_{\mathrm{2}}}\left(\exp\left(-\tau \int_{t_{1}}^{t_{2}} D(s)\mathrm{d}s\right)\right)\left(I(t)D(t)P(\cos\theta)\right)\mathrm{d}t</script><p>the basic ideas of ray casting are identical to those of ray tracing, and the results are very similar.</p>
+<p><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231128162004.png" alt="image.png"></p>
+<p>In the above figure, the outgoing light is made up of:</p>
+<ul>
+<li>light reflected in the view direction from the light source</li>
+<li>incoming light filtered by the voxel</li>
+<li>any light emitted by the voxel</li>
+</ul>
+<h3 id="Marc-Levoy-Algorithm"><a href="#Marc-Levoy-Algorithm" class="headerlink" title="Marc Levoy Algorithm"></a>Marc Levoy Algorithm</h3><h2 id="levoy-story"><a href="#levoy-story" class="headerlink" title="levoy story"></a>levoy story</h2><p><a target="_blank" rel="noopener" href="https://web.cs.wpi.edu/~matt/courses/cs563/talks/powwie/p1/ray-cast.htm">wpi cs563</a></p>
+<h1 id="Efficient-Ray-Tracing-of-Volume-Data"><a href="#Efficient-Ray-Tracing-of-Volume-Data" class="headerlink" title="Efficient Ray Tracing of Volume Data"></a>Efficient Ray Tracing of Volume Data</h1><p>定义一个空间中有$N \times N \times N$的体素</p>
+<script type="math/tex; mode=display">
+\begin{align}
+volxel_\textbf{i}=(i,j,k) \quad i,j,k=1,...,N \\
+value \quad of \quad volxel=f(\textbf{i})\\
+\end{align}</script><h1 id="MARC-LEVOY介绍"><a href="#MARC-LEVOY介绍" class="headerlink" title="MARC LEVOY介绍"></a>MARC LEVOY介绍</h1><p>VMware founders,professor of </p>
+<p><img src="http://dn11.l4rk.cn:52501/picture-bucket/20231128161947.png" alt="image.png"></p>
+<h1 id="VTK安装配置环境"><a href="#VTK安装配置环境" class="headerlink" title="VTK安装配置环境"></a>VTK安装配置环境</h1><p>配置为vtk 8.2.0 release版本.<br>安装VTK9.2.0,CMAKE没问题,运行VTK.sln中的ALL_BUILD会有报错.修了半天搞不明白.<br>转用VTK8.2.0,丝滑安装.但dll文件不能被链接到sln中.要把*.dll复制到解决方案下面才行<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110932.png" alt="pasted img"><br>但后来按照之前的步骤,重新配置环境,结果链接成功了…不知道为什么<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/03/20240103110826.png" alt="pasted img"></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_49591654/article/details/114291875">参考</a></p>
+<h1 id="dicom"><a href="#dicom" class="headerlink" title="dicom"></a>dicom</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>DICOM(DigitalImaging andCommunications inMedicine)是指医疗数字影像传输协定，是用于医学影像处理、储存、打印、传输的一组通用的标准协定。它包含了文件格式的定义以及网络通信协议。DICOM是以TCP/IP为基础的应用协定，并以TCP/IP联系各个系统。两个能接受DICOM格式的医疗仪器间，可通过DICOM格式的文件，来接收与交换影像及病人资料。</p>
+<p>目前，DICOM被广泛应用于放射医疗，心血管成像以及放射诊疗诊断设备（X射线，CT，核磁共振，超声等），并且在眼科和牙科等其它医学领域得到越来越深入广泛的应用。</p>
+<h2 id="DICOM-数据结构"><a href="#DICOM-数据结构" class="headerlink" title="DICOM 数据结构"></a>DICOM 数据结构</h2><h3 id="DICOM的整体结构"><a href="#DICOM的整体结构" class="headerlink" title="DICOM的整体结构"></a>DICOM的整体结构</h3><p>DICOM文件的整体结构如下表所示，先是128字节的导言部分（没有实际信息），接着是四个字节组成的”DICM”字符串，然后是若干DataElement元素依次排列直至文件结束。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>导言</th>
+<th>“DICM”</th>
+<th>DataElement</th>
+<th>DataElement</th>
+<th>…</th>
+<th>DataElement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>128 Byte</td>
+<td>4 Byte</td>
+<td>n Byte</td>
+<td>n Byte</td>
+<td></td>
+<td>n Byte</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="DataElement的结构"><a href="#DataElement的结构" class="headerlink" title="DataElement的结构"></a>DataElement的结构</h3><p>DataElement是存储文件信息的主体，DataElement的总体结构如下表所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>VR（值表示法）</th>
+<th>Len(数据长度)</th>
+<th>数据值（内容）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Byte</td>
+<td>2 Byte</td>
+<td>2 Byte</td>
+<td>Len Byte</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Tag由2 Byte的组号（group）和2 Byte的元素号(element)组成.<br>group与element用16进制表示,例如(AAAA,AAAA)总计大小为4Byte</p>
+<h3 id="DICOM-Tag"><a href="#DICOM-Tag" class="headerlink" title="DICOM Tag"></a>DICOM Tag</h3><p>目前采用的标准是DICOM3.0，每一张图像中都携带着大量的信息，这些信息具体可以分为以下四类：</p>
+<ul>
+<li>（a）Patient</li>
+<li>（b）Study</li>
+<li>（c）Series</li>
+<li>（d）Image<br>每一个DICOM Tag都是<strong>由两个十六进制数的组合来确定的，分别为Group和Element</strong>。如(0010,0020)这个Tag表示的是Patient’s Name，它存储着这张DICOM图像的患者ID。<br>0010为 Patient Group,0020为ID Element<br>两者组合得到的就是Patient ID这个Tag</li>
+</ul>
+<p>一些常见的tag</p>
+<ul>
+<li><strong>Patient Tag</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Element</th>
+<th>Tag Description</th>
+<th>中文解释</th>
+<th>VR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0010</td>
+<td>0010</td>
+<td>Patient’s Name</td>
+<td>患者姓名</td>
+<td>PN</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0020</td>
+<td>Patient ID</td>
+<td>患者ID</td>
+<td>LO</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0030</td>
+<td>Patient’s Birth Date</td>
+<td>患者出生日期</td>
+<td>DA</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0032</td>
+<td>Patient’s Birth Time</td>
+<td>患者出生时间</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>0040</td>
+<td>Patient’s Sex</td>
+<td>患者性别</td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>1030</td>
+<td>Patient’s Weight</td>
+<td>患者体重</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>21C0</td>
+<td>Pregnancy Status</td>
+<td>怀孕状态</td>
+<td>US</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>Study Tag</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Element</th>
+<th>Tag Description</th>
+<th>中文解释</th>
+<th>VR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0008</td>
+<td>0050</td>
+<td>Accession Number:A RIS generated number that identifies the order for the Study.</td>
+<td>检查号：RIS的生成序号,用以标识做检查的次序.</td>
+<td>SH</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>0010</td>
+<td>Study ID</td>
+<td>检查ID.</td>
+<td>SH</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>000D</td>
+<td>Study Instance UID:Unique identifier for the Study.</td>
+<td>检查实例号：唯一标记不同检查的号码.</td>
+<td>UI</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0020</td>
+<td>Study Date：Date the Study started.</td>
+<td>检查日期：检查开始的日期.</td>
+<td>DA</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0030</td>
+<td>Study Time：Time the Study started.</td>
+<td>检查时间：检查开始的时间.</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0061</td>
+<td>Modalities in Study</td>
+<td>一个检查中含有的不同检查类型.</td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0015</td>
+<td>Body Part Examined</td>
+<td>检查的部位.</td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>1030</td>
+<td>Study Description</td>
+<td>检查的描述.</td>
+<td>LO</td>
+</tr>
+<tr>
+<td>0010</td>
+<td>1010</td>
+<td>Patient’s Age</td>
+<td>做检查时刻的患者年龄,而不是此刻患者的真实年龄.</td>
+<td>AS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>Series Tag</strong></li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Element</th>
+<th>Tag Description</th>
+<th>中文解释</th>
+<th>VR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0020</td>
+<td>0011</td>
+<td>Series Number:A number that identifies this Series.</td>
+<td>序列号：识别不同检查的号码.</td>
+<td>IS</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>000E</td>
+<td>Series Instance UID:Unique identifier for the Series.</td>
+<td>序列实例号：唯一标记不同序列的号码.</td>
+<td>UI</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0060</td>
+<td>Modality</td>
+<td>检查模态(MRI/CT/CR/DR)</td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>103E</td>
+<td>Series Description</td>
+<td>检查描述和说明</td>
+<td>LO</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0021</td>
+<td>Series Date</td>
+<td>检查日期</td>
+<td>DA</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0031</td>
+<td>Series Time</td>
+<td>检查时间</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>0032</td>
+<td>Image Position (Patient)：The x, y and z coordinates of the upper left hand corner of the image, in mm.</td>
+<td>图像位置：图像的左上角在空间坐标系中的x,y,z坐标,单位是毫米. 如果在检查中,则指该序列中第一张影像左上角的坐标.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>0037</td>
+<td>Image Orientation (Patient):The direction cosines of the first row and the first column with respect to the patient.</td>
+<td>图像方位：</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0018</td>
+<td>0050</td>
+<td>Slice Thickness:Nominal slice thickness, in mm.</td>
+<td>层厚.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0018</td>
+<td>0088</td>
+<td>Spacing Between Slices</td>
+<td>层与层之间的间距,单位为mm</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>1041</td>
+<td>Slice Location：Relative position of exposure expressed in mm.</td>
+<td>实际的相对位置，单位为mm.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0018</td>
+<td>0023</td>
+<td>MR Acquisition</td>
+<td></td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0018</td>
+<td>0015</td>
+<td>Body Part Examined</td>
+<td>身体部位.</td>
+<td>CS</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Image Tag</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Element</th>
+<th>Tag Description</th>
+<th>中文解释</th>
+<th>VR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0008</td>
+<td>0008</td>
+<td>Image Type:Image identification characteristics.</td>
+<td></td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0018</td>
+<td>SOP Instance UID</td>
+<td>SOP实例UID.</td>
+<td></td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0023</td>
+<td>Content Date：The date the image pixel data creation started.</td>
+<td>影像拍摄的日期.</td>
+<td>DA</td>
+</tr>
+<tr>
+<td>0008</td>
+<td>0033</td>
+<td>Content Time</td>
+<td>影像拍摄的时间.</td>
+<td>TM</td>
+</tr>
+<tr>
+<td>0020</td>
+<td>0013</td>
+<td>Image/Instance Number:A number that identifies this image.</td>
+<td>图像码：辨识图像的号码.</td>
+<td>IS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0002</td>
+<td>Samples Per Pixel:Number of samples (planes) in this image.</td>
+<td>图像上的采样率.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0004</td>
+<td>Photometric Interpretation:Specifies the intended interpretation of the pixel data.</td>
+<td>光度计的解释,对于CT图像，用两个枚举值MONOCHROME1，MONOCHROME2.用来判断图像是否是彩色的，MONOCHROME1/2是灰度图，RGB则是真彩色图，还有其他.</td>
+<td>CS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0010</td>
+<td>Rows: Number of rows in the image.</td>
+<td>图像的总行数，行分辨率.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0011</td>
+<td>Columns: Number of columns in the image.</td>
+<td>图像的总列数，列分辨率.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0030</td>
+<td>Pixel Spacing:Physical distance in the patient between the center of each pixel.</td>
+<td>像素间距.像素中心之间的物理间距.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0100</td>
+<td>Bits Allocated:Number of bits allocated for each pixel sample. Each sample shall have the same number of bits allocated.</td>
+<td>分配的位数:存储每一个像素值时分配的位数，每一个样本应该拥有相同的这个值.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0101</td>
+<td>Bits Stored:Number of bits stored for each pixel sample. Each sample shall have the same number of bits stored.</td>
+<td>存储的位数：有12到16列举值.存储每一个像素用的位数.每一个样本应该有相同值.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0102</td>
+<td>High Bit:Most significant bit for pixel sample data. Each sample shall have the same high bit.</td>
+<td>高位.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>0103</td>
+<td>Pixel Representation:Data representation of the pixel samples. Each sample shall have the same pixel representation.Enum: 0000H=unsigned integer,0001H=2’s complement.</td>
+<td>像素数据的表现类型:这是一个枚举值，分别为十六进制数0000和0001.0000H = 无符号整数，0001H = 2的补码.</td>
+<td>US</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>1050</td>
+<td>Window Center</td>
+<td>窗位.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>1051</td>
+<td>Window Width</td>
+<td>窗宽.</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>1052</td>
+<td>Rescale Intercept:The value b in relationship between stored values (SV) and the output units.Output units = m*SV + b.Required if Modality LUT Sequence (0028, 0030) is not present.</td>
+<td>截距:如果表明不同模态的LUT颜色对应表不存在时,则使用方程Units = m*SV + b,计算真实的像素值到呈现像素值。其中这个值为表达式中的b。</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>1053</td>
+<td>Rescale Slope:m in the equation specified by Rescale Intercept (0028,1052).Required if Rescale Intercept is present.</td>
+<td>斜率.这个值为表达式中的m。</td>
+<td>DS</td>
+</tr>
+<tr>
+<td>0028</td>
+<td>1054</td>
+<td>Rescale Type:Specifies the output units of Rescale Slope (0028,1053) and Rescale Intercept (0028,1052).Enum: US=Unspecified Requried if Photometric Interpretation is MONOCHROME2, and Bits Stored is greater than 1.This specifies an identity Modality LUT transformation.</td>
+<td>输出值的单位.这是一个枚举值,</td>
+<td>LO</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="简明vtk教程"><a href="#简明vtk教程" class="headerlink" title="简明vtk教程"></a>简明vtk教程</h1><p><a target="_blank" rel="noopener" href="https://vtk.org/Wiki/VTK/Tutorials">tutorial</a></p>
+<ul>
+<li><code>vtkRenderWindow</code> : 绘制窗口，相当于用于表演的舞台场地；  </li>
+<li><code>vtkRenderer</code> — 涉及灯光，相机，actor 的绘制过程；相当于舞台上的整体表演效果；  </li>
+<li><code>vtkLight</code> — 灯源用于照明场景；  </li>
+<li><code>vtkCamera</code> — 定义视角，焦距，及场景的视觉属性，相当于观众的视野范围；  </li>
+<li><code>vtkActor</code> — 场景中渲染的对象，属性以及它在场景中的位置，绘制中展示的道具；相当于演出的演员和道具；  </li>
+<li><code>vtkProperty</code> 修饰 <code>vtkActor</code> 的属性，包括颜色、透明度及灯光的属性(反射、折射效果)，演出用到的灯光  </li>
+<li><code>vtkMapper</code> — <code>vtkActor</code> 的几何映射，绘制时需要把 <code>vtkAcor</code> 转化为几何属性才能进行绘制；多个 <code>vtkActor</code> 可以设置相同的 <code>mapper</code></li>
+</ul>
+<p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235552.png" alt="pasted img"><br>进行物体绘制时，需要先提供源数据，对数据进行一系列操作(读取、格式转换、Filter图像处理)，再转化为<code>vtkMapper</code> ，<code>vtkActor</code> 进行设置<code>vtkMapper</code> 后，传入<code>vtkRendener</code>(绘制器)中。<br>在进行代码实现时，如果没有定义<code>vtkLight、vtkCamera</code> 两个组件时，程序会自动创建这两个组件。</p>
+<p>pipeline:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106235831.png" alt="pasted img"></p>
+<p>vtk库做的很好的一点就是对于函数的封装.简单调用函数就能实现</p>
+<h2 id="vtkSmartPointer"><a href="#vtkSmartPointer" class="headerlink" title="vtkSmartPointer"></a>vtkSmartPointer</h2><p><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkSmartPointer.html" title="Hold a reference to a vtkObjectBase instance.">vtkSmartPointer</a> is a class template that provides automatic casting for objects held by the <a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkSmartPointerBase.html" title="Non-templated superclass for vtkSmartPointer.">vtkSmartPointerBase</a> superclass.<br>定义了一个静态函数New().该函数根据模板参数类型来生成一个对象，并将其保存在基类vtkSmartPoitnerBase的成员变量Object中.<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vtkSmartPointer&lt;vtkLight&gt; light1 = vtkSmartPointer&lt;vtkLight&gt;::<span class="built_in">New</span>();</span><br></pre></td></tr></table></figure><br>利用New()生成对象<code>light1</code>,其为<code>vtkLight</code>类型</p>
+<h2 id="vtkDICOMImageReader"><a href="#vtkDICOMImageReader" class="headerlink" title="vtkDICOMImageReader"></a>vtkDICOMImageReader</h2><ul>
+<li>vtkImageReader<br><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkImageReader.html" title="Superclass of transformable binary file readers.">vtkImageReader</a> provides methods needed to read a region from a file. It supports both transforms and masks on the input data, but as a result is more complicated and slower than its parent class <a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkImageReader2.html" title="Superclass of binary file readers.">vtkImageReader2</a>.</li>
+</ul>
+<p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165016.png" alt="pasted img"></p>
+<p>vtkDICOMImageReader继承自vtkImageReader2,实现对于DICOM类型文件的读取</p>
+<h2 id="vtkImageCast"><a href="#vtkImageCast" class="headerlink" title="vtkImageCast"></a>vtkImageCast</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/07/20240107165655.png" alt="继承关系"><br><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkImageCast.html" title="Image Data type Casting Filter.">vtkImageCast</a> filter casts the input type to match the output type in the image processing pipeline. The filter does nothing if the input already has the correct type. To specify the “CastTo” type, use “SetOutputScalarType” method.<br>对输入数据进行强制转换</p>
+<h2 id="volumeMapperGpu"><a href="#volumeMapperGpu" class="headerlink" title="volumeMapperGpu"></a>volumeMapperGpu</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108125712.png" alt="pasted img"><br><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkGPUVolumeRayCastMapper.html" title="Ray casting performed on the GPU.">vtkGPUVolumeRayCastMapper</a> is a volume mapper that performs ray casting on the GPU using fragment programs.</p>
+<h3 id="SetImageSampleDistance"><a href="#SetImageSampleDistance" class="headerlink" title="SetImageSampleDistance()"></a>SetImageSampleDistance()</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">vtkGPUVolumeRayCastMapper::SetImageSampleDistance</span><span class="params">(<span class="type">float</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>Default value of 1 meaning 1 ray cast per pixel. If set to 0.5, 4 rays will be cast per pixel. If set to 2.0, 1 ray will be cast for every 4 (2 by 2) pixels. This value will be adjusted to meet a desired frame rate when AutoAdjustSampleDistances is on.</p>
+<h3 id="SetSampleDistance"><a href="#SetSampleDistance" class="headerlink" title="SetSampleDistance()"></a>SetSampleDistance()</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">vtkGPUVolumeRayCastMapper::SetSampleDistance</span><span class="params">(<span class="type">float</span>)</span></span></span><br></pre></td></tr></table></figure>
+<p>Set/Get the distance between samples used for rendering when AutoAdjustSampleDistances is off, or when this mapper has more than 1 second allocated to it for rendering.</p>
+<p>Initial value is 1.0.</p>
+<h3 id="SetAutoAdjustSampleDistances"><a href="#SetAutoAdjustSampleDistances" class="headerlink" title="SetAutoAdjustSampleDistances()"></a>SetAutoAdjustSampleDistances()</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">vtkGPUVolumeRayCastMapper::SetAutoAdjustSampleDistances</span><span class="params">(vtkTypeBool)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="vtkVolumeProperty"><a href="#vtkVolumeProperty" class="headerlink" title="vtkVolumeProperty"></a>vtkVolumeProperty</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/08/20240108133149.png" alt="pasted img"><br><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkVolumeProperty.html" title="represents the common properties for rendering a volume.">vtkVolumeProperty</a> is used to represent common properties associated with volume rendering. This includes properties for determining the type of interpolation to use when sampling a volume, the color of a volume, the scalar opacity of a volume, the gradient opacity of a volume, and the shading parameters of a volume.</p>
+<h2 id="vtkPiecewiseFunction"><a href="#vtkPiecewiseFunction" class="headerlink" title="vtkPiecewiseFunction"></a>vtkPiecewiseFunction</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195504.png" alt="pasted img"><br>Defines a 1D piecewise function.</p>
+<h3 id="AddPoint"><a href="#AddPoint" class="headerlink" title="AddPoint"></a>AddPoint</h3><p><code>AddPoint</code>方法添加点来定义分段函数。每个点由两个值组成：第一个值是标量值，第二个值是对应的不透明度。例如，<code>compositeOpacity-&gt;AddPoint(60, 0.00);</code> 表示当标量值为 60 时，不透明度为 0.00。<br>多个控制点,描绘出一个分段线性函数</p>
+<h3 id="SetScalarOpacity"><a href="#SetScalarOpacity" class="headerlink" title="SetScalarOpacity()"></a>SetScalarOpacity()</h3><p>Set the opacity of a volume to an opacity transfer function based on scalar value for the component indicated by index.</p>
+<h2 id="vtkColorTransferFunction"><a href="#vtkColorTransferFunction" class="headerlink" title="vtkColorTransferFunction"></a>vtkColorTransferFunction</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195035.png" alt="pasted img"></p>
+<h3 id="AddRGBPoint"><a href="#AddRGBPoint" class="headerlink" title="AddRGBPoint"></a>AddRGBPoint</h3><p>color-&gt;AddRGBPoint(0, 0, 0, 0);<br>int vtkColorTransferFunction::AddRGBPoint(double<em>x</em>,double<em>r</em>,double<em>g</em>,double<em>b</em>)</p>
+<p>Add/Remove a point to/from the function defined in RGB or HSV Return the index of the point (0 based), or -1 on error.</p>
+<p>和之前的AddPoint函数类似.<br>定义了一个颜色映射函数来控制体渲染的颜色，并将其设置为体渲染的属性.</p>
+<p>标量值 100 的颜色将通过线性插值得到。具体来说，标量值 100 在添加的点 <code>(64, RGB(1, 0.52, 0.30))</code> 和 <code>(190, RGB(1, 1, 1))</code> 之间。</p>
+<h2 id="vtkVolume"><a href="#vtkVolume" class="headerlink" title="vtkVolume"></a>vtkVolume</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109195907.png" alt="pasted img"><br>represents a volume (data &amp; properties) in a rendered scene</p>
+<h3 id="SetMapper"><a href="#SetMapper" class="headerlink" title="SetMapper()"></a>SetMapper()</h3><p>void vtkVolume::SetMapper(<a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkAbstractVolumeMapper.html">vtkAbstractVolumeMapper</a> <em>mapper</em>)<br>Set/Get the volume mapper.</p>
+<h3 id="SetProperty"><a href="#SetProperty" class="headerlink" title="SetProperty"></a>SetProperty</h3><p>virtual void vtkVolume::SetProperty(vtkVolumeProperty* property)<br>Set/Get the volume property.</p>
+<h2 id="vtkRenderer"><a href="#vtkRenderer" class="headerlink" title="vtkRenderer"></a>vtkRenderer</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200605.png" alt="pasted img"><br><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkRenderer.html" title="abstract specification for renderers">vtkRenderer</a> provides an abstract specification for renderers. A renderer is an object that controls the rendering process for objects. Rendering is the process of converting geometry, a specification for lights, and a camera view into an image. <a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkRenderer.html" title="abstract specification for renderers">vtkRenderer</a> also performs coordinate transformation between world coordinates, view coordinates (the computer graphics rendering coordinate system), and display coordinates (the actual screen coordinates on the display device). Certain advanced rendering features such as two-sided lighting can also be controlled.</p>
+<p>创建渲染器</p>
+<h3 id="AddVolume"><a href="#AddVolume" class="headerlink" title="AddVolume"></a>AddVolume</h3><p>void vtkRender::AddVolume(vtkProp * p)</p>
+<p>Add/Remove different types of props to the renderer.</p>
+<p>These methods are all synonyms to AddViewProp and RemoveViewProp. They are here for convenience and backwards compatibility.</p>
+<h2 id="renderWindow"><a href="#renderWindow" class="headerlink" title="renderWindow"></a>renderWindow</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200852.png" alt="pasted img"><br>create a window for renderers to draw into</p>
+<p><a target="_blank" rel="noopener" href="https://vtk.org/doc/nightly/html/classvtkRenderWindow.html" title="create a window for renderers to draw into">vtkRenderWindow</a> is an abstract object to specify the behavior of a rendering window. A rendering window is a window in a graphical user interface where renderers draw their images. Methods are provided to synchronize the rendering process, set window size, and control double buffering. The window also allows rendering in stereo. The interlaced render stereo type is for output to a VRex stereo projector. All of the odd horizontal lines are from the left eye, and the even lines are from the right eye. The user has to make the render window aligned with the VRex projector, or the eye will be swapped.</p>
+<h3 id="Render"><a href="#Render" class="headerlink" title="Render()"></a>Render()</h3><p>void vtkRenderWindow::Render()</p>
+<p>Ask each renderer owned by this RenderWindow to render its image and synchronize this process.</p>
+<p>开始渲染</p>
+<h2 id="vtkRenderWindowInteractor"><a href="#vtkRenderWindowInteractor" class="headerlink" title="vtkRenderWindowInteractor"></a>vtkRenderWindowInteractor</h2><p><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/09/20240109200734.png" alt="pasted img"><br>platform-independent render window interaction including picking and frame rate control.</p>
+<h3 id="start"><a href="#start" class="headerlink" title="start()"></a>start()</h3><p>virtual void vtkRenderWindowInteractor::Start</p>
+<p>Start the event loop.</p>
+<p>This is provided so that you do not have to implement your own event loop. You still can use your own event loop if you want.</p>
+<h1 id="基于vtk-的-volume-rendering实现"><a href="#基于vtk-的-volume-rendering实现" class="headerlink" title="基于vtk 的 volume rendering实现"></a>基于vtk 的 volume rendering实现</h1><ul>
+<li>目标:<br>输入dicom文件,进行ray casting方法的体渲染,并使用OpenGL输出结果,同时在terminal中打印尺寸与深度数据.</li>
+<li>结果:<br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232240.png" alt="pasted img"><br><img src="http://dn11.l4rk.cn:52501/picture-bucket/2024/01/06/20240106232229.png" alt="pasted img"></li>
+<li>源码:</li>
+</ul>
+<h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><h1 id="学习感想"><a href="#学习感想" class="headerlink" title="学习感想"></a>学习感想</h1><h2 id="vtk"><a href="#vtk" class="headerlink" title="vtk"></a>vtk</h2><p>学习到了如何配置使用vtk,并且基于vtk封装的函数进行算法实现</p>
+<p>vtk有几个非常棒的优点</p>
+<ol>
+<li><strong>易用性</strong>：VTK 的 API 设计得非常直观，使得开发者可以很容易地理解和使用。例如，通过 <code>vtkSmartPointer</code> 管理对象的生命周期，可以避免手动管理内存的复杂性。</li>
+<li><strong>模块化</strong>：VTK 的设计非常模块化，每个模块都有明确的职责。例如，<code>vtkDICOMImageReader</code> 用于读取 DICOM 图像，<code>vtkGPUVolumeRayCastMapper</code> 用于进行 GPU 加速的光线投射体绘制。</li>
+<li><strong>扩展性</strong>：VTK 提供了大量的类和方法，可以进行各种复杂的数据处理和可视化操作。同时，VTK 的设计也允许开发者扩展现有的功能。</li>
+<li><strong>便捷性</strong>:访问VTK的官网可以查阅到各种类与函数的资料,便于理解VTK各种继承关系与函数的使用。<br>然而，使用VTK时,也遇到了一些困难</li>
+<li><strong>学习曲线</strong>：由于 VTK 的功能非常强大，因此其 API 也相对复杂，对于初学者来说，学习曲线可能会比较陡峭。</li>
+<li><strong>文档</strong>：虽然 VTK 提供了大量的文档，但是由于其功能的复杂性，有时候找到需要的信息可能会比较困难。</li>
+</ol>
+<h2 id="RayCasting算法与体渲染"><a href="#RayCasting算法与体渲染" class="headerlink" title="RayCasting算法与体渲染"></a>RayCasting算法与体渲染</h2><p>学习 Ray Casting 算法和体渲染是一个很有趣的过程，因为它们为我提供了深入理解如何处理光线和场景交互的方式。</p>
+<ol>
+<li><strong>RayCasting：</strong> 从一个视点发射光线，并找到与场景中物体相交的点，进而决定像素颜色。最终得到一个不错的渲染效果。</li>
+<li><strong>体渲染：</strong> 能够模拟光线在体积内部的传播，实现逼真的图像呈现，不仅在医学成像领域有着广泛应用，在科学可视化和动态体积数据的呈现方面也非常有价值。</li>
+</ol>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/02/344f19ff550a.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">创新实践方向选择</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/02/e04188d72b4f.html"><span class="level-item">创新实践2报告</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-2-desktop is-2-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#Computer-Aided-Engineering"><span class="level-left"><span class="level-item">1</span><span class="level-item">Computer-Aided Engineering</span></span></a></li><li><a class="level is-mobile" href="#标量场可视化"><span class="level-left"><span class="level-item">2</span><span class="level-item">标量场可视化</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#二维标量场"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">二维标量场</span></span></a></li><li><a class="level is-mobile" href="#三维标量场"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">三维标量场</span></span></a></li></ul></li><li><a class="level is-mobile" href="#体渲染"><span class="level-left"><span class="level-item">3</span><span class="level-item">体渲染</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#What-is-Volume-Rendering"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">What is Volume Rendering?</span></span></a></li><li><a class="level is-mobile" href="#数据结构"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">数据结构</span></span></a></li><li><a class="level is-mobile" href="#Why-Volume-Rendering"><span class="level-left"><span class="level-item">3.3</span><span class="level-item">Why Volume Rendering</span></span></a></li><li><a class="level is-mobile" href="#3D-volume-rendering-methods"><span class="level-left"><span class="level-item">3.4</span><span class="level-item">3D volume rendering methods</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Direct-volume-rendering"><span class="level-left"><span class="level-item">3.4.1</span><span class="level-item">Direct volume rendering</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Ray-Casting"><span class="level-left"><span class="level-item">3.4.1.1</span><span class="level-item">Ray Casting</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Ray-casting"><span class="level-left"><span class="level-item">3.4.1.1.1</span><span class="level-item">Ray casting</span></span></a></li><li><a class="level is-mobile" href="#over-operation"><span class="level-left"><span class="level-item">3.4.1.1.2</span><span class="level-item">over-operation</span></span></a></li><li><a class="level is-mobile" href="#Sampling"><span class="level-left"><span class="level-item">3.4.1.1.3</span><span class="level-item">Sampling</span></span></a></li><li><a class="level is-mobile" href="#shading"><span class="level-left"><span class="level-item">3.4.1.1.4</span><span class="level-item">shading</span></span></a></li><li><a class="level is-mobile" href="#compositing"><span class="level-left"><span class="level-item">3.4.1.1.5</span><span class="level-item">compositing</span></span></a></li></ul></li><li><a class="level is-mobile" href="#shear-warp"><span class="level-left"><span class="level-item">3.4.1.2</span><span class="level-item">shear-warp</span></span></a></li><li><a class="level is-mobile" href="#texture-slicing"><span class="level-left"><span class="level-item">3.4.1.3</span><span class="level-item">texture slicing</span></span></a></li><li><a class="level is-mobile" href="#splatting"><span class="level-left"><span class="level-item">3.4.1.4</span><span class="level-item">splatting</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#mics"><span class="level-left"><span class="level-item">3.5</span><span class="level-item">mics</span></span></a></li><li><a class="level is-mobile" href="#Direct-Volume-Rendering"><span class="level-left"><span class="level-item">3.6</span><span class="level-item">Direct Volume Rendering</span></span></a></li><li><a class="level is-mobile" href="#ray-casting-cs563"><span class="level-left"><span class="level-item">3.7</span><span class="level-item">ray casting cs563</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Marc-Levoy-Algorithm"><span class="level-left"><span class="level-item">3.7.1</span><span class="level-item">Marc Levoy Algorithm</span></span></a></li></ul></li><li><a class="level is-mobile" href="#levoy-story"><span class="level-left"><span class="level-item">3.8</span><span class="level-item">levoy story</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Efficient-Ray-Tracing-of-Volume-Data"><span class="level-left"><span class="level-item">4</span><span class="level-item">Efficient Ray Tracing of Volume Data</span></span></a></li><li><a class="level is-mobile" href="#MARC-LEVOY介绍"><span class="level-left"><span class="level-item">5</span><span class="level-item">MARC LEVOY介绍</span></span></a></li><li><a class="level is-mobile" href="#VTK安装配置环境"><span class="level-left"><span class="level-item">6</span><span class="level-item">VTK安装配置环境</span></span></a></li><li><a class="level is-mobile" href="#dicom"><span class="level-left"><span class="level-item">7</span><span class="level-item">dicom</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#简介"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">简介</span></span></a></li><li><a class="level is-mobile" href="#DICOM-数据结构"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">DICOM 数据结构</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#DICOM的整体结构"><span class="level-left"><span class="level-item">7.2.1</span><span class="level-item">DICOM的整体结构</span></span></a></li><li><a class="level is-mobile" href="#DataElement的结构"><span class="level-left"><span class="level-item">7.2.2</span><span class="level-item">DataElement的结构</span></span></a></li><li><a class="level is-mobile" href="#DICOM-Tag"><span class="level-left"><span class="level-item">7.2.3</span><span class="level-item">DICOM Tag</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#简明vtk教程"><span class="level-left"><span class="level-item">8</span><span class="level-item">简明vtk教程</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#vtkSmartPointer"><span class="level-left"><span class="level-item">8.1</span><span class="level-item">vtkSmartPointer</span></span></a></li><li><a class="level is-mobile" href="#vtkDICOMImageReader"><span class="level-left"><span class="level-item">8.2</span><span class="level-item">vtkDICOMImageReader</span></span></a></li><li><a class="level is-mobile" href="#vtkImageCast"><span class="level-left"><span class="level-item">8.3</span><span class="level-item">vtkImageCast</span></span></a></li><li><a class="level is-mobile" href="#volumeMapperGpu"><span class="level-left"><span class="level-item">8.4</span><span class="level-item">volumeMapperGpu</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#SetImageSampleDistance"><span class="level-left"><span class="level-item">8.4.1</span><span class="level-item">SetImageSampleDistance()</span></span></a></li><li><a class="level is-mobile" href="#SetSampleDistance"><span class="level-left"><span class="level-item">8.4.2</span><span class="level-item">SetSampleDistance()</span></span></a></li><li><a class="level is-mobile" href="#SetAutoAdjustSampleDistances"><span class="level-left"><span class="level-item">8.4.3</span><span class="level-item">SetAutoAdjustSampleDistances()</span></span></a></li></ul></li><li><a class="level is-mobile" href="#vtkVolumeProperty"><span class="level-left"><span class="level-item">8.5</span><span class="level-item">vtkVolumeProperty</span></span></a></li><li><a class="level is-mobile" href="#vtkPiecewiseFunction"><span class="level-left"><span class="level-item">8.6</span><span class="level-item">vtkPiecewiseFunction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#AddPoint"><span class="level-left"><span class="level-item">8.6.1</span><span class="level-item">AddPoint</span></span></a></li><li><a class="level is-mobile" href="#SetScalarOpacity"><span class="level-left"><span class="level-item">8.6.2</span><span class="level-item">SetScalarOpacity()</span></span></a></li></ul></li><li><a class="level is-mobile" href="#vtkColorTransferFunction"><span class="level-left"><span class="level-item">8.7</span><span class="level-item">vtkColorTransferFunction</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#AddRGBPoint"><span class="level-left"><span class="level-item">8.7.1</span><span class="level-item">AddRGBPoint</span></span></a></li></ul></li><li><a class="level is-mobile" href="#vtkVolume"><span class="level-left"><span class="level-item">8.8</span><span class="level-item">vtkVolume</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#SetMapper"><span class="level-left"><span class="level-item">8.8.1</span><span class="level-item">SetMapper()</span></span></a></li><li><a class="level is-mobile" href="#SetProperty"><span class="level-left"><span class="level-item">8.8.2</span><span class="level-item">SetProperty</span></span></a></li></ul></li><li><a class="level is-mobile" href="#vtkRenderer"><span class="level-left"><span class="level-item">8.9</span><span class="level-item">vtkRenderer</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#AddVolume"><span class="level-left"><span class="level-item">8.9.1</span><span class="level-item">AddVolume</span></span></a></li></ul></li><li><a class="level is-mobile" href="#renderWindow"><span class="level-left"><span class="level-item">8.10</span><span class="level-item">renderWindow</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#Render"><span class="level-left"><span class="level-item">8.10.1</span><span class="level-item">Render()</span></span></a></li></ul></li><li><a class="level is-mobile" href="#vtkRenderWindowInteractor"><span class="level-left"><span class="level-item">8.11</span><span class="level-item">vtkRenderWindowInteractor</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#start"><span class="level-left"><span class="level-item">8.11.1</span><span class="level-item">start()</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#基于vtk-的-volume-rendering实现"><span class="level-left"><span class="level-item">9</span><span class="level-item">基于vtk 的 volume rendering实现</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#代码分析"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">代码分析</span></span></a></li></ul></li><li><a class="level is-mobile" href="#学习感想"><span class="level-left"><span class="level-item">10</span><span class="level-item">学习感想</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#vtk"><span class="level-left"><span class="level-item">10.1</span><span class="level-item">vtk</span></span></a></li><li><a class="level is-mobile" href="#RayCasting算法与体渲染"><span class="level-left"><span class="level-item">10.2</span><span class="level-item">RayCasting算法与体渲染</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-2-desktop is-2-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/literature/"><span class="level-start"><span class="level-item">literature</span></span><span class="level-end"><span class="level-item tag">17</span></span></a><ul><li><a class="level is-mobile" href="/categories/literature/book/"><span class="level-start"><span class="level-item">book</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/literature/share/"><span class="level-start"><span class="level-item">share</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/paper/"><span class="level-start"><span class="level-item">paper</span></span><span class="level-end"><span class="level-item tag">2</span></span></a><ul><li><a class="level is-mobile" href="/categories/paper/Instance-Shadow-Detection-With-a-Single-Stage-Detector/"><span class="level-start"><span class="level-item">Instance Shadow Detection With a Single-Stage Detector</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/project/"><span class="level-start"><span class="level-item">project</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/tech/"><span class="level-start"><span class="level-item">tech</span></span><span class="level-end"><span class="level-item tag">35</span></span></a><ul><li><a class="level is-mobile" href="/categories/tech/games/"><span class="level-start"><span class="level-item">games</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/tech/games/101%E5%AE%9E%E9%AA%8C/"><span class="level-start"><span class="level-item">101实验</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/templates/"><span class="level-start"><span class="level-item">templates</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/tutorial/"><span class="level-start"><span class="level-item">tutorial</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/"><span class="level-start"><span class="level-item">学校课程</span></span><span class="level-end"><span class="level-item tag">7</span></span></a><ul><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/%E5%88%9B%E6%96%B0%E5%AE%9E%E8%B7%B5/"><span class="level-start"><span class="level-item">创新实践</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"><span class="level-start"><span class="level-item">编译原理</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/%E5%AD%A6%E6%A0%A1%E8%AF%BE%E7%A8%8B/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"><span class="level-start"><span class="level-item">项目管理</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">63</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">#linux</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/anki/"><span class="tag">anki</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bazel/"><span class="tag">bazel</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cmake/"><span class="tag">cmake</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/code/"><span class="tag">code</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/dn11/"><span class="tag">dn11</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/firewall/"><span class="tag">firewall</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/games/"><span class="tag">games</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/istore/"><span class="tag">istore</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">6</span></a></div><div class="control"><a class="tags has-addons" href="/tags/minio/"><span class="tag">minio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openwrt/"><span class="tag">openwrt</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scoop/"><span class="tag">scoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ssh/"><span class="tag">ssh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tutorial/"><span class="tag">tutorial</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ubuntu/"><span class="tag">ubuntu</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/wireguard/"><span class="tag">wireguard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="tag">图形学</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/"><span class="tag">编译</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BD%91/"><span class="tag">计网</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">2</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2024 l4rk</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/live2d-widget/autoload.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
