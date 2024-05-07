@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>cmake - l4rk&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="l4rk"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="l4rk"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="CMake前言：  CMake是一个跨平台的安装编译工具，可以用简单的语句来描述所有平台的安装(编译过程)。 CMake可以说已经成为大部分C++开源项目标配  1 Cross-platform developmentLet’s assume you have some cross-platform project with C++ code shared along different plat"><meta property="og:type" content="blog"><meta property="og:title" content="l4rk"><meta property="og:url" content="https://l4rk.cn/"><meta property="og:site_name" content="l4rk"><meta property="og:description" content="CMake前言：  CMake是一个跨平台的安装编译工具，可以用简单的语句来描述所有平台的安装(编译过程)。 CMake可以说已经成为大部分C++开源项目标配  1 Cross-platform developmentLet’s assume you have some cross-platform project with C++ code shared along different plat"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://l4rk.cn/img/og_image.png"><meta property="article:published_time" content="2024-02-23T07:48:58.791Z"><meta property="article:modified_time" content="2024-04-09T11:45:59.571Z"><meta property="article:author" content="l4rk"><meta property="article:tag" content="编译"><meta property="article:tag" content="cmake"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4rk.cn/2024/02/f23e4ff746d8.html"},"headline":"cmake","image":["http://l4rk.cn/img/og_image.png"],"datePublished":"2024-02-23T07:48:58.791Z","dateModified":"2024-04-09T11:45:59.571Z","author":{"@type":"Person","name":"l4rk"},"publisher":{"@type":"Organization","name":"l4rk's blog","logo":{"@type":"ImageObject","url":"http://l4rk.cn/img/logo.svg"}},"description":"CMake前言：  CMake是一个跨平台的安装编译工具，可以用简单的语句来描述所有平台的安装(编译过程)。 CMake可以说已经成为大部分C++开源项目标配  1 Cross-platform developmentLet’s assume you have some cross-platform project with C++ code shared along different plat"}</script><link rel="canonical" href="http://l4rk.cn/2024/02/f23e4ff746d8.html"><link rel="alternate" href="/atom.xml" title="l4rk&#039;s blog" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!--!--><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-02-23T07:48:58.791Z" title="2024/2/23 15:48:58">2024-02-23</time>发表</span><span class="level-item"><time dateTime="2024-04-09T11:45:59.571Z" title="2024/4/9 19:45:59">2024-04-09</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/07archive/">07archive</a><span> / </span><a class="link-muted" href="/categories/07archive/tech/">tech</a></span><span class="level-item">13 分钟读完 (大约1967个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><h1 class="title is-3 is-size-4-mobile">cmake</h1><div class="content"><h2 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h2><p><strong>前言</strong>：</p>
+<ul>
+<li><strong>CMake</strong>是一个<strong>跨平台</strong>的安装<strong>编译工具</strong>，可以用<strong>简单</strong>的语句来描述<strong>所有平台</strong>的安装(编译过程)。</li>
+<li>CMake可以说已经成为<strong>大部分C++开源项目标配</strong></li>
+</ul>
+<h3 id="1-Cross-platform-development"><a href="#1-Cross-platform-development" class="headerlink" title="1 Cross-platform development"></a><strong>1 Cross-platform development</strong></h3><p>Let’s assume you have some cross-platform project with C++ code shared along different platforms/IDEs. Say you use <code>Visual Studio</code> on Windows, <code>Xcode</code> on OSX and <code>Makefile</code> for Linux:</p>
+<p>What you will do if you want to add new <code>bar.cpp</code> source file? You have to add it to every tool you use:</p>
+<p>To keep the environment consistent you have to do the similar update several times. And the most important thing is that you have to do it <strong>manually</strong> (arrow marked with a red color on the diagram in this case). Of course such approach is error prone and not flexible.</p>
+<p>CMake solve this design flaw by adding extra step to development process. You can describe your project in <code>CMakeLists.txt</code> file and use <a target="_blank" rel="noopener" href="https://cgold.readthedocs.io/en/latest/glossary/CMake.html#id1">CMake</a> to generate tools you currently interested in using cross-platform <a target="_blank" rel="noopener" href="https://cgold.readthedocs.io/en/latest/glossary/CMake.html#id1">CMake</a> code:</p>
+<p>Same action - adding new <code>bar.cpp</code> file, will be done in <strong>one step</strong> now:</p>
+<p>Note that the bottom part of the diagram <strong>was not changed</strong>. I.e. you still can keep using your favorite tools like <code>Visual Studio/msbuild</code>, <code>Xcode/xcodebuild</code> and <code>Makefile/make</code>!</p>
+<hr>
+<h3 id="2-语法特性介绍"><a href="#2-语法特性介绍" class="headerlink" title="2 语法特性介绍"></a><strong>2 语法特性介绍</strong></h3><ul>
+<li><p><strong>基本语法格式：指令(参数 1 参数 2…)</strong></p>
+<ul>
+<li>参数使用<strong>括弧</strong>括起</li>
+<li>参数之间使用<strong>空格</strong>或<strong>分号</strong>分开</li>
+</ul>
+</li>
+<li><p><strong>指令是大小写无关的，参数和变量是大小写相关的</strong> </p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set(HELLO hello.cpp)</span><br><span class="line">add_executable(hello main.cpp hello.cpp)</span><br><span class="line">ADD_EXECUTABLE(hello main.cpp $&#123;HELLO&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>变量使用${}方式取值，但是在 IF 控制语句中是直接使用变量名</strong></p>
+</li>
+</ul>
+<h3 id="3-重要指令和CMake常用变量"><a href="#3-重要指令和CMake常用变量" class="headerlink" title="3 重要指令和CMake常用变量"></a><strong>3 重要指令和CMake常用变量</strong></h3><h3 id="3-1-重要指令"><a href="#3-1-重要指令" class="headerlink" title="3.1 重要指令"></a><strong>3.1 重要指令</strong></h3><ul>
+<li><p><strong>cmake_minimum_required</strong> <strong>指定CMake的最小版本要求</strong></p>
+<ul>
+<li>语法： <strong>cmake_minimum_required(VERSION versionNumber [FATAL_ERROR])</strong>   <figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CMake最小版本要求为2.8.3</span></span><br><span class="line">cmake_minimum_required(VERSION 2.8.3)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>project</strong> <strong>定义工程名称，并可指定工程支持的语言</strong></p>
+<ul>
+<li>语法： <strong>project(projectname [CXX] [C] [Java])</strong><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 指定工程名为HELLOWORLD</span></span><br><span class="line">project(HELLOWORLD)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>set</strong> <strong>显式的定义变量</strong></p>
+<ul>
+<li>语法：<strong>set(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])</strong></li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义SRC变量，其值为sayhello.cpp hello.cpp</span></span><br><span class="line">set(SRC sayhello.cpp hello.cpp)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&lt;a&gt;</p>
+<ul>
+<li><p><strong>include_directories 向工程添加多个特定的头文件搜索路径</strong> —&gt;;相当于指定g++编译器的-I参数</p>
+<ul>
+<li>语法： <strong>include_directories([AFTER|BEFORE] [SYSTEM] dir1 dir2 …)</strong><figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将/usr/include/myincludefolder 和 ./include 添加到头文件搜索路径</span></span><br><span class="line">include_directories(/usr/<span class="keyword">include</span>/myincludefolder ./<span class="keyword">include</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>link_directories</strong> <strong>向工程添加多个特定的库文件搜索路径</strong> —&gt;;相当于指定g++编译器的-L参数</p>
+<ul>
+<li>语法： <strong>link_directories(dir1 dir2 …)</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将/usr/lib/mylibfolder 和 ./lib 添加到库文件搜索路径</span></span><br><span class="line">link_directories(/usr/lib/mylibfolder ./lib)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>add_library</strong> <strong>生成库文件</strong></p>
+<ul>
+<li>语法： <strong>add_library(libname [SHARED|STATIC|MODULE] [EXCLUDE_FROM_ALL] source1 source2 … sourceN)</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过变量 SRC 生成 libhello.so 共享库</span></span><br><span class="line">add_library(hello SHARED $&#123;SRC&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>add_compile_options</strong> 添加编译参数</p>
+<ul>
+<li>语法：<strong>add_compile_options(&lt;option&gt; …)</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加编译参数 -Wall -std=c++11 -O2</span></span><br><span class="line">add_compile_options(-Wall -std=c++11 -O2)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>add_executable</strong> <strong>生成可执行文件</strong></p>
+<ul>
+<li>语法：<strong>add_executable(exename source1 source2 … sourceN)</strong></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译main.cpp生成可执行文件main</span></span><br><span class="line">add_executable(main main.cpp)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>target_link_libraries</strong> <strong>为 target 添加需要链接的共享库</strong> -&gt;;相同于指定g++编译器-l参数</p>
+<ul>
+<li>语法： <strong>target_link_libraries(target library1&lt;debug | optimized&gt; library2…)</strong></li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将hello动态库文件链接到可执行文件main</span></span><br><span class="line">target_link_libraries(main hello)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>add_subdirectory 向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置</strong></p>
+<ul>
+<li>语法： <strong>add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])</strong></li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加src子目录，src中需有一个CMakeLists.txt</span></span><br><span class="line">add_subdirectory(src)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>aux_source_directory 发现一个目录下所有的源代码文件并将列表存储在一个变量中，这个指令临时被用来自动构建源文件列表</strong></p>
+<ul>
+<li><p>语法： <strong>aux_source_directory(dir VARIABLE)</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 定义SRC变量，其值为当前目录下所有的源代码文件</span></span><br><span class="line">aux_source_directory(. SRC)</span><br><span class="line"><span class="comment"># 编译SRC变量所代表的源代码文件，生成main可执行文件</span></span><br><span class="line">add_executable(main $&#123;SRC&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-2-CMake常用变量"><a href="#3-2-CMake常用变量" class="headerlink" title="3.2 CMake常用变量"></a><strong>3.2 CMake常用变量</strong></h3><ul>
+<li><p><strong>CMAKE_C_FLAGS gcc编译选项</strong></p>
+</li>
+<li><p><strong>CMAKE_CXX_FLAGS g++编译选项</strong></p>
+</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在CMAKE_CXX_FLAGS编译选项后追加-std=c++11</span></span><br><span class="line">set( CMAKE_CXX_FLAGS <span class="string">&quot;$&#123;CMAKE_CXX_FLAGS&#125; -std=c++11&quot;</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>CMAKE_BUILD_TYPE 编译类型(Debug, Release)</strong></li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设定编译类型为debug，调试时需要选择debug</span></span><br><span class="line">set(CMAKE_BUILD_TYPE Debug)</span><br><span class="line"><span class="comment"># 设定编译类型为release，发布时需要选择release</span></span><br><span class="line">set(CMAKE_BUILD_TYPE Release)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>CMAKE_BINARY_DIR</strong></p>
+<p>  <strong>PROJECT_BINARY_DIR</strong></p>
+<p>  <strong>&lt;projectname&gt;_BINARY_DIR</strong></p>
+<p>  &gt; 这三个变量指代的内容是一致的。如果是 in source build，指的就是工程顶层目录。如果是 out-of-source 编译,指的是工程编译发生的目录。PROJECT_BINARY_DIR 跟其他指令稍有区别，不过现在，你可以理解为他们是一致的。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>CMAKE_SOURCE_DIR</strong></p>
+<p>  <strong>PROJECT_SOURCE_DIR&lt;projectname&gt;_SOURCE_DIR</strong></p>
+<p>  &gt; 这三个变量指代的内容是一致的,不论采用何种编译方式,都是工程顶层目录。也就是在 in source build时,他跟 CMAKE_BINARY_DIR 等变量一致。PROJECT_SOURCE_DIR 跟其他指令稍有区别,现在,你可以理解为他们是一致的。</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><strong>CMAKE_C_COMPILER：指定C编译器</strong></li>
+<li><strong>CMAKE_CXX_COMPILER：指定C++编译器</strong></li>
+<li><strong>EXECUTABLE_OUTPUT_PATH：可执行文件输出的存放路径</strong></li>
+<li><strong>LIBRARY_OUTPUT_PATH：库文件输出的存放路径</strong></li>
+</ul>
+<h3 id="4-CMake编译工程"><a href="#4-CMake编译工程" class="headerlink" title="4 CMake编译工程"></a><strong>4 CMake编译工程</strong></h3><p>CMake目录结构：项目主目录存在一个CMakeLists.txt文件</p>
+<p><strong>两种方式设置编译规则</strong>：</p>
+<ol>
+<li>包含源文件的子文件夹<strong>包含</strong>CMakeLists.txt文件，主目录的CMakeLists.txt通过add_subdirectory添加子目录即可；</li>
+<li>包含源文件的子文件夹<strong>未包含</strong>CMakeLists.txt文件，子目录编译规则体现在主目录的CMakeLists.txt中；</li>
+</ol>
+<h3 id="4-1-编译流程"><a href="#4-1-编译流程" class="headerlink" title="4.1 编译流程"></a><strong>4.1 编译流程</strong></h3><p><strong>在 linux 平台下使用 CMake 构建C/C++工程的流程如下:</strong></p>
+<ul>
+<li>手动编写 CMakeLists.txt。</li>
+<li>执行命令 <code>cmake PATH</code>生成 Makefile ( PATH 是顶层CMakeLists.txt 所在的目录 )。</li>
+<li>执行命令<code>make</code> 进行编译。</li>
+</ul>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># important tips</span></span><br><span class="line">.  		<span class="comment"># 表示当前目录</span></span><br><span class="line">./ 		<span class="comment"># 表示当前目录</span></span><br><span class="line"></span><br><span class="line">..  	<span class="comment"># 表示上级目录</span></span><br><span class="line">../ 	<span class="comment"># 表示上级目录</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="4-2-两种构建方式"><a href="#4-2-两种构建方式" class="headerlink" title="4.2 两种构建方式"></a><strong>4.2 两种构建方式</strong></h3><ul>
+<li><p><strong>内部构建(in-source build)</strong>：不推荐使用</p>
+<p>  内部构建会在同级目录下产生一大堆中间文件，这些中间文件并不是我们最终所需要的，和工程源文件放在一起会显得杂乱无章。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 内部构建</span></span><br><span class="line"><span class="comment"># 在当前目录下，编译本目录的CMakeLists.txt，生成Makefile和其他文件</span></span><br><span class="line">cmake .</span><br><span class="line"><span class="comment"># 执行make命令，生成target</span></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>外部构建(out-of-source build)</strong>：推荐使用</p>
+<p>  将编译输出文件与源文件放到不同目录中</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 外部构建</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1. 在当前目录下，创建build文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="comment"># 2. 进入到build文件夹</span></span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line"><span class="comment"># 3. 编译上级目录的CMakeLists.txt，生成Makefile和其他文件</span></span><br><span class="line">cmake ..</span><br><span class="line"><span class="comment"># 4. 执行make命令，生成target</span></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<h3 id="5-【实战】CMake代码实践"><a href="#5-【实战】CMake代码实践" class="headerlink" title="5 【实战】CMake代码实践"></a><strong>5 【实战】CMake代码实践</strong></h3><p>针对第五章写的两个小项目来写对应的CMakeLists.txt</p>
+<h3 id="5-1-最小CMake工程"><a href="#5-1-最小CMake工程" class="headerlink" title="5.1 最小CMake工程"></a><strong>5.1 最小CMake工程</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the minimum version of CMake that can be used</span></span><br><span class="line">cmake_minimum_required(VERSION 3.0)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the project name</span></span><br><span class="line">project (HELLO)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an executable</span></span><br><span class="line">add_executable(hello_cmake main.cpp)</span><br></pre></td></tr></table></figure>
+<h3 id="5-2-多目录工程-直接编译"><a href="#5-2-多目录工程-直接编译" class="headerlink" title="5.2 多目录工程 - 直接编译"></a><strong>5.2 多目录工程 - 直接编译</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the minimum version of CMake that can be used</span></span><br><span class="line">cmake_minimum_required(VERSION 3.0)</span><br><span class="line"></span><br><span class="line"><span class="comment">#project name</span></span><br><span class="line">project(SWAP)</span><br><span class="line"></span><br><span class="line"><span class="comment">#head file pat</span></span><br><span class="line">include_directories( include )</span><br><span class="line"></span><br><span class="line"><span class="comment">#source directory files to var</span></span><br><span class="line">add_subdirectory( src DIR_SRCS )</span><br><span class="line"></span><br><span class="line"><span class="comment">#add executable file</span></span><br><span class="line">add_executable(swap_02 <span class="variable">$&#123;TEST_MATH&#125;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#add link library</span></span><br><span class="line">target_link_libraries(<span class="variable">$&#123;FS_BUILD_BINARY_PREFIX&#125;</span>sqrt <span class="variable">$&#123;LIBRARIES&#125;</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-多目录工程-生成库编译"><a href="#5-3-多目录工程-生成库编译" class="headerlink" title="5.3 多目录工程 - 生成库编译"></a><strong>5.3 多目录工程 - 生成库编译</strong></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Set the minimum version of CMake that can be used</span></span><br><span class="line">cmake_minimum_required(VERSION 3.0)</span><br><span class="line"></span><br><span class="line"><span class="comment">#project name</span></span><br><span class="line">project(SWAP_LIBRARY)</span><br><span class="line"></span><br><span class="line"><span class="comment">#add compile options</span></span><br><span class="line">add_compile_options(<span class="string">&quot;-Wall -std=c++11&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#set CMAKE_BUILD_TYPE</span></span><br><span class="line"><span class="built_in">set</span>( CMAKE_BUILD_TYPE Debug )</span><br><span class="line"></span><br><span class="line"><span class="comment"># set output binary path</span></span><br><span class="line"><span class="built_in">set</span>(EXECUTABLE_OUTPUT_PATH <span class="variable">$&#123;PROJECT_BINARY_DIR&#125;</span>/bin)</span><br><span class="line"></span><br><span class="line"><span class="comment">############################################################</span></span><br><span class="line"><span class="comment"># Create a library</span></span><br><span class="line"><span class="comment">############################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Generate the static library from the library sources</span></span><br><span class="line">add_library( swap_library STATIC src/Swap.cpp )</span><br><span class="line"></span><br><span class="line">target_include_directories( swap_lib PUBLIC <span class="variable">$&#123;PROJECT_SOURCE_DIR&#125;</span>/include )</span><br><span class="line"></span><br><span class="line"><span class="comment">############################################################</span></span><br><span class="line"><span class="comment"># Create an executable</span></span><br><span class="line"><span class="comment">############################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Add an executable with the above sources</span></span><br><span class="line">add_executable( swap_01 main.cpp )</span><br><span class="line"></span><br><span class="line"><span class="comment"># link the new swap_01 target with the swap_lib target</span></span><br><span class="line">target_link_libraries( swap_01 swap_liby )</span><br></pre></td></tr></table></figure>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E7%BC%96%E8%AF%91/">编译</a><a class="link-muted mr-2" rel="tag" href="/tags/cmake/">cmake</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/02/e810fea9af75.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">dn11 peer流程</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/02/f8b6251437b2.html"><span class="level-item">cdn</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-2-desktop is-2-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><li><a class="level is-mobile" href="#CMake"><span class="level-left"><span class="level-item">1</span><span class="level-item">CMake</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-Cross-platform-development"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">1 Cross-platform development</span></span></a></li><li><a class="level is-mobile" href="#2-语法特性介绍"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">2 语法特性介绍</span></span></a></li><li><a class="level is-mobile" href="#3-重要指令和CMake常用变量"><span class="level-left"><span class="level-item">1.3</span><span class="level-item">3 重要指令和CMake常用变量</span></span></a></li><li><a class="level is-mobile" href="#3-1-重要指令"><span class="level-left"><span class="level-item">1.4</span><span class="level-item">3.1 重要指令</span></span></a></li><li><a class="level is-mobile" href="#3-2-CMake常用变量"><span class="level-left"><span class="level-item">1.5</span><span class="level-item">3.2 CMake常用变量</span></span></a></li><li><a class="level is-mobile" href="#4-CMake编译工程"><span class="level-left"><span class="level-item">1.6</span><span class="level-item">4 CMake编译工程</span></span></a></li><li><a class="level is-mobile" href="#4-1-编译流程"><span class="level-left"><span class="level-item">1.7</span><span class="level-item">4.1 编译流程</span></span></a></li><li><a class="level is-mobile" href="#4-2-两种构建方式"><span class="level-left"><span class="level-item">1.8</span><span class="level-item">4.2 两种构建方式</span></span></a></li><li><a class="level is-mobile" href="#5-【实战】CMake代码实践"><span class="level-left"><span class="level-item">1.9</span><span class="level-item">5 【实战】CMake代码实践</span></span></a></li><li><a class="level is-mobile" href="#5-1-最小CMake工程"><span class="level-left"><span class="level-item">1.10</span><span class="level-item">5.1 最小CMake工程</span></span></a></li><li><a class="level is-mobile" href="#5-2-多目录工程-直接编译"><span class="level-left"><span class="level-item">1.11</span><span class="level-item">5.2 多目录工程 - 直接编译</span></span></a></li><li><a class="level is-mobile" href="#5-3-多目录工程-生成库编译"><span class="level-left"><span class="level-item">1.12</span><span class="level-item">5.3 多目录工程 - 生成库编译</span></span></a></li></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-2-desktop is-2-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/02literature/"><span class="level-start"><span class="level-item">02literature</span></span><span class="level-end"><span class="level-item tag">17</span></span></a><ul><li><a class="level is-mobile" href="/categories/02literature/book/"><span class="level-start"><span class="level-item">book</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/02literature/share/"><span class="level-start"><span class="level-item">share</span></span><span class="level-end"><span class="level-item tag">15</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/"><span class="level-start"><span class="level-item">07archive</span></span><span class="level-end"><span class="level-item tag">49</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/"><span class="level-start"><span class="level-item">tech</span></span><span class="level-end"><span class="level-item tag">40</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/"><span class="level-start"><span class="level-item">games</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/101%E5%AE%9E%E9%AA%8C/"><span class="level-start"><span class="level-item">101实验</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/tutorial/"><span class="level-start"><span class="level-item">tutorial</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">49</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">#linux</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/anki/"><span class="tag">anki</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bazel/"><span class="tag">bazel</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cmake/"><span class="tag">cmake</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/code/"><span class="tag">code</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/dn11/"><span class="tag">dn11</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/firewall/"><span class="tag">firewall</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/games/"><span class="tag">games</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/istore/"><span class="tag">istore</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/minio/"><span class="tag">minio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openwrt/"><span class="tag">openwrt</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scoop/"><span class="tag">scoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ssh/"><span class="tag">ssh</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tutorial/"><span class="tag">tutorial</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ubuntu/"><span class="tag">ubuntu</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/wireguard/"><span class="tag">wireguard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="tag">图形学</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/"><span class="tag">编译</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BD%91/"><span class="tag">计网</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">3</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2024 l4rk</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/live2d-widget/autoload.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
