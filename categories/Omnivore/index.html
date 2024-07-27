@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>分类: Omnivore - l4rk&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="l4rk"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="l4rk"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="l4rk"><meta property="og:url" content="https://l4rk.cn/"><meta property="og:site_name" content="l4rk"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://l4rk.cn/img/og_image.png"><meta property="article:author" content="l4rk"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4rk.cn"},"headline":"l4rk's blog","image":["http://l4rk.cn/img/og_image.png"],"author":{"@type":"Person","name":"l4rk"},"publisher":{"@type":"Organization","name":"l4rk's blog","logo":{"@type":"ImageObject","url":"http://l4rk.cn/img/logo.svg"}},"description":""}</script><link rel="alternate" href="/atom.xml" title="l4rk&#039;s blog" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!--!--><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/categories">分类</a></li><li class="is-active"><a href="#" aria-current="page">Omnivore</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-26T05:58:36.778Z" title="2024/6/26 13:58:36">2024-06-26</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2020-08-06/">2020-08-06</a></span><span class="level-item">41 分钟读完 (大约6134个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/detectron-2-2-18f5adced3b">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/170612519">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>首先介绍<code>detectron2</code>中使用的<code>registry</code>机制</p>
+<p><code>Trainer</code>中初始化模型调用的接口是<code>build_model</code>函数，通过<code>modeling/__init__.py</code>可以知道它是在<code>modeling/meta_arch/build.py</code>中定义的。但是在阅读<code>build.py</code>的过程中，我们发现它使用了一个叫做<code>Registry</code>的东西——那么什么是<code>Registry</code>呢？</p>
+</blockquote>
+<p><code>Registry</code>机制来自于FaceBook计算机视觉研究组的常用函数库<code>fvcore</code>，其中<code>Registry</code>的源代码和解读可见<a target="_blank" rel="noopener" href="https://detectron2.readthedocs.io/%5Fmodules/fvcore/common/registry.html">registry</a>。它的主要作用是提供了用字符串调用类方法的接口，具体的函数是<code>registry</code>中的<code>get</code>方法。个人感觉<code>registry.get()</code>非常像一个<code>getattr</code>方法，它能够通过字符串访问类的方法。</p>
+<blockquote>
+<p>例如我们有一个具体的网络结构，定义在<code>modeling/meta_arch/rcnn.py</code>中的<code>GeneralizedRCNN</code>。注意在它的定义上方有一个修饰器<code>@META_ARCH_REGISTRY.register()</code>，意思就是把<code>GeneralizedRCNN</code>注册到<code>META_ARCH_REGISTRY</code>中。那么在<code>modeling/meta_arch/build.py</code>中的<code>model = META_ARCH_REGISTRY.get(meta_arch)(cfg)</code>中，只要我们设置<code>meta_arch</code>为<code>GeneralizedRCNN</code>，那么<code>META_ARCH_REGISTRY.get(meta_arch)</code>就调用了<code>GeneralizedRCNN</code>方法，也就因此初始化了模型。</p>
+<ul>
+<li>指定名字来调用模型<br>用@ 修饰器在META_ARCH_REGISTRY中注册<br>再在参数中写入名称即可实现初始化*</li>
+</ul>
+<p><code>registry</code>的几个要点</p>
+</blockquote>
+<ul>
+<li><strong>创建一个<code>registry</code>，设置可能的调用的类的名字</strong></li>
+<li><strong>对于想加入到<code>registry</code>中的类，在定义的时候通过修饰器指定</strong></li>
+<li><strong>调用类方法的时候通过<code>get(name)</code></strong></li>
+<li><strong>通过<code>fvcore</code>中的源代码，我们可以知道如何写<code>python</code>修饰器。</strong></li>
+</ul>
+<blockquote>
+<p><code>Faster-RCNN</code>的结构主要包含如下几个部分，而这几个部分也是<code>GeneralizedRCNN</code>在初始化部分的输入：</p>
+</blockquote>
+<ul>
+<li><code>backbone</code>：从图片提取特征表示的卷积神经网络结构，比如说ResNet。</li>
+<li><code>proposal_generator</code>：从图片的特征预测“哪里可能有物体”</li>
+<li><code>roi_head</code>：以<code>proposal_generator</code>部分预测的有物体区域为基础，预测物体的类别和检测框坐标</li>
+</ul>
+<blockquote>
+<p>与<code>__init__</code>功能相似的是<code>from_config</code>函数，它用config文件初始化模型，通过这个函数我们知道了实际构造backbone、proposal_generator和roi_head的函数分别都是来自对应文件夹的<code>build_xxx</code>函数。</p>
+<p><code>RCNN</code>模型处理函数的过程，我们主要关注<code>forward</code>函数，主要包括如下步骤：</p>
+</blockquote></div><a class="article-more button is-small is-size-7" href="/2024/06/0eb0bfce10fa.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-26T05:58:36.669Z" title="2024/6/26 13:58:36">2024-06-26</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2020-07-25/">2020-07-25</a></span><span class="level-item">36 分钟读完 (大约5355个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/detectron-2-1-18f58228007">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/161986997">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>因此，整个<code>demo</code>的核心实际上是<code>VisualizationDemo</code>。</p>
+<p>模型处理输入得到输出<code>predictions=self.predictor(image)</code>，<code>predictions</code>就是模型(刚刚的<code>self.predictor</code>)输出的结果。阅读机器学习、深度学习代码最重要的就是追踪这类<strong>模型处理数据</strong>的代码，因为这类代码是理解整体<strong>计算模型</strong>的关键。</p>
+<p>在<code>predictor.py</code>9-12行的<code>import</code>部分，我们可以学习到很多架构深度学习项目的规范、设计方法，在不同的文件夹中，我们往往会通过功能将不同的模块分开包装。例如在<code>predictor.py</code>中体现的：</p>
+</blockquote>
+<ul>
+<li><code>.data</code>：处理数据相关的类和方法</li>
+<li><code>.engine</code>：对训练、预测逻辑的整体包装，类似于对整体Pipeline的定义，常见于大型项目</li>
+<li><code>.utils</code>：应该是<code>utilities</code>的简写，一般用来放置常用的工具模块，例如在这里体现出来的可视化部分</li>
+</ul>
+<p>总之，对于越大型的项目来说，合理的分区、包装就越有必要，因为这可以从软件工程角度节省大量用来理解、开发、查错(Debug)的成本。在自己的很多小项目中，合理地使用类似的方法也能有效地提升项目质量。</p>
+<blockquote>
+<p>训练代码是<code>tools/train_net.py</code></p>
+<p><code>if __name__ == &#39;__main__&#39;</code>的部分(这里是代码运行的接口)，可以看到<code>detectron2</code>的结构是利用<code>launch</code>运行了<code>main</code>函数中的内容。如果我们不关心分布式训练的部分(即在distributed的作用域的部分)，那么<code>main</code>函数的逻辑相当简单：得到模型和运行的参数(在参数cfg中)。利用定义好的类<code>Trainer</code>，通过传入<code>cfg</code>参数可以定义出模型，后面的部分均通过<code>Trainer</code>里面的方法都可以实现，例如<code>train()</code>顾名思义就是做训练的，<code>test()</code>就是测试的，<code>build_model()</code>就是创建模型的。<br><em>很有意思的是,过去的detectron2没有封装invoke_main.不知道为什么要封装这么个东西</em></p>
+<p>在<code>Trainer</code>的定义中我们发现它是一个继承自<code>engine.DefaultTrainer</code>的子类，而我们通过上面对<code>main</code>函数的分析发现<code>Trainer</code>的主要功能其实都来自于<code>DefaultTrainer</code><br><em>trainer看engine.DefaultTrianer就行</em></p>
+<p>查看文件名字和每个文件上面<code>__all__</code>的部分可以大致猜测出它们之间相互引用的关系和每个文件主要负责的部分</p>
+<p><code>defaults.py</code>包含了我们在<code>train_net.py</code>中见到的<code>DefaultTrainer</code>，也大多是在import别人</p>
+<p><code>launch.py</code>中的<code>launch</code>顾名思义是让算法开始运行的代码，我们浏览一下它最主要的函数<code>launch</code>，根据它的参数<code>num_machines</code>、<code>machine_rank</code>可得知它是负责分布式训练的代码，又有参数中<code>main_func</code>，可以知道<code>launch</code>不涉及<code>detectron2</code>的实际功能<br><em>分布式训练,不用管</em></p>
+<p>我们清晰了<code>engine</code>部分的层次关系。具体而言，我们按照如下的顺序阅读代码</p>
+</blockquote>
+<ul>
+<li><code>train_loop.py</code></li>
+<li><code>hook.py</code></li>
+<li><code>defaults.py</code></li>
+</ul>
+<blockquote>
+<p><code>HookBase</code>是<code>Hook</code>的基类，其中实现了方法<code>before_step</code>、<code>before_train</code>和<code>after_step</code>、<code>after_train</code>，其主要的作用是在真正做训练之前，做好每一步的准备工作。针对不同的<code>Trainer</code>可以使用不同的<code>Hook</code>。Hook翻译过来叫做“钩子”，所以我们可以形象地理解成Hook像在训练首尾的两个钩子一样挂着负责训练的<code>Trainer</code>。</p>
+<p>在<code>TrainerBase</code>中定义了多个<code>Hook</code>，并且在<code>Trainer</code>的<code>before_step</code>、<code>after_step</code>等函数中可以看到需要执行每一个<code>Hook</code>在训练之前的准备动作<code>HookBase.before_step</code>、训练之后的收尾动作<code>HookBase.after_step</code>。具体的训练过程非常正常，就是按照iteration的数量运行<code>before_step</code>、<code>run_step</code>、<code>after_step</code>三个函数。<br><em>在 Python 中，hook通常是指在特定时刻自动执行的函数。</em></p>
+<p>在<code>SimpleTrainer</code>中作者实现了一种最基本的训练神经网络的流程，它是作为上一段中<code>TrainerBase</code>的子类出现的。它最主要的工作就是将<code>TrainerBase</code>中没有实现的<code>run_step</code>方法实现。事实上，在<code>SimpleTrainer</code>中实现的过程也是最通用的训练过程：</p>
+</blockquote>
+<ul>
+<li><code>iter(dataloader)</code>读取数据</li>
+<li><code>loss_dict = self.model(data)</code>计算每个batch的loss</li>
+<li><code>self.optimizer.zero_grad</code>、<code>losses.backward()</code>、<code>self.optimizer.step()</code>实现训练的过程</li>
+<li>通过统一的结构<code>_write_metrics</code>记录、打印计算的指标。</li>
+</ul></div><a class="article-more button is-small is-size-7" href="/2024/06/dfcd5569ee2e.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-12T16:03:35.079Z" title="2024/6/13 00:03:35">2024-06-13</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.426Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-06-12/">2024-06-12</a></span><span class="level-item">1 小时读完 (大约8012个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/rcnn-cnn-18f58e065de">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23006190">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>速度： 经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。<br><em>相较于传统算法,通过滑动窗口寻找,rcnn使用了selective search,再在可能的区域上进行CNN提取特征</em></p>
+<p>RCNN算法分为4个步骤   </p>
+</blockquote>
+<ol>
+<li>候选区域生成： 一张图像生成1K~2K个候选区域 （采用Selective Search 方法）</li>
+<li>特征提取： 对每个候选区域，使用深度卷积网络提取特征 （CNN）</li>
+<li>类别判断： 特征送入每一类的SVM 分类器，判别是否属于该类</li>
+<li>位置精修： 使用回归器精细修正候选框位置</li>
+</ol>
+<blockquote>
+<p><strong><a target="_blank" rel="noopener" href="http://koen.me/research/pub/uijlings-ijcv2013-draft.pdf">Selective Search</a> 主要思想:</strong></p>
+</blockquote>
+<ol>
+<li>使用一种过分割手段，将图像分割成小区域 (1k~2k 个)</li>
+<li>查看现有小区域，按照合并规则合并可能性最高的相邻两个区域。重复直到整张图像合并成一个区域位置</li>
+<li>输出所有曾经存在过的区域，所谓候选区域</li>
+</ol>
+<blockquote>
+<p>其中合并规则如下： 优先合并以下四种区域： </p>
+</blockquote>
+<ul>
+<li>颜色（颜色直方图）相近的</li>
+<li>纹理（梯度直方图）相近的</li>
+<li>合并后总面积小的： 保证合并操作的尺度较为均匀，避免一个大区域陆续“吃掉”其他小区域 （例：设有区域a-b-c-d-e-f-g-h。较好的合并方式是：ab-cd-ef-gh -&gt; abcd-efgh -&gt; abcdefgh。 不好的合并方法是：ab-c-d-e-f-g-h -&gt;abcd-e-f-g-h -&gt;abcdef-gh -&gt; abcdefgh）</li>
+<li>合并后，总面积在其BBOX中所占比例大的： 保证合并后形状规则。</li>
+</ul>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png" alt></p></div><a class="article-more button is-small is-size-7" href="/2024/06/b493414e15d0.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-05T11:52:25.307Z" title="2024/6/5 19:52:25">2024-06-05</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-06-05/">2024-06-05</a></span><span class="level-item">19 分钟读完 (大约2861个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/ssh-18fe80294d2">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
+</blockquote>
+<p>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</p>
+<blockquote>
+<p>如果你是第一次登录对方主机，系统会出现下面的提示：</p>
+<p>$ ssh user@host</p>
+<p>The authenticity of host ‘host (12.18.429.21)’ can’t be established.</p>
+<p>RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</p>
+<p>Are you sure you want to continue connecting (yes/no)?</p>
+</blockquote>
+<p>这段话的意思是，无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？</p>
+<p>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。</p>
+<blockquote>
+<p>用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。<br><em>公钥是暴露的</em></p>
+<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+</blockquote>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1></div><a class="article-more button is-small is-size-7" href="/2024/06/3cd4bee38875.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-06-01T15:05:06.821Z" title="2024/6/1 23:05:06">2024-06-01</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.426Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-06-01/">2024-06-01</a></span><span class="level-item">3 小时读完 (大约24261个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/1-2-0-0-documentation-18fd437bca5">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zh.d2l.ai/chapter_introduction/index.html">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p><em>机器学习</em>（machine learning，ML）是一类强大的可以从经验中学习的技术。 通常采用观测数据或与环境交互的形式，机器学习算法会积累更多的经验，其性能也会逐步提高。<br><em>机器学习是用来解决<br>任务内部关系过于复杂的情况,或者超过人类意识理解的东西,例如:图像识别</em> ^231222a7</p>
+<p>通常，即使我们不知道怎样明确地告诉计算机如何从输入映射到输出，大脑仍然能够自己执行认知功能。 换句话说，即使我们不知道如何编写计算机程序来识别“Alexa”这个词，大脑自己也能够识别它。 有了这一能力，我们就可以收集一个包含大量音频样本的<em>数据集</em>（dataset），并对包含和不包含唤醒词的样本进行标记。 利用机器学习算法，我们不需要设计一个“明确地”识别唤醒词的系统。 相反，我们只需要定义一个灵活的程序算法，其输出由许多<em>参数</em>（parameter）决定，然后使用数据集来确定当下的“最佳参数集”，这些参数通过某种性能度量方式来达到完成任务的最佳性能。<br><em>输入与输出的关系是模糊的<br>通过多参数灵活映射输入与输出</em> ^e2164f0a</p>
+<p>那么到底什么是参数呢？ 参数可以被看作旋钮，旋钮的转动可以调整程序的行为。 任一调整参数后的程序被称为<em>模型</em>（model）。 通过操作参数而生成的所有不同程序（输入-输出映射）的集合称为“模型族”。 使用数据集来选择参数的元程序被称为<em>学习算法</em>（learning algorithm）。<br> ^bc5cc8ed</p>
+<p>但如果模型所有的按钮（模型参数）都被随机设置，就不太可能识别出“Alexa”“Hey Siri”或任何其他单词。 在机器学习中，<em>学习</em>（learning）是一个训练模型的过程。 通过这个过程，我们可以发现正确的参数集，从而使模型强制执行所需的行为。<br> ^ef363967</p>
+<p>训练过程通常包含如下步骤：</p>
+</blockquote>
+<ol>
+<li>从一个随机初始化参数的模型开始，这个模型基本没有“智能”；</li>
+<li>获取一些数据样本（例如，音频片段以及对应的是或否标签）；</li>
+<li>调整参数，使模型在这些样本中表现得更好；</li>
+<li>重复第（2）步和第（3）步，直到模型在任务中的表现令人满意。</li>
+</ol>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/0x0,s9-cqAWyVp60jxdE0txxBh4__LXDEBqcaVuIq752f9ww/https://zh.d2l.ai/_images/ml-loop.svg" alt="../_images/ml-loop.svg"><br> ^6403cc68</p>
+<blockquote>
+<p>我们没有编写唤醒词识别器，而是编写了一个“学习”程序。 如果我们用一个巨大的带标签的数据集，它很可能可以“学习”识别唤醒词。<br><em>机器学习的程序是一个学习程序</em> ^a6d8fb02</p>
+<p>当每个样本的特征类别数量都是相同的时候，其特征向量是固定长度的，这个长度被称为数据的<em>维数</em>（dimensionality）。<br> ^d95af809</p>
+<p>固定长度的特征向量是一个方便的属性，它可以用来量化学习大量样本。</p>
+</blockquote>
+<p>然而，并不是所有的数据都可以用“固定长度”的向量表示。 以图像数据为例，如果它们全部来自标准显微镜设备，那么“固定长度”是可取的； 但是如果图像数据来自互联网，它们很难具有相同的分辨率或形状。 这时，将图像裁剪成标准尺寸是一种方法，但这种办法很局限，有丢失信息的风险。 此外，文本数据更不符合“固定长度”的要求。 比如，对于亚马逊等电子商务网站上的客户评论，有些文本数据很简短（比如“好极了”），有些则长篇大论。 与传统机器学习方法相比，深度学习的一个主要优势是可以处理不同长度的数据。<br> ^8384344e</p>
+<blockquote>
+<p>监督学习的学习过程一般可以分为三大步骤：</p>
+</blockquote>
+<ol>
+<li>从已知大量数据样本中随机选取一个子集，为每个样本获取真实标签。有时，这些样本已有标签（例如，患者是否在下一年内康复？）；有时，这些样本可能需要被人工标记（例如，图像分类）。这些输入和相应的标签一起构成了训练数据集；</li>
+<li>选择有监督的学习算法，它将训练数据集作为输入，并输出一个“已完成学习的模型”；</li>
+<li>将之前没有见过的样本特征放到这个“已完成学习的模型”中，使用模型的输出作为相应标签的预测。</li>
+</ol></div><a class="article-more button is-small is-size-7" href="/2024/06/7507f258be7f.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-28T08:17:35.266Z" title="2024/5/28 16:17:35">2024-05-28</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.426Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-05-28/">2024-05-28</a></span><span class="level-item">3 分钟读完 (大约504个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/2-ch-18fbd5da86a">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://weibo.com/1687813073/OglBTEYic">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>作为日本人来说，站在日本的视角，是找不到其他出路的。<br>因为这本就和日本无关，是朝贡体系崩坏后的结果，<br>这是中国的问题而不是日本的问题，<br>因此压根和日本无关。<br><em>东亚混乱的根源是宗主国本身的衰弱</em> ^d8b6d633</p>
+</blockquote>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><p>逛2CH的，就知道日本人的意识形态。<br>日本人是真心觉得二战那会，日本是为了解放在白人统治下的亚洲和欧美人作战的。<br>其实到现在部分人还有那种心思。</p>
+<p>这种思想你也不能说全错：因为当年亚洲尤其是东南亚就是在欧美统治下的，<br>且二战结束后，东南亚确实和欧洲人作战，且把欧洲人驱逐了，<br>问题在于，日本人实际上替代了欧美，成了新一代的殖民者，日本人认为自己这个殖民者比欧美的殖民者更友善。<br>然后再去看鸟山明的作品，那就很正常了，<br>鸟山明的意识形态，和2CH的网民没什么两样。</p>
+<p>==作为日本人来说，站在日本的视角，是找不到其他出路的。==<br>==因为这本就和日本无关，是朝贡体系崩坏后的结果，==<br>==这是中国的问题而不是日本的问题，==<br>==因此压根和日本无关。==<br>所以日本人就算绞尽脑汁也想不出什么解决办法的。</p>
+<p><a target="_blank" rel="noopener" href="https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E6%B2%99%E6%BC%A0%E5%A4%A7%E5%86%92%E9%99%A9%23">沙漠大冒险</a><a target="_blank" rel="noopener" href="https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E9%B8%9F%E5%B1%B1%E6%98%8E%23&amp;isnewpage=1">鸟山明</a><a target="_blank" rel="noopener" href="https://m.weibo.cn/search?containerid=231522type%3D1%26t%3D10%26q%3D%23%E9%BE%99%E7%8F%A0%23&amp;isnewpage=1">龙珠</a></p>
+</div><a class="article-more button is-small is-size-7" href="/2024/05/6858510a114d.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-24T11:04:20.960Z" title="2024/5/24 19:04:20">2024-05-24</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-05-08/">2024-05-08</a></span><span class="level-item">32 分钟读完 (大约4796个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/2021-18f558313d9">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://weibo.com/7823553961/OdhpIFXpq">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>革命的困境之一 近代史上的中国面临着两到三次技术革命接连掉队的问题</p>
+</blockquote>
+<p>第一次和第二次技术革命，中国都没有跟上步伐。到了近代史的末期，以核技术和计算机为代表的第三次技术革命也开始涌现了。 反复落后于技术革命并导致落后度不断叠加，这使得中国的自救之路变得相当艰辛，甚至是越来越危险。<br><em>技术的不断发展甚至导致了，中国越革命越进步，与世界列强的差距，不减反增</em> ^18a87aae</p>
+<blockquote>
+<p>被技术革命反复甩下还造成了另一个严重问题： 中国的经济和文化发展具有高度的不平衡性。</p>
+</blockquote>
+<p>上海在20世纪上半叶已经是远东超级大都市，知识分子可以容易地接触到世界前沿思想文化，而全国绝大多数地方依然是文盲遍地的赤贫封闭农村。此种内部的严重不平衡极容易导致族群内部由于阶级，文化，经济模式等差异而被纵向撕裂。 这种撕裂既容易使占大部分人口的普罗大众对能接触到先进生产力和先进文化的少数精英感到不信任， 也容易使少数精英主动地甚至被迫地脱离普罗大众， 而真正想要扎根群众动员群众的精英则往往不得不在文化和政治理念上开历史倒车以保证自己能接地气。一个组织要想同时代表先进生产力，先进文化和最广大人民的利益是十分困难的。<br><em>精英与群众的血肉联系亦是俊男的</em> ^3d824fd0</p>
+<blockquote>
+<p>革命的困境之二 中国近代以来遭受到的外部挑战是全方位的文明冲击。</p>
+</blockquote>
+<p>清朝人用了几十年时间逐步认识到，中国在军事、经济、科技、政治各个方向上全方位落后于西方。此种文明冲击是中国古代史上未曾面对过的，也使得中国没有办法依托丰富的治乱循环，王朝更替和同化少数族群的经验来处理此次外部文明挑战。<br> ^a60b86c7</p>
+<blockquote>
+<p>革命的困境之三 中国革命面临十分复杂的国际政治格局。</p>
+</blockquote></div><a class="article-more button is-small is-size-7" href="/2024/05/c1329d9ab4cd.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-23T00:34:15.236Z" title="2024/5/23 08:34:15">2024-05-23</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-05-23/">2024-05-23</a></span><span class="level-item">30 分钟读完 (大约4442个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/detectron-2-detectron-2-csdn-18fa2dc4d5b">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36670529/article/details/104021823">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>Detectron2 的基本思路就是利用配置文件搭积木。 </p>
+<ul>
+<li>第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。</li>
+<li>第二步，构建配置文件。</li>
+<li>第三步，通过配置文件，选择对应的积木。</li>
+</ul>
+<ul>
+<li>有一个<strong>默认配置文件</strong>，即 <code>detectron2/config/default.py</code> 文件。</li>
+<li><strong>示例配置文件</strong>放在 <code>configs</code> 文件夹中，且使用yaml形式。</li>
+<li>所有<strong>示例配置文件</strong>都是建立在<strong>默认配置文件</strong>基础上的，即所有<strong>示例配置文件</strong>中的配置其实都是不全的，缺失的配置需要到<strong>默认配置文件</strong>中寻找。  </li>
+<li>detectron2 的配置文件比 mmdetection 看起来简洁很多。  </li>
+<li>有得必有失，虽然简洁，但在看源码的时候经常需要查看默认配置文件，也不是特别方便。</li>
+<li><strong>示例配置文件</strong>中有一个<code>_BASE_</code>属性，可以将其他<strong>示例配置文件</strong>作为基础，如果有冲突则用当前配置文件的信息覆盖。</li>
+</ul>
+</blockquote>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><p><img src="https://proxy-prod.omnivore-image-cache.app/0x0,sb9FtdCb_T4b1O697eqoXY9k3NVVgRsw8SlTyVuCA3pc/https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt></p>
+<p> 版权声明：本文为博主原创文章，遵循<a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</p>
+<p>参考 <strong><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1583634" title=" Detectron2入门教程 - 云+社区 - 腾讯云"> Detectron2入门教程 - 云+社区 - 腾讯云</a></strong></p>
+<p><strong>目录</strong></p>
+<p><a href="#t0">1. 概述</a></p></div><a class="article-more button is-small is-size-7" href="/2024/05/322c356ea11b.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-20T05:05:29.712Z" title="2024/5/20 13:05:29">2024-05-20</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-05-20/">2024-05-20</a></span><span class="level-item">43 分钟读完 (大约6395个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/-18f91910881">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://sspai.com/post/87490">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>建思路，将整体实践方法论进行拆解。<br> ^54df8fcd</p>
+</blockquote>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><p><strong>Matrix 首页推荐</strong> </p>
+<p><a target="_blank" rel="noopener" href="https://sspai.com/matrix">Matrix</a> 是少数派的写作社区，我们主张分享真实的产品体验，有实用价值的经验与思考。我们会不定期挑选 Matrix 最优质的文章，展示来自用户的最真实的体验和观点。</p>
+<p>文章代表作者个人观点，少数派仅对标题和排版略作修改。</p>
+<hr>
+<blockquote>
+<p>限制个人潜能的从来不是某套工具，而是思维模式。——《打造第二大脑》</p>
+</blockquote></div><a class="article-more button is-small is-size-7" href="/2024/05/b858a0f006ac.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-17T11:43:01.213Z" title="2024/5/17 19:43:01">2024-05-17</time>发表</span><span class="level-item"><time dateTime="2024-07-27T08:10:59.425Z" title="2024/7/27 16:10:59">2024-07-27</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Omnivore/">Omnivore</a><span> / </span><a class="link-muted" href="/categories/Omnivore/2024-05-12/">2024-05-12</a></span><span class="level-item">3 小时读完 (大约27639个字)</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/-18f6d7c7653">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/434074509">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>流畅记忆的价值并不仅仅在于记住一些事实。许多实验并非用鹦鹉学舌式的记忆问题来测试学生，而是要求他们进行推理，绘制概念图[4]，或回答开放式的问题。在这些研究中，记忆力的提高能够转化为一般理解能力，及解决问题能力的提高。<br><em>好的卡片不是死记硬背,而是要求去推理，绘制概念图，或回答开放式</em></p>
+<p><em>提取（Retrieval）</em>是 SRS 有别于传统学习模式的关键。仅仅简单回顾材料（如多读几遍）既没有加强记忆，更不能增进问题解决能力，而「提取」往往可以。这种通过「提取以掌握」的现象也被称为「测试效应」，因为往往发生在做自我测试时，故此得名。它形似学校考试，目的上又有所相反：「提取练习」是为了从测试中<strong>进行</strong>学习，而非「评估」学习成果。<br><em>提取或者说是测试,目的是进行学习,而不是评估学习的成果</em></p>
+<p>卡片的<strong>焦点</strong>应明确（Focused）：细节太多的问答不会让你专注，回答时的「提取效应」无法完整地刺激记忆、点亮全部的「思维灯泡」。不够聚焦的问题，还让你更难判断回答是否全面、差异在哪里。因此，最佳做法一般是：一次问答只聚焦一个细节。<br><em>尽量聚焦少的细节,太多的细节会让我不够专注地回忆,无法点亮所有的思维灯泡</em></p>
+<p>卡面应能诱导出<strong>一致的</strong>回答（Consistent），让每次任务都点亮相同的「思维灯泡」：否则，你可能遭遇「提取引发遗忘」（retrieval-induced forgetting）[7]—— 这是一种干扰现象，即已记住的会更牢，没记住的更易遗忘。（后文将讨论一种新的卡片，每次重复时都要求一个新答案，但它产生改变的效应不是「提取练习」）<br><em>同个任务只能点亮相同的思维灯泡.也就是说,同一个卡片,不会让你回忆出不同的答案</em></p>
+<p>卡片应让提取<strong>费工夫</strong>（effortful）：卡片练习的重点，是让你从记忆中提取答案， 而不应让你简单地从卡面「推测」答案（此外，「线索」很重要，我们稍后讨论）。实际上，提取练习的努力程度与效果正相关。这点正是强调复习和复习之间要有间隔的动机之一：如果回忆答案太容易，那提取练习效果不大[9]。<br><em>提取难度与效果正相关.但过难会降低积极性.<br>要有适当的提示,不能太简单也不能太难</em></p>
+<p>我们会穷尽式地处理这份阅读材料，以最详尽地展示这些通用的制卡原则。请注意，实践中你通常不会也不必这么系统地学习。你一般只会关注文章中你认为最有价值的部分，然后在非常有必要的时候跳回原始材料，寻找与你理解最相关的信息并做成卡片 —— 这值得一赞！完美主义会过度消耗你的动力，穷尽式处理只是表面正确，实际上是浪费你的注意力，它们本应该放到更有价值的地方。这类问题会在后面更深入地讨论。<br><em>穷尽式地处理并不是很好的选择.战术上努力,战略上懒惰.在必要时跳回原始材料就行</em></p>
+<p>我们假如直接这么写卡：「制作鸡肉高汤需要什么？」，那么在回答的时候因为数量或者原料名称未作要求，所以很难作答。这样的卡片不够<strong>准确</strong>，也不够<strong>聚焦</strong> ：同时要求提取的细节太多，所以想要加强的记忆不会全部被强力激活；并且因为它要的答案太多，因此的<strong>一致性</strong>、<strong>可控性</strong>也不好：每次回答，你会记起一些，又忘掉另一些。因此激活不够一致，容易导致记忆受到侵蚀。<br><em>像我写的高数卡片…</em></p>
+<p>在谈及事实时，我们自然会想添加一些解释。我个人会在细节不容易想到，或者事实背后的解释比较有意思的时候，添加一张「<strong>解释</strong>卡」<br><em>对有趣事实进行解释是很有意思的事情</em></p>
+<p>问：为什么我们做鸡肉高汤要用骨头？<br>答：它们富含明胶（吉利丁，gelatin），可以产生浓郁的口感。<br>*很好的解释卡,但仍有不足,像骨头比较便宜这个答案也是有可能出现的.这样就显得<code>一致性,可控性</code>不够好.还有改进空间</p>
+</blockquote>
+<p>问：骨头如何产生鸡肉高汤的浓郁口感？<br>答：它们富含吉利丁。<br>更好,排除了骨头便宜的干扰,更加精准*</p>
+<blockquote>
+<p>解释卡能强化「事实性」提问中的知识，而「解释」本身也让事实富有意义—— 这点也许更重要。此类卡片像钩子一样，将烹饪生涯中的想法与学到的「事实」相互关联起来。比如你学完这张卡的第二天，如果正好吃到「果冻鸡爪」，就可能考虑拿鸡爪作高汤材料（因为这是鸡身上明胶最丰富的部分），因为今天这张卡让你知道明胶能提升口感。<br><em>通过解释,将解释卡与事实卡联系起来.</em></p>
+<blockquote>
+<p>问：鸡肉高汤中使用的典型香料是什么？<br>答：洋葱、胡萝卜、芹菜、大蒜和香菜</p>
+</blockquote>
+</blockquote>
+<p>但是，除非你有一定经验，否则这个卡片对你来说可能并不可控，或是每次记的原料不一致。这样的无序列表要转化为好卡片，颇具难度。</p>
+<p>对此，一个好策略是创建一组问题，并对选项分别挖空，并要求你逐一填空（下面用<code>？？？</code>指挖的孔）：</p>
+<blockquote>
+<p>问：典型的鸡肉高汤香料：<br><strong>- ？？？</strong><br>- 胡萝卜<br>- 芹菜<br>- 大蒜<br>- 香菜</p>
+<p>答：洋葱</p>
+<p>问：典型的鸡肉高汤香料：<br>- 洋葱<br><strong>- ？？？</strong><br>- 芹菜<br>- 大蒜<br>- 香菜</p>
+<p>答：胡萝卜</p>
+</blockquote>
+<p>…以此类推。这里注意到选项列表顺序没有变动，这样你在重复回忆时，最终一定程度上会形成视觉<em>形状</em>上的记忆。<br><em>cloze形式的anki卡片在这里就很实用,一次仅仅聚焦一个思维灯泡,并且形成视觉上的记忆</em></p></div><a class="article-more button is-small is-size-7" href="/2024/05/7b8abae622a6.html#more">阅读更多</a></article></div><nav class="pagination" role="navigation" aria-label="pagination"><div class="pagination-previous is-invisible is-hidden-mobile"><a href="/categories/Omnivore/page/0/">上一页</a></div><div class="pagination-next"><a href="/categories/Omnivore/page/2/">下一页</a></div><ul class="pagination-list is-hidden-mobile"><li><a class="pagination-link is-current" href="/categories/Omnivore/">1</a></li><li><a class="pagination-link" href="/categories/Omnivore/page/2/">2</a></li><li><a class="pagination-link" href="/categories/Omnivore/page/3/">3</a></li></ul></nav></div><div class="column column-left is-4-tablet is-2-desktop is-2-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.png" alt="l4rk"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">l4rk</p><p class="is-size-6 is-block">The time has gone.</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>hangzhou,zhejiang</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">75</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">22</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">31</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/domonnss" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Email" href="mailto:2876359363@qq.com"><i class="fa fa-envelope"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">#linux</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/anki/"><span class="tag">anki</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bazel/"><span class="tag">bazel</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cmake/"><span class="tag">cmake</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/code/"><span class="tag">code</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/dn11/"><span class="tag">dn11</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/firewall/"><span class="tag">firewall</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/games/"><span class="tag">games</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/istore/"><span class="tag">istore</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/minio/"><span class="tag">minio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openwrt/"><span class="tag">openwrt</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rss/"><span class="tag">rss</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rsshub/"><span class="tag">rsshub</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scoop/"><span class="tag">scoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ssh/"><span class="tag">ssh</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tutorial/"><span class="tag">tutorial</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ubuntu/"><span class="tag">ubuntu</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vpn/"><span class="tag">vpn</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/wireguard/"><span class="tag">wireguard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="tag">图形学</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/"><span class="tag">编译</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BD%91/"><span class="tag">计网</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">3</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-2-desktop is-2-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/02literature/"><span class="level-start"><span class="level-item">02literature</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/02literature/book/"><span class="level-start"><span class="level-item">book</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/"><span class="level-start"><span class="level-item">07archive</span></span><span class="level-end"><span class="level-item tag">51</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/"><span class="level-start"><span class="level-item">tech</span></span><span class="level-end"><span class="level-item tag">42</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/"><span class="level-start"><span class="level-item">games</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/101%E5%AE%9E%E9%AA%8C/"><span class="level-start"><span class="level-item">101实验</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/tutorial/"><span class="level-start"><span class="level-item">tutorial</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Omnivore/"><span class="level-start"><span class="level-item">Omnivore</span></span><span class="level-end"><span class="level-item tag">23</span></span></a><ul><li><a class="level is-mobile" href="/categories/Omnivore/2020-07-25/"><span class="level-start"><span class="level-item">2020-07-25</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2020-08-06/"><span class="level-start"><span class="level-item">2020-08-06</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-08/"><span class="level-start"><span class="level-item">2024-05-08</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-09/"><span class="level-start"><span class="level-item">2024-05-09</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-11/"><span class="level-start"><span class="level-item">2024-05-11</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-12/"><span class="level-start"><span class="level-item">2024-05-12</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-14/"><span class="level-start"><span class="level-item">2024-05-14</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-15/"><span class="level-start"><span class="level-item">2024-05-15</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-20/"><span class="level-start"><span class="level-item">2024-05-20</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-23/"><span class="level-start"><span class="level-item">2024-05-23</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-05-28/"><span class="level-start"><span class="level-item">2024-05-28</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-06-01/"><span class="level-start"><span class="level-item">2024-06-01</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-06-05/"><span class="level-start"><span class="level-item">2024-06-05</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/categories/Omnivore/2024-06-12/"><span class="level-start"><span class="level-item">2024-06-12</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/06/"><span class="level-start"><span class="level-item">六月 2024</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">五月 2024</span></span><span class="level-end"><span class="level-item tag">18</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">33</span></span></a></li></ul></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2024 l4rk</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/live2d-widget/autoload.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
