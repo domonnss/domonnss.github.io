@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>l4rk&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="l4rk"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="l4rk"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="LinkRead on OmnivoreRead Original Highlights&amp;amp;&amp;amp;Note Detectron2 的基本思路就是利用配置文件搭积木。   第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。 第二步，构建配置文件。 第三步，通过配置文件，选择对应的积木。   有一个默认配置文件，即 detectron2&amp;#x2F;config&amp;#x2F;default.py 文件。"><meta property="og:type" content="blog"><meta property="og:title" content="l4rk"><meta property="og:url" content="https://l4rk.cn/"><meta property="og:site_name" content="l4rk"><meta property="og:description" content="LinkRead on OmnivoreRead Original Highlights&amp;amp;&amp;amp;Note Detectron2 的基本思路就是利用配置文件搭积木。   第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。 第二步，构建配置文件。 第三步，通过配置文件，选择对应的积木。   有一个默认配置文件，即 detectron2&amp;#x2F;config&amp;#x2F;default.py 文件。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/0x0,sb9FtdCb_T4b1O697eqoXY9k3NVVgRsw8SlTyVuCA3pc/https://csdnimg.cn/release/blogv2/dist/pc/img/original.png"><meta property="article:published_time" content="2024-05-23T00:34:15.236Z"><meta property="article:modified_time" content="2024-06-08T04:56:04.053Z"><meta property="article:author" content="l4rk"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://proxy-prod.omnivore-image-cache.app/0x0,sb9FtdCb_T4b1O697eqoXY9k3NVVgRsw8SlTyVuCA3pc/https://csdnimg.cn/release/blogv2/dist/pc/img/original.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4rk.cn/2024/05/322c356ea11b.html"},"headline":"l4rk's blog","image":["https://proxy-prod.omnivore-image-cache.app/0x0,sb9FtdCb_T4b1O697eqoXY9k3NVVgRsw8SlTyVuCA3pc/https://csdnimg.cn/release/blogv2/dist/pc/img/original.png"],"datePublished":"2024-05-23T00:34:15.236Z","dateModified":"2024-06-08T04:56:04.053Z","author":{"@type":"Person","name":"l4rk"},"publisher":{"@type":"Organization","name":"l4rk's blog","logo":{"@type":"ImageObject","url":"http://l4rk.cn/img/logo.svg"}},"description":"LinkRead on OmnivoreRead Original Highlights&amp;&amp;Note Detectron2 的基本思路就是利用配置文件搭积木。   第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。 第二步，构建配置文件。 第三步，通过配置文件，选择对应的积木。   有一个默认配置文件，即 detectron2&#x2F;config&#x2F;default.py 文件。"}</script><link rel="canonical" href="http://l4rk.cn/2024/05/322c356ea11b.html"><link rel="alternate" href="/atom.xml" title="l4rk&#039;s blog" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!--!--><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-23T00:34:15.236Z" title="2024/5/23 08:34:15">2024-05-23</time>发表</span><span class="level-item"><time dateTime="2024-06-08T04:56:04.053Z" title="2024/6/8 12:56:04">2024-06-08</time>更新</span><span class="level-item">30 分钟读完 (大约4442个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/detectron-2-detectron-2-csdn-18fa2dc4d5b">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36670529/article/details/104021823">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>Detectron2 的基本思路就是利用配置文件搭积木。 </p>
+<ul>
+<li>第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。</li>
+<li>第二步，构建配置文件。</li>
+<li>第三步，通过配置文件，选择对应的积木。</li>
+</ul>
+<ul>
+<li>有一个<strong>默认配置文件</strong>，即 <code>detectron2/config/default.py</code> 文件。</li>
+<li><strong>示例配置文件</strong>放在 <code>configs</code> 文件夹中，且使用yaml形式。</li>
+<li>所有<strong>示例配置文件</strong>都是建立在<strong>默认配置文件</strong>基础上的，即所有<strong>示例配置文件</strong>中的配置其实都是不全的，缺失的配置需要到<strong>默认配置文件</strong>中寻找。  </li>
+<li>detectron2 的配置文件比 mmdetection 看起来简洁很多。  </li>
+<li>有得必有失，虽然简洁，但在看源码的时候经常需要查看默认配置文件，也不是特别方便。</li>
+<li><strong>示例配置文件</strong>中有一个<code>_BASE_</code>属性，可以将其他<strong>示例配置文件</strong>作为基础，如果有冲突则用当前配置文件的信息覆盖。</li>
+</ul>
+</blockquote>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><p><img src="https://proxy-prod.omnivore-image-cache.app/0x0,sb9FtdCb_T4b1O697eqoXY9k3NVVgRsw8SlTyVuCA3pc/https://csdnimg.cn/release/blogv2/dist/pc/img/original.png" alt=""></p>
+<p> 版权声明：本文为博主原创文章，遵循<a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-sa/4.0/"> CC 4.0 BY-SA </a>版权协议，转载请附上原文出处链接和本声明。</p>
+<p>参考 <strong><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1583634" title=" Detectron2入门教程 - 云+社区 - 腾讯云"> Detectron2入门教程 - 云+社区 - 腾讯云</a></strong></p>
+<p><strong>目录</strong></p>
+<p><a href="#t0">1. 概述</a></p>
+<p><a href="#t1">1.1. 自己的源码阅读流程</a></p>
+<p><a href="#t2">1.2. 目录结构</a></p>
+<p><a href="#t3">1.3. 搭积木过程</a></p>
+<p><a href="#t4">1.4. 官方文档阅读</a></p>
+<p><a href="#t5">2. 数据处理</a></p>
+<p><a href="#t6">2.1. 概述</a></p>
+<p><a href="#t7">2.2. 基本流程</a></p>
+<p><a href="#t8">2.3. build_detection_train_loader 方法解析</a></p>
+<p><a href="#t9">2.4. 其他</a></p>
+<p><a href="#t10">3. 模型搭建</a></p>
+<p><a href="#t11">3.1. 概述</a></p>
+<p><a href="#t12">3.2. 基本流程</a></p>
+<p><a href="#t13">3.3. 其他</a></p>
+<p><a href="#t14">4. 训练/评估/预测</a></p>
+<p><a href="#t15">4.1. 概述</a></p>
+<p><a href="#t16">4.2. 训练代码结构</a></p>
+<hr>
+<h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><h4 id="1-1-自己的源码阅读流程"><a href="#1-1-自己的源码阅读流程" class="headerlink" title="1.1. 自己的源码阅读流程"></a>1.1. 自己的源码阅读流程</h4><ul>
+<li>设定目标：  <ul>
+<li>刚刚从TF转向PyTorch，所以希望进一步熟悉PyTorch。  </li>
+<li>进一步熟悉目标检测、实例分割、关键点检测等模型。  </li>
+<li>寻找/研究源码中存在的一些tricks。  </li>
+<li>后续需要通过detectron2来复现新论文。</li>
+</ul>
+</li>
+<li>总结自己之前的一些步骤  <ul>
+<li>第一步：阅读所有官方文档。  </li>
+<li>第二步：尝试根据 Getting Started 文档内容，运行 <code>demo</code> 中的脚本。  </li>
+<li>第三步：从数据处理、模型构建、模型训练/预测/评估三个方面，分别浏览源码。</li>
+</ul>
+</li>
+<li>个人感受：  <ul>
+<li>PyTorch代码比TensorFlow代码容易多了。  </li>
+<li>Detectron2源码比TensorFlow Object Detection API源码直观多了，上手容易多了。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-目录结构"><a href="#1-2-目录结构" class="headerlink" title="1.2. 目录结构"></a>1.2. 目录结构</h4><ul>
+<li><code>configs</code>：<strong>示例配置文件</strong>合集。</li>
+<li><code>datasets</code>：数据集准备工作，主要就是各个数据集的基本结构，以及需要如何预处理。</li>
+<li><code>demo</code>：快速体验Detectron2，与Getting Started文档对应。如果想要体验Model ZOO中结果的内容就可以用这个。</li>
+<li><code>detectron2</code>：项目主要代码都在这里了。</li>
+<li><code>dev</code>：一些开发者会用到的脚本。</li>
+<li><code>docker</code>：没啥好介绍的。</li>
+<li><code>docs</code>：一些官方文档。</li>
+<li><code>projects</code>：基于Detectron2的三个项目，DensePose/TensorMask/TridentNet。  <ul>
+<li>Detectron2的开发人员介绍，如果想要利用detectron2直接复现所有论文可能比较困难（我的理解就是直接修改detectron2中的代码），一种比较好的方式就是将detectron2作为一个包来调用来构建新的模型。</li>
+</ul>
+</li>
+<li><code>tests</code>：单元测试类。</li>
+<li><code>tools</code>：常用脚本，如训练、benchmark、展示数据集等。</li>
+<li>==Detectron2 的基本思路就是利用配置文件搭积木。==  <ul>
+<li>==第一步，将模型拆分为多个模块，每个模块可以叫做一个类型的积木。==  </li>
+<li>==第二步，构建配置文件。==  </li>
+<li>==第三步，通过配置文件，选择对应的积木。==</li>
+</ul>
+</li>
+<li>配置文件概述  <ul>
+<li>==有一个==<strong>==默认配置文件==</strong>==，即== <code>==detectron2/====config====/====default====.py==</code> ==文件。==  </li>
+<li><strong>==示例配置文件==</strong>==放在== <code>==configs==</code> ==文件夹中，且使用yaml形式。==  </li>
+<li>==所有==<strong>==示例配置文件==</strong>==都是建立在==<strong>==默认配置文件==</strong>==基础上的，即所有==<strong>==示例配置文件==</strong>==中的配置其实都是不全的，缺失的配置需要到==<strong>==默认配置文件==</strong>==中寻找。==  <pre><code>* ==detectron2 的配置文件比 mmdetection 看起来简洁很多。==  
+* ==有得必有失，虽然简洁，但在看源码的时候经常需要查看默认配置文件，也不是特别方便。==  
+</code></pre></li>
+<li><strong>==示例配置文件==</strong>==中有一个==<code>==_BASE_==</code>==属性，可以将其他==<strong>==示例配置文件==</strong>==作为基础，如果有冲突则用当前配置文件的信息覆盖。==</li>
+</ul>
+</li>
+<li>如何使用配置文件搭积木  <ul>
+<li>模型搭建的Registry机制  <pre><code>* 调用了 [fvcore.common.registry.Registry](https://link.zhihu.com/?target=https%3A//github.com/facebookresearch/fvcore/blob/master/fvcore/common/registry.py &quot;fvcore.common.registry.Registry&quot;)，该对象的作用是保存一个字典，key为方法/类的名称，value为方法/类，利用 `@registry_object.register` 修饰目标方法/类，这样可以在导入detectron2的同时将 key/value 保存起来。  
+* 对于每一个类型的积木（如backbone, anchor generator, proposal generator, roi head等）都对应一个Registry对象。更多类型可以看 `detectron2/modeling/__init__.py` 文件。  
+* 一般，一个Registry对应一个`build.py`，主要就是从Registry中通过名称获取方法/类，然后将**示例配置文件**中参数导入目标方法/类中。  
+</code></pre></li>
+<li>数据集的Registry机制  <pre><code>* 主要使用了 `detectron2/data/catalog.py` 中的 `MetadataCatalog` 与 `DatasetCatalog`，前者保存了数据集的元数据，后者保留了一个方法，该方法用于获取数据集 `list(dict)`。  
+* 使用了Registry机制，但不是通过注解实现的，而是在 `detectron2/data/datasets/buildin.py` 中调用了 `register_all_coco()` 等四个方法，这些方法调用了 `MetadataCatalog` 和 `DatasetCatalog`的注册方法。  
+* 一般建数据集会调用 `build_detection_train_loader` 方法，该方法会调用`DatasetCatalog`中的方法，获取 `list(dict)`。  
+</code></pre></li>
+<li>模型训练/预测/评估的的搭积木不复杂，就是根据配置文件，直接创建对应的对象（如lr, optimizer等）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-官方文档阅读"><a href="#1-4-官方文档阅读" class="headerlink" title="1.4. 官方文档阅读"></a>1.4. 官方文档阅读</h4><ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/index.html" title="官方文档地址">官方文档地址</a>，如果想了解Detectron2的源码，强烈建议先看看。</li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/index.html" title="tutorials">tutorials</a>  <ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/install.html" title="Installation">Installation</a>：安装，没啥好说的。  </li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/getting%5Fstarted.html" title="Getting Started with Detectron2">Getting Started with Detectron2</a>：跑个Demo，没啥好说的。  </li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/extend.html" title="Extend Detectron2&#39;s Defaults">Extend Detectron2’s Defaults</a>  <pre><code>* 谈了谈Detectron2的基本设计思路。一方面要有足够的灵活性（做研究总是要做新东西），一方面要有较好的高层抽象。  
+* 基本设计思路：所有的方法和类都可以从一个配置文件中获取所需要的参数（配置文件中没有的，就使用默认参数）。  
+* 介绍了扩展detectron2的一些相关文档。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/datasets.html" title="Use Custom Datasets">Use Custom Datasets</a>  <pre><code>* dataset只是解析数据集，而没有进行数据处理（数据处理在后面dataloader中进行）。  
+* dataset的输出将会作为后续dataloader的输入。  
+* 自定义数据集步骤：  
+         * 注册数据集，需要制定数据集名称以及一个 `get_dict` 方法，该方法用于获取一个 `list[dict]` 对象，每个字典就是一条输入数据，具体的key列表可以到文档中自己看。  
+         * 可以注册一些自定义 metadata。  
+* 数据集的metadata介绍  
+         * 一个记录数据库相关信息的字典，比如primitive information that helps interpret what&#39;s in the dataset, e.g., names of classes, colors of classes, root of files, etc.  
+         * 可以通过 `MetadataCatalog.get(dataset_name).set(name, value)` 为新数据库添加元数据。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/data%5Floading.html" title="Use Custom Dataloaders">Use Custom Dataloaders</a>  <pre><code>* 介绍数据处理模块，其实就是一系列数据增强等操作，以上述dataset的结果作为输入，并作为后续Model的输入。  
+* 具体过程如下：  
+         * 首先，根据数据集名称获取一个已经注册的数据集（就是上面的dataset），获取 `list[dict]` 对象。  
+         * 其次，数据增强等其他数据处理流程都内置于 `DatasetMapeer` 中。  
+         * 最后，需要batch数据，batch后的数据一般就作为 `model.forward()` 的输入。  
+* 介绍如何自定义Dataloader、使用自定义Dataloader可以参考DensePose的代码。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/models.html" title="Use Models">Use Models</a>  <pre><code>* 主要介绍如何构建模型。  
+* 构建模型方式：通过调用 `build_model`, `build_backbone`，`build_roi_heads` 等方法来构建。  
+* 要导入权重可以使用 `DetectionCheckpointer(model).load(file_path)`。  
+* 使用模型就是 `outputs = model(inputs)`  
+* 模型输入使用的参数通过 `list[dict]` 来实现，即上面dataloader的输出，具体的key形式可以参考这个页面中的内容。  
+* 模型输出也是一个 `list[dict]`，具体的形式可以参考这篇文章中的内容。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/write-models.html" title="Write Models">Write Models</a>  <pre><code>* 自定义模型相关。  
+* 举了个例子如果自定义backbone该怎么做。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/training.html" title="Training">Training</a>  <pre><code>* 就提了下训练相关的代码。  
+* 一般使用 `tools/plain_train_net.py` 来训练模型。  
+* 最简单的训练结构是 `SimpleTrainer().train()`。  
+* 一般使用的类是 `DefaultTrainer().train()`。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/tutorials/configs.html" title="Use Configs">Use Configs</a>  <pre><code>* 介绍了配置系统的基本结构，即使用yaml和yacs来配置。  
+* 配置文件的使用，其实就是对 `CfgNode` 对象的使用。  
+* 建议使用配置文件的方式，我比较在意的是 使用`_BASE_`参数来重复配置定义到一个文件中。
+</code></pre></li>
+</ul>
+</li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/notes/index.html" title="notes">notes</a>  <ul>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/notes/benchmarks.html" title="Benchmarks">Benchmarks</a>  <pre><code>* 记录一下训练时间，与其他库也比较比较。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/notes/compatibility.html" title="Compatibility with Other Libraries">Compatibility with Other Libraries</a>  <pre><code>* 与其他目标检测库的Compatibility。  
+</code></pre></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/notes/contributing.html" title="Contributing to detectron2">Contributing to detectron2</a>  </li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/notes/changelog.html" title="Change Log">Change Log</a></li>
+</ul>
+</li>
+<li><a href="https://link.zhihu.com/?target=https%3A//detectron2.readthedocs.io/modules/index.html" title="API Documentation">API Documentation</a></li>
+</ul>
+<hr>
+<h3 id="2-数据处理"><a href="#2-数据处理" class="headerlink" title="2. 数据处理"></a>2. 数据处理</h3><h4 id="2-1-概述"><a href="#2-1-概述" class="headerlink" title="2.1. 概述"></a>2.1. 概述</h4><ul>
+<li>实现的功能：  <ul>
+<li>解析COCO、cityscapes等数据集。  </li>
+<li>提供数据预处理以及增强的接口。  </li>
+<li>通过配置文件即可实现数据集解析、预处理、增强等操作。</li>
+</ul>
+</li>
+<li>主要入口： <code>detectron2/data/build.py</code> 中的 <code>build_detection_train_loader</code>或<code>build_detection_test_loader</code> 方法。</li>
+<li>相关代码：主要位于 <code>detectron2/detectron2/data</code> 目录下。</li>
+<li>相关配置：<code>detectron2/config/defaults.py</code> 中 <code>_C.INPUT _C.DATASETS _C.DATALOADER</code> 开头的配置。</li>
+</ul>
+<h4 id="2-2-基本流程"><a href="#2-2-基本流程" class="headerlink" title="2.2. 基本流程"></a>2.2. 基本流程</h4><ul>
+<li>第一步：在导入 detectron2 模块时，通过Register机制注册一些常用的数据集。  <ul>
+<li>注册机制可以参考 <code>1.3.</code> 中的内容。  </li>
+<li>注册代码在 <code>detectron2/detectron2/data/datasets/builtin.py</code>。</li>
+</ul>
+</li>
+<li>第二步：通过数据集名称以及完成注册的 <code>DatasetCatalog</code> 对象以及 <code>MetadataCatalog</code> 对象，解析数据集并获取数据集基本信息。  <ul>
+<li>从源码角度看，就是调用了 <code>DatasetCatalog</code> 中的对应的方法，获取 <code>list[dict]</code> 对象。</li>
+</ul>
+</li>
+<li>第三步：通过mapper函数，对解析完的数据集进行进一步处理，包括数据增强，并将修改数据的结构，使之可以直接作为后续模型的输入。  <ul>
+<li>从源码角度理解就是，从 <code>DatasetCatalog</code> 获取的是 <code>list[dict]</code>，mapper函数输出的也是 <code>list[dict]</code>，但前后两个字典的形式是不一样的，具体可以参考官方文档，里面都有具体的描述。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-3-build-detection-train-loader-方法解析"><a href="#2-3-build-detection-train-loader-方法解析" class="headerlink" title="2.3. build_detection_train_loader 方法解析"></a>2.3. build_detection_train_loader 方法解析</h4><ul>
+<li>源码位于 <code>detectron2/detectron2/data/build.py</code> 中。</li>
+<li>流程：  <ul>
+<li>第一步：获取 <code>list[dict]</code> 对象。先根据数据库名称调用 <code>DatasetCatalog</code> 中的方法，获取原始 <code>list[dict]</code> 对象，再通过一些条件进行筛选。  </li>
+<li>第二步：构建 <code>DatasetFromList</code> 对象，该类是 <code>torch.utils.data.Dataset</code> 的子类。  </li>
+<li>第三步：根据mapper对上面的dataset对象进行进一步处理。  <pre><code>* 浏览了下 `DatasetMapper`的源码，主要工作包括读取图像、resize、crop、flip、转换数据与标签的形式等。  
+</code></pre></li>
+<li>第四步：构建 <code>torch.utils.data.sampler.Sampler</code> 对象，实现的功能好像包括Repeat Sample、shuffle、batch功能。  </li>
+<li>第五步：根据上面的 dataset, sampler 等对象构建 <code>torch.utils.data.DataLoader</code> 对象。</li>
+</ul>
+</li>
+<li>感想：  <ul>
+<li>好像也没有什么特别的数据增强工作。  </li>
+<li>Detectron2实现的 <code>DatasetFromList</code>、<code>MapDataset</code>等，有点 <code>tf.data</code> 的感觉，挺有意思。</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-4-其他"><a href="#2-4-其他" class="headerlink" title="2.4. 其他"></a>2.4. 其他</h4><ul>
+<li>数据增强  <ul>
+<li>方法主要都在 <code>detectron2/detectron2/data/transforms/transform_gen.py</code> 中定义。  </li>
+<li>调用的话主要是通过 <code>from detectron2.data import transforms as T</code> 以及 <code>T.ResizeShortestEdge</code> 来实现。  </li>
+<li>在默认实现中，就没用到什么特别的数据增强。具体的可以到 <code>DatasetMapper</code> 的源码中看。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1. 概述"></a>3.1. 概述</h4><ul>
+<li>实现的功能：通过配置文件构建模型。</li>
+<li>主要入口：<code>detectron2/detectron2/modeling/meta_arch/build.py</code> 中的 <code>def build_model(cfg)</code> 方法。</li>
+<li>相关代码：<code>detectron2/detectron2/modeling</code> 目录下。</li>
+<li>相关配置：<code>detectron2/config/defaults.py</code>中<code>_C.MODEL</code> 开头的配置。</li>
+</ul>
+<h4 id="3-2-基本流程"><a href="#3-2-基本流程" class="headerlink" title="3.2. 基本流程"></a>3.2. 基本流程</h4><ul>
+<li>第一步：根据注册机制，在导入 detectron2 时，将各个类型的积木通过注解的方式保存到 Registry 对象中。</li>
+<li>第二步：根据配置文件中 <code>META_ARCHITECTURE</code> 参数，选择基本框架，也就是 meta arch。  <ul>
+<li>基本框架(meta arch)的类型没集中，包括 rcnn, retinanet, semantic seg, panoptic 四种。  </li>
+<li>每个基本框架(meta arch)中都定义了一系列子部件，也都是用Register机制来管理（即通过配置文件与Register对象来构建）。  </li>
+<li>基本框架的定义中，就包含了模型如何构建、如何训练、如何预测等相关功能。</li>
+</ul>
+</li>
+<li>第三步：通过配置文件分别构建选中meta arch中各个部件。</li>
+</ul>
+<h4 id="3-3-其他"><a href="#3-3-其他" class="headerlink" title="3.3. 其他"></a>3.3. 其他</h4><ul>
+<li><strong>Registry对象列表</strong>  <ul>
+<li><strong><code>ANCHOR_GENERATOR_REGISTRY</code>：如何生成anchors。</strong>  </li>
+<li><strong><code>BACKBONE_REGISTRY</code>：主干网络，包括FPN。</strong>  </li>
+<li><strong><code>META_ARCH_REGISTRY</code>：基本网络，总体结构。</strong>  </li>
+<li><strong><code>SEM_SEG_HEADS_REGISTRY</code>：应该是用来做语义分隔的。</strong>  </li>
+<li><strong><code>PROPOSAL_GENERATOR_REGISTRY</code>：Faster RCNN中的Region proposal Network，即如何生成proposals。</strong>  </li>
+<li><strong><code>RPN_HEAD_REGISTRY</code>：第一阶段训练所需的输入。</strong>  </li>
+<li><strong><code>ROI_BOX_HEAD_REGISTRY</code>：ROI Head中的bbox分支。</strong>  </li>
+<li><strong><code>ROI_HEADS_REGISTRY</code>：通过特征图和第一阶段的proposals得到ROI。</strong>  </li>
+<li><strong><code>ROI_KEYPOINT_HEAD_REGISTRY</code>：ROI Head中的keypoint分支。</strong>  </li>
+<li><strong><code>ROI_MASK_HEAD_REGISTRY</code>：ROI Head中的mask分支。</strong></li>
+</ul>
+</li>
+<li>除了通过注册机制管理的部件外，还有一系列模型所需的部件，具体的可以参考 meta_arch 中的相关源码。</li>
+</ul>
+<hr>
+<h4 id="4-1-概述"><a href="#4-1-概述" class="headerlink" title="4.1. 概述"></a>4.1. 概述</h4><ul>
+<li>实现的功能：通过配置文件构建模型。</li>
+<li>主要入口：<code>detectron2/detectron2/engine/defaults.py</code> 中的 <code>DefaultTrainer, DefaultPredictor</code>。</li>
+<li>相关代码：主要在 <code>detectron2/detectron2/engine</code> 和 <code>detectron2/detectron2/solver</code> 中</li>
+<li>相关配置：<code>detectron2/config/defaults.py</code>中<code>_C.SOLVER _C.TEST</code> 开头的配置。</li>
+<li>主要包括了：<code>TrainerBase, SimpleTrainer, DefaultTrainer</code> 三个类。</li>
+<li><code>TrainerBase</code>：  <ul>
+<li>定义在 <code>detectron2/detectron2/engine/train_loop.py</code> 中。  </li>
+<li>主要功能：  <pre><code>* 提供了 hooks 机制，可以通过导入 `HookBase` 对象，在训练过程的各个时间点进行自定义处理。  
+* 定义了训练函数为 `train(self, start_iter: int, max_iter: int)`，且维训练提供了一个 `EventStorage` 对象。  
+</code></pre></li>
+<li>这个与TF中的SessionRunHook类似，只不过TF已经实现在源码里，而Detectron2中是自己实现的。</li>
+</ul>
+</li>
+<li><code>SimpleTrainer</code>：  <ul>
+<li>定义在 <code>detectron2/detectron2/engine/train_loop.py</code> 中。  </li>
+<li>主要功能：在 <code>TrainerBase</code> 的基础上添加了训练所需的基本参数以及最基本的训练过程代码。  </li>
+<li>基本训练参数指的是 <code>model/data_loader/optimizer</code>  </li>
+<li>基本训练过程包括位于 <code>run_step</code> 函数中，主要包括的功能是：  <pre><code>* 导入数据。  
+* 计算损失函数（并确保损失函数是有效的）。  
+* 记录一些性能指标（包括损失函数、时间点），保存到 `EventStorage` 对象中。  
+* 进行梯度下降操作。
+</code></pre></li>
+</ul>
+</li>
+<li><code>DefaultTrainer</code>  <ul>
+<li>定义在 <code>detectron2/detectron2/engine/defaults.py</code> 中。  </li>
+<li>主要功能：  <pre><code>* 在 `SimpleTrainer` 的基础上，提供了通过配置文件创建模型、数据集、优化器、学习率等一系列操作。  
+* 提供了 checkpoint 功能。  
+* 使用了一系列常见的 hooks。  
+</code></pre></li>
+<li>hooks的定义都在 <code>detectron2/detectron2/engine/hooks.py</code> 中。</li>
+</ul>
+</li>
+</ul>
+<p>文章知识点与官方知识档案匹配，可进一步学习相关知识</p>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/05/c1329d9ab4cd.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/05/b858a0f006ac.html"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-2-desktop is-2-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#Link"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Link</span></span></a></li><li><a class="level is-mobile" href="#Highlights-amp-amp-Note"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Highlights&amp;&amp;Note</span></span></a></li></ul><li><a class="level is-mobile" href="#Content"><span class="level-left"><span class="level-item">2</span><span class="level-item">Content</span></span></a><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#1-概述"><span class="level-left"><span class="level-item">2.1.1</span><span class="level-item">1. 概述</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-1-自己的源码阅读流程"><span class="level-left"><span class="level-item">2.1.1.1</span><span class="level-item">1.1. 自己的源码阅读流程</span></span></a></li><li><a class="level is-mobile" href="#1-2-目录结构"><span class="level-left"><span class="level-item">2.1.1.2</span><span class="level-item">1.2. 目录结构</span></span></a></li><li><a class="level is-mobile" href="#1-4-官方文档阅读"><span class="level-left"><span class="level-item">2.1.1.3</span><span class="level-item">1.4. 官方文档阅读</span></span></a></li></ul></li><li><a class="level is-mobile" href="#2-数据处理"><span class="level-left"><span class="level-item">2.1.2</span><span class="level-item">2. 数据处理</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#2-1-概述"><span class="level-left"><span class="level-item">2.1.2.1</span><span class="level-item">2.1. 概述</span></span></a></li><li><a class="level is-mobile" href="#2-2-基本流程"><span class="level-left"><span class="level-item">2.1.2.2</span><span class="level-item">2.2. 基本流程</span></span></a></li><li><a class="level is-mobile" href="#2-3-build-detection-train-loader-方法解析"><span class="level-left"><span class="level-item">2.1.2.3</span><span class="level-item">2.3. build_detection_train_loader 方法解析</span></span></a></li><li><a class="level is-mobile" href="#2-4-其他"><span class="level-left"><span class="level-item">2.1.2.4</span><span class="level-item">2.4. 其他</span></span></a></li><li><a class="level is-mobile" href="#3-1-概述"><span class="level-left"><span class="level-item">2.1.2.5</span><span class="level-item">3.1. 概述</span></span></a></li><li><a class="level is-mobile" href="#3-2-基本流程"><span class="level-left"><span class="level-item">2.1.2.6</span><span class="level-item">3.2. 基本流程</span></span></a></li><li><a class="level is-mobile" href="#3-3-其他"><span class="level-left"><span class="level-item">2.1.2.7</span><span class="level-item">3.3. 其他</span></span></a></li><li><a class="level is-mobile" href="#4-1-概述"><span class="level-left"><span class="level-item">2.1.2.8</span><span class="level-item">4.1. 概述</span></span></a></li></ul></li></ul></ul></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-2-desktop is-2-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/02literature/"><span class="level-start"><span class="level-item">02literature</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/02literature/book/"><span class="level-start"><span class="level-item">book</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/05area-of-responsibility/"><span class="level-start"><span class="level-item">05area of responsibility</span></span><span class="level-end"><span class="level-item tag">4</span></span></a><ul><li><a class="level is-mobile" href="/categories/05area-of-responsibility/physical-health/"><span class="level-start"><span class="level-item">physical health</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/05area-of-responsibility/%E6%95%B0%E5%AD%A6/"><span class="level-start"><span class="level-item">数学</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/"><span class="level-start"><span class="level-item">07archive</span></span><span class="level-end"><span class="level-item tag">49</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/"><span class="level-start"><span class="level-item">tech</span></span><span class="level-end"><span class="level-item tag">40</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/"><span class="level-start"><span class="level-item">games</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/101%E5%AE%9E%E9%AA%8C/"><span class="level-start"><span class="level-item">101实验</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/tutorial/"><span class="level-start"><span class="level-item">tutorial</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/06/"><span class="level-start"><span class="level-item">六月 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">五月 2024</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">33</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">#linux</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/anki/"><span class="tag">anki</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bazel/"><span class="tag">bazel</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cmake/"><span class="tag">cmake</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/code/"><span class="tag">code</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/dn11/"><span class="tag">dn11</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/firewall/"><span class="tag">firewall</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/games/"><span class="tag">games</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/istore/"><span class="tag">istore</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/minio/"><span class="tag">minio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openwrt/"><span class="tag">openwrt</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rss/"><span class="tag">rss</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rsshub/"><span class="tag">rsshub</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scoop/"><span class="tag">scoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ssh/"><span class="tag">ssh</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tutorial/"><span class="tag">tutorial</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ubuntu/"><span class="tag">ubuntu</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vpn/"><span class="tag">vpn</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/wireguard/"><span class="tag">wireguard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="tag">图形学</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/"><span class="tag">编译</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BD%91/"><span class="tag">计网</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">3</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2024 l4rk</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/live2d-widget/autoload.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>

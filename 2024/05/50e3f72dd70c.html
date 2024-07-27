@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>l4rk&#039;s blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="l4rk"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="l4rk"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="LinkRead on OmnivoreRead Original Highlights&amp;amp;&amp;amp;Note 速度： 经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。相较于传统算法,通过滑动窗口寻找,rcnn使用了selective sear"><meta property="og:type" content="blog"><meta property="og:title" content="l4rk"><meta property="og:url" content="https://l4rk.cn/"><meta property="og:site_name" content="l4rk"><meta property="og:description" content="LinkRead on OmnivoreRead Original Highlights&amp;amp;&amp;amp;Note 速度： 经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。相较于传统算法,通过滑动窗口寻找,rcnn使用了selective sear"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/725x208,sdcgRp5nunKz--aQ4N6DBmsEj9i3HISA6zn_MeTgJ7bY/https://pic4.zhimg.com/v2-32e78b7f2e29c3e4e159a52ed38a6f73_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/292x215,sp4wGJnYbpTtWCrLGZOSv6oFbdkBokJn4JrIF5sqmxIM/https://pic2.zhimg.com/v2-0659a27df35fd2f62cd00127ca8d1a21_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/298x149,sOHB_j0HvZ48DKz1IalLzRH5tG6uS0j5a0G2bluRDI3U/https://pic1.zhimg.com/v2-19c03377416e437a288e29bd27e97c14_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/315x348,s4Ga4sB6Z_Ax2mDFYP7SeyAFx2A-uQOKhKVQiK1Di3qQ/https://pic2.zhimg.com/v2-59449e8409b943f384c4cc3bf789d8b9_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/655x188,sAre2CsXEGTVmABHYiXeaqUQHWAQcl9YfyqdygQfupHg/https://pic2.zhimg.com/v2-03e65630d303565dba3a997911e72881_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/909x537,sRt7tO98U-UPlnqapr2Vues8dKPeTohnyULrL2AoCcz4/https://pic2.zhimg.com/v2-002f73d5bb38dfe66e39ff472aca6c31_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/646x152,shAQOpQMHQpXOFbdh99fKc4L_YnJHZrgeVGK0qxWX5qY/https://pic2.zhimg.com/v2-4a8097e292784ffaff747417b71c863d_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/616x156,sy6gs73fhNJX47X9xhnlBmoDl0D28ua0g2CQVB1NZCps/https://pic2.zhimg.com/v2-728cc0822b07a6db24468698463efb89_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/113x103,sJS_aRnB9Z2CgAxAZNApmmfcolSkL_O74AkOzRNvPj54/https://pic1.zhimg.com/v2-f67cd928e318ec00bc6047075c88e0b8_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/733x265,sfuQYisYkcNCZPYGRxNkYZTS4loStYK-pBnwHtDHPlXw/https://pic2.zhimg.com/v2-3ef21dd028fd210f92107c1ded528045_b.png"><meta property="og:image" content="https://proxy-prod.omnivore-image-cache.app/868x197,sA3A2978LnuKMnDvj8ukCAwhXiIOKIdWJF-9rLKfx1LA/https://pic1.zhimg.com/v2-7e2c472157f6a4028db9f8ba3c0eb744_b.png"><meta property="article:published_time" content="2024-05-15T05:33:17.054Z"><meta property="article:modified_time" content="2024-06-08T04:56:03.399Z"><meta property="article:author" content="l4rk"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://l4rk.cn/2024/05/50e3f72dd70c.html"},"headline":"l4rk's blog","image":["https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png","https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png","https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png","https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png","https://proxy-prod.omnivore-image-cache.app/725x208,sdcgRp5nunKz--aQ4N6DBmsEj9i3HISA6zn_MeTgJ7bY/https://pic4.zhimg.com/v2-32e78b7f2e29c3e4e159a52ed38a6f73_b.png","https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png","https://proxy-prod.omnivore-image-cache.app/292x215,sp4wGJnYbpTtWCrLGZOSv6oFbdkBokJn4JrIF5sqmxIM/https://pic2.zhimg.com/v2-0659a27df35fd2f62cd00127ca8d1a21_b.png","https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png","https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png","https://proxy-prod.omnivore-image-cache.app/298x149,sOHB_j0HvZ48DKz1IalLzRH5tG6uS0j5a0G2bluRDI3U/https://pic1.zhimg.com/v2-19c03377416e437a288e29bd27e97c14_b.png","https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png","https://proxy-prod.omnivore-image-cache.app/315x348,s4Ga4sB6Z_Ax2mDFYP7SeyAFx2A-uQOKhKVQiK1Di3qQ/https://pic2.zhimg.com/v2-59449e8409b943f384c4cc3bf789d8b9_b.png","https://proxy-prod.omnivore-image-cache.app/655x188,sAre2CsXEGTVmABHYiXeaqUQHWAQcl9YfyqdygQfupHg/https://pic2.zhimg.com/v2-03e65630d303565dba3a997911e72881_b.png","https://proxy-prod.omnivore-image-cache.app/909x537,sRt7tO98U-UPlnqapr2Vues8dKPeTohnyULrL2AoCcz4/https://pic2.zhimg.com/v2-002f73d5bb38dfe66e39ff472aca6c31_b.png","https://proxy-prod.omnivore-image-cache.app/646x152,shAQOpQMHQpXOFbdh99fKc4L_YnJHZrgeVGK0qxWX5qY/https://pic2.zhimg.com/v2-4a8097e292784ffaff747417b71c863d_b.png","https://proxy-prod.omnivore-image-cache.app/616x156,sy6gs73fhNJX47X9xhnlBmoDl0D28ua0g2CQVB1NZCps/https://pic2.zhimg.com/v2-728cc0822b07a6db24468698463efb89_b.png","https://proxy-prod.omnivore-image-cache.app/113x103,sJS_aRnB9Z2CgAxAZNApmmfcolSkL_O74AkOzRNvPj54/https://pic1.zhimg.com/v2-f67cd928e318ec00bc6047075c88e0b8_b.png","https://proxy-prod.omnivore-image-cache.app/733x265,sfuQYisYkcNCZPYGRxNkYZTS4loStYK-pBnwHtDHPlXw/https://pic2.zhimg.com/v2-3ef21dd028fd210f92107c1ded528045_b.png","https://proxy-prod.omnivore-image-cache.app/868x197,sA3A2978LnuKMnDvj8ukCAwhXiIOKIdWJF-9rLKfx1LA/https://pic1.zhimg.com/v2-7e2c472157f6a4028db9f8ba3c0eb744_b.png"],"datePublished":"2024-05-15T05:33:17.054Z","dateModified":"2024-06-08T04:56:03.399Z","author":{"@type":"Person","name":"l4rk"},"publisher":{"@type":"Organization","name":"l4rk's blog","logo":{"@type":"ImageObject","url":"http://l4rk.cn/img/logo.svg"}},"description":"LinkRead on OmnivoreRead Original Highlights&amp;&amp;Note 速度： 经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。相较于传统算法,通过滑动窗口寻找,rcnn使用了selective sear"}</script><link rel="canonical" href="http://l4rk.cn/2024/05/50e3f72dd70c.html"><link rel="alternate" href="/atom.xml" title="l4rk&#039;s blog" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"><!--!--><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script><!--!--><!--!--><meta name="generator" content="Hexo 5.4.2"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/archives">文章归档</a><a class="navbar-item" href="/categories">分类</a><a class="navbar-item" href="/tags">标签</a><a class="navbar-item" href="/about">关于</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Github" href="https://github.com/domonnss"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2024-05-15T05:33:17.054Z" title="2024/5/15 13:33:17">2024-05-15</time>发表</span><span class="level-item"><time dateTime="2024-06-08T04:56:03.399Z" title="2024/6/8 12:56:03">2024-06-08</time>更新</span><span class="level-item">1 小时读完 (大约7629个字)</span><span class="level-item" id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv">0</span>次访问</span></div></div><div class="content"><h2 id="Link"><a href="#Link" class="headerlink" title="Link"></a>Link</h2><p><a target="_blank" rel="noopener" href="https://omnivore.app/me/rcnn-cnn-18f58e065de">Read on Omnivore</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23006190">Read Original</a></p>
+<h2 id="Highlights-amp-amp-Note"><a href="#Highlights-amp-amp-Note" class="headerlink" title="Highlights&amp;&amp;Note"></a>Highlights&amp;&amp;Note</h2><blockquote>
+<p>速度： 经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。<br><em>相较于传统算法,通过滑动窗口寻找,rcnn使用了selective search,再在可能的区域上进行CNN提取特征</em></p>
+<p>RCNN算法分为4个步骤   </p>
+</blockquote>
+<ol>
+<li>候选区域生成： 一张图像生成1K~2K个候选区域 （采用Selective Search 方法）</li>
+<li>特征提取： 对每个候选区域，使用深度卷积网络提取特征 （CNN）</li>
+<li>类别判断： 特征送入每一类的SVM 分类器，判别是否属于该类</li>
+<li>位置精修： 使用回归器精细修正候选框位置</li>
+</ol>
+<blockquote>
+<p><strong><a target="_blank" rel="noopener" href="http://koen.me/research/pub/uijlings-ijcv2013-draft.pdf">Selective Search</a> 主要思想:</strong></p>
+</blockquote>
+<ol>
+<li>使用一种过分割手段，将图像分割成小区域 (1k~2k 个)</li>
+<li>查看现有小区域，按照合并规则合并可能性最高的相邻两个区域。重复直到整张图像合并成一个区域位置</li>
+<li>输出所有曾经存在过的区域，所谓候选区域</li>
+</ol>
+<blockquote>
+<p>其中合并规则如下： 优先合并以下四种区域： </p>
+</blockquote>
+<ul>
+<li>颜色（颜色直方图）相近的</li>
+<li>纹理（梯度直方图）相近的</li>
+<li>合并后总面积小的： 保证合并操作的尺度较为均匀，避免一个大区域陆续“吃掉”其他小区域 （例：设有区域a-b-c-d-e-f-g-h。较好的合并方式是：ab-cd-ef-gh -&gt; abcd-efgh -&gt; abcdefgh。 不好的合并方法是：ab-c-d-e-f-g-h -&gt;abcd-e-f-g-h -&gt;abcdef-gh -&gt; abcdefgh）</li>
+<li>合并后，总面积在其BBOX中所占比例大的： 保证合并后形状规则。</li>
+</ul>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png" alt=""></p>
+<p>上述四条规则只涉及区域的颜色直方图、梯度直方图、面积和位置。合并后的区域特征可以直接由子区域特征计算而来，速度较快。</p>
+<blockquote>
+<p>所谓的有监督预训练也可以把它称之为迁移学习。比如你已经有一大堆标注好的人脸年龄分类的图片数据，训练了一个CNN，用于人脸的年龄识别。然后当你遇到新的项目任务时：人脸性别识别，那么这个时候你可以利用已经训练好的年龄识别CNN模型，去掉最后一层，然后其它的网络层参数就直接复制过来，继续进行训练，让它输出性别。这就是所谓的迁移学习，说的简单一点就是把一个任务训练好的参数，拿到另外一个任务，作为神经网络的初始参数值,这样相比于你直接采用随机初始化的方法，精度可以有很大的提高。<br><em>把一个类似的训练好的模型,去掉最后一个输出层,把网络层参数直接拿来用,修改修改,就可以变成另外一个模型<br>例如从训练好的人脸年龄模型可以迁移训练成为人脸性别模型</em></p>
+<p>对于bounding box的定位精度，有一个很重要的概念： 因为我们算法不可能百分百跟人工标注的数据完全匹配，因此就存在一个定位精度评价公式：IOU。 它定义了两个bounding box的重叠度，如下图所示</p>
+</blockquote>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png" alt=""></p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png" alt=""></p>
+<p>就是矩形框A、B的重叠面积占A、B并集的面积比例。</p>
+<blockquote>
+<p>非极大值抑制（NMS）顾名思义就是抑制不是极大值的元素，搜索局部的极大值。这个局部代表的是一个邻域，邻域有两个参数可变，一是邻域的维数，二是邻域的大小。这里不讨论通用的NMS算法，而是用于在目标检测中用于提取分数最高的窗口的。例如在行人检测中，滑动窗口经提取特征，经分类器分类识别后，每个窗口都会得到一个分数。但是滑动窗口会导致很多窗口与其他窗口存在包含或者大部分交叉的情况。这时就需要用到NMS来选取那些邻域里分数最高（是行人的概率最大），并且抑制那些分数低的窗口。<br>*对于从小到大排列的矩形框A,B,C,D,E,设定一个阈值L<br>A,B对E的重叠度超过了L,可以认为A,B在E的邻域内.<br>C,D对F的重叠度小于L,可以认为C,D不在E的邻域内</p>
+</blockquote>
+<p>对于某个矩形框alpha进行NMS,意味着<br>所有超出阈值的矩形框都要比较大小,仅仅保留最大的<br>小于阈值的矩形框暂时保留,因为它们不在alpha的邻域中</p>
+<p>NMS意味着,每个矩形框邻域内,仅仅保留最大的矩形框*</p>
+<blockquote>
+<p>首先对每一个输入的图片产生近2000个不分种类的候选区域（region proposals），然后使用CNNs从每个候选框中提取一个固定长度的特征向量（4096维度），接着对每个取出的特征向量使用特定种类的线性SVM进行分类。也就是总个过程分为三个程序：a、找出候选框；b、利用CNN提取特征向量；c、利用SVM进行特征向量分类。</p>
+</blockquote>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png" alt=""><br><em>为什么是固定长度的特征向量4096维度</em></p>
+<h1 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h1><p>前面一直在写传统机器学习。从本篇开始写一写 深度学习的内容。 可能需要一定的神经网络基础（可以参考 <a target="_blank" rel="noopener" href="http://neuralnetworksanddeeplearning.com/">Neural networks and deep learning</a> 日后可能会在专栏发布自己的中文版笔记）。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/rbgirshick/rcnn">RCNN</a> (论文：Rich feature hierarchies for accurate object detection and semantic segmentation) 是将CNN方法引入目标检测领域， 大大提高了目标检测效果，可以说改变了目标检测领域的主要研究思路， 紧随其后的系列文章：（ <a target="_blank" rel="noopener" href="https://github.com/rbgirshick/rcnn">RCNN</a>）,<a target="_blank" rel="noopener" href="https://github.com/rbgirshick/fast-rcnn">Fast RCNN</a>, <a target="_blank" rel="noopener" href="https://github.com/ShaoqingRen/faster%5Frcnn">Faster RCNN</a> 代表该领域当前最高水准。 </p>
+<p>【论文主要特点】（相对传统方法的改进）</p>
+<ul>
+<li>==速度：  经典的目标检测算法使用滑动窗法依次判断所有可能的区域。本文则(采用Selective Search方法)预先提取一系列较可能是物体的候选区域，之后仅在这些候选区域上(采用CNN)提取特征，进行判断。==</li>
+<li>训练集： 经典的目标检测算法在区域中提取人工设定的特征。本文则采用深度网络进行特征提取。使用两个数据库： 一个较大的识别库（ImageNet ILSVC 2012）：标定每张图片中物体的类别。一千万图像，1000类。 一个较小的检测库（PASCAL VOC 2007）：标定每张图片中，物体的类别和位置，一万图像，20类。 本文使用识别库进行预训练得到CNN（有监督预训练），而后用检测库调优参数，最后在检测库上评测。</li>
+</ul>
+<p>看到这里也许你已经对很多名词很困惑，下面会解释。先来看看它的基本流程：</p>
+<p>【基本流程 ===================================】</p>
+<p>==RCNN算法分为4个步骤==   </p>
+<ol>
+<li>==候选区域生成： 一张图像生成1K~2K个候选区域 （采用Selective Search 方法）==</li>
+<li>==特征提取： 对每个候选区域，使用深度卷积网络提取特征 （CNN）==</li>
+<li>==类别判断： 特征送入每一类的SVM 分类器，判别是否属于该类==</li>
+<li>==位置精修： 使用回归器精细修正候选框位置==</li>
+</ol>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/725x208,sdcgRp5nunKz--aQ4N6DBmsEj9i3HISA6zn_MeTgJ7bY/https://pic4.zhimg.com/v2-32e78b7f2e29c3e4e159a52ed38a6f73_b.png" alt=""></p>
+<p>【基础知识 ===================================】</p>
+<p><strong>==<a target="_blank" rel="noopener" href="http://koen.me/research/pub/uijlings-ijcv2013-draft.pdf">Selective Search</a>== ==主要思想:==</strong></p>
+<ol>
+<li>==使用一种过分割手段，将图像分割成小区域 (1k~2k 个)==</li>
+<li>==查看现有小区域，按照合并规则合并可能性最高的相邻两个区域。重复直到整张图像合并成一个区域位置==</li>
+<li>==输出所有曾经存在过的区域，所谓候选区域==</li>
+</ol>
+<p>==其中合并规则如下： 优先合并以下四种区域：== </p>
+<ul>
+<li>==颜色（颜色直方图）相近的==</li>
+<li>==纹理（梯度直方图）相近的==</li>
+<li>==合并后总面积小的： 保证合并操作的尺度较为均匀，避免一个大区域陆续“吃掉”其他小区域 （例：设有区域a-b-c-d-e-f-g-h。较好的合并方式是：ab-cd-ef-gh -====&gt;== ==abcd-efgh -====&gt;== ==abcdefgh。 不好的合并方法是：ab-c-d-e-f-g-h -====&gt;====abcd-e-f-g-h -====&gt;====abcdef-gh -====&gt;== ==abcdefgh）==</li>
+<li>==合并后，总面积在其BBOX中所占比例大的： 保证合并后形状规则。==</li>
+</ul>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/342x133,smGfgkmtAE7apoF5wnaltn0sniLodjDl9dZhYrkELMs4/https://pic2.zhimg.com/v2-616af8e96637b9b3280e71e05877db59_b.png" alt=""></p>
+<p>==上述四条规则只涉及区域的颜色直方图、梯度直方图、面积和位置。合并后的区域特征可以直接由子区域特征计算而来，速度较快。==</p>
+<p><strong>有监督预训练与无监督预训练:</strong>  </p>
+<p>(1)无监督预训练(Unsupervised pre-training)</p>
+<p>预训练阶段的样本不需要人工标注数据，所以就叫做无监督预训练。</p>
+<p>(2)有监督预训练(Supervised pre-training)</p>
+<p>==所谓的有监督预训练也可以把它称之为迁移学习。比如你已经有一大堆标注好的人脸年龄分类的图片数据，训练了一个CNN，用于人脸的年龄识别。然后当你遇到新的项目任务时：人脸性别识别，那么这个时候你可以利用已经训练好的年龄识别CNN模型，去掉最后一层，然后其它的网络层参数就直接复制过来，继续进行训练，让它输出性别。这就是所谓的迁移学习，说的简单一点就是把一个任务训练好的参数，拿到另外一个任务，作为神经网络的初始参数值,这样相比于你直接采用随机初始化的方法，精度可以有很大的提高。==  </p>
+<p>对于目标检测问题： 图片分类标注好的训练数据非常多，但是物体检测的标注数据却很少，如何用少量的标注数据，训练高质量的模型，这就是文献最大的特点，这篇论文采用了迁移学习的思想： 先用了ILSVRC2012这个训练数据库（这是一个图片分类训练数据库），先进行网络图片<strong>分类</strong>训练。这个数据库有大量的标注数据，共包含了1000种类别物体，因此预训练阶段CNN模型的输出是1000个神经元（当然也直接可以采用Alexnet训练好的模型参数）。</p>
+<p><strong>重叠度（IOU）:</strong>  </p>
+<p>物体检测需要定位出物体的bounding box，就像下面的图片一样，我们不仅要定位出车辆的bounding box 我们还要识别出bounding box 里面的物体就是车辆。  </p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/292x215,sp4wGJnYbpTtWCrLGZOSv6oFbdkBokJn4JrIF5sqmxIM/https://pic2.zhimg.com/v2-0659a27df35fd2f62cd00127ca8d1a21_b.png" alt=""></p>
+<p>==对于bounding box的定位精度，有一个很重要的概念： 因为我们算法不可能百分百跟人工标注的数据完全匹配，因此就存在一个定位精度评价公式：IOU。 它定义了两个bounding box的重叠度，如下图所示==</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/301x183,snFLyeaRQEYsj5VVkirVDHU-i-qzXdhCSLg77aPGOvNE/https://pic1.zhimg.com/v2-6fe13f10a9cb286f06aa1e3e2a2b29bc_b.png" alt=""></p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/168x35,se7BAQ1eGSw7Jwqe5x6dHq3XgQbydos6a9YEaVaNHNtU/https://pic1.zhimg.com/v2-e26ffc0835bc30dede8d82989ef9e178_b.png" alt=""></p>
+<p>==就是矩形框A、B的重叠面积占A、B并集的面积比例。==</p>
+<p><strong>非极大值抑制（</strong>NMS<strong>）：</strong></p>
+<p>RCNN会从一张图片中找出n个可能是物体的矩形框，然后为每个矩形框为做类别分类概率：</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/298x149,sOHB_j0HvZ48DKz1IalLzRH5tG6uS0j5a0G2bluRDI3U/https://pic1.zhimg.com/v2-19c03377416e437a288e29bd27e97c14_b.png" alt=""></p>
+<p>就像上面的图片一样，定位一个车辆，最后算法就找出了一堆的方框，我们需要判别哪些矩形框是没用的。非极大值抑制的方法是：先假设有6个矩形框，根据分类器的类别分类概率做排序，假设从小到大属于车辆的概率 分别为A、B、C、D、E、F。</p>
+<p>(1)从最大概率矩形框F开始，分别判断A~E与F的重叠度IOU是否大于某个设定的阈值;</p>
+<p>(2)假设B、D与F的重叠度超过阈值，那么就扔掉B、D；并标记第一个矩形框F，是我们保留下来的。</p>
+<p>(3)从剩下的矩形框A、C、E中，选择概率最大的E，然后判断E与A、C的重叠度，重叠度大于一定的阈值，那么就扔掉；并标记E是我们保留下来的第二个矩形框。</p>
+<p>就这样一直重复，找到所有被保留下来的矩形框。</p>
+<p>==非极大值抑制（NMS）顾名思义就是抑制不是极大值的元素，搜索局部的极大值。这个局部代表的是一个邻域，邻域有两个参数可变，一是邻域的维数，二是邻域的大小。这里不讨论通用的NMS算法，而是用于在目标检测中用于提取分数最高的窗口的。例如在行人检测中，滑动窗口经提取特征，经分类器分类识别后，每个窗口都会得到一个分数。但是滑动窗口会导致很多窗口与其他窗口存在包含或者大部分交叉的情况。这时就需要用到NMS来选取那些邻域里分数最高（是行人的概率最大），并且抑制那些分数低的窗口。==</p>
+<p><strong>VOC物体检测任务:</strong> </p>
+<p>相当于一个竞赛，里面包含了20个物体类别：<a target="_blank" rel="noopener" href="http://host.robots.ox.ac.uk/pascal/VOC/voc2012/examples/index.html">PASCAL VOC2011 Example Images</a> 还有一个背景，总共就相当于21个类别，因此一会设计fine-tuning CNN的时候，我们softmax分类输出层为21个神经元。</p>
+<p>【各个阶段详解 ===================================】  </p>
+<p> 总体思路再回顾：</p>
+<p>==首先对每一个输入的图片产生近2000个不分种类的候选区域（region proposals），然后使用CNNs从每个候选框中提取一个固定长度的特征向量（4096维度），接着对每个取出的特征向量使用特定种类的线性SVM进行分类。也就是总个过程分为三个程序：a、找出候选框；b、利用CNN提取特征向量；c、利用SVM进行特征向量分类。==</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/760x260,sbxO8ImiLGuHWDM1cj8so4e0PX35R0Bw41upP_1zQfdE/https://pic2.zhimg.com/v2-1738e9bdb129fea5d46d73218606aebd_b.png" alt=""></p>
+<p><strong>候选框搜索阶段：</strong></p>
+<p>当我们输入一张图片时，我们要搜索出所有可能是物体的区域，这里采用的就是前面提到的Selective Search方法，通过这个算法我们搜索出2000个候选框。然后从上面的总流程图中可以看到，搜出的候选框是矩形的，而且是大小各不相同。然而CNN对输入图片的大小是有固定的，如果把搜索到的矩形选框不做处理，就扔进CNN中，肯定不行。因此对于每个输入的候选框都需要缩放到固定的大小。下面我们讲解要怎么进行缩放处理，为了简单起见我们假设下一阶段CNN所需要的输入图片大小是个正方形图片227*227。因为我们经过selective search 得到的是矩形框，paper试验了两种不同的处理方法： </p>
+<p>(1)各向异性缩放</p>
+<p>这种方法很简单，就是不管图片的长宽比例，管它是否扭曲，进行缩放就是了，全部缩放到CNN输入的大小227*227，如下图(D)所示；</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/315x348,s4Ga4sB6Z_Ax2mDFYP7SeyAFx2A-uQOKhKVQiK1Di3qQ/https://pic2.zhimg.com/v2-59449e8409b943f384c4cc3bf789d8b9_b.png" alt=""></p>
+<p>(2)各向同性缩放</p>
+<p>因为图片扭曲后，估计会对后续CNN的训练精度有影响，于是作者也测试了“各向同性缩放”方案。有两种办法</p>
+<p>A、先扩充后裁剪： 直接在原始图片中，把bounding box的边界进行扩展延伸成正方形，然后再进行裁剪；如果已经延伸到了原始图片的外边界，那么就用bounding box中的颜色均值填充；如上图(B)所示;</p>
+<p>B、先裁剪后扩充：先把bounding box图片裁剪出来，然后用固定的背景颜色填充成正方形图片(背景颜色也是采用bounding box的像素颜色均值),如上图(C)所示;</p>
+<p>对于上面的异性、同性缩放，文献还有个padding处理，上面的示意图中第1、3行就是结合了padding=0,第2、4行结果图采用padding=16的结果。经过最后的试验，作者发现采用各向异性缩放、padding=16的精度最高。</p>
+<p>（备注：候选框的搜索策略作者也考虑过使用一个滑动窗口的方法，然而由于更深的网络，更大的输入图片和滑动步长，使得使用滑动窗口来定位的方法充满了挑战。）  </p>
+<p><strong>CNN特征提取阶段：</strong>  </p>
+<p><strong>1、算法实现</strong></p>
+<p>a、网络结构设计阶段</p>
+<p>网络架构两个可选方案：第一选择经典的Alexnet；第二选择VGG16。经过测试Alexnet精度为58.5%，VGG16精度为66%。VGG这个模型的特点是选择比较小的卷积核、选择较小的跨步，这个网络的精度高，不过计算量是Alexnet的7倍。后面为了简单起见，我们就直接选用Alexnet，并进行讲解；Alexnet特征提取部分包含了5个卷积层、2个全连接层，在Alexnet中p5层神经元个数为9216、 f6、f7的神经元个数都是4096，通过这个网络训练完毕后，最后提取特征每个输入候选框图片都能得到一个4096维的特征向量。</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/655x188,sAre2CsXEGTVmABHYiXeaqUQHWAQcl9YfyqdygQfupHg/https://pic2.zhimg.com/v2-03e65630d303565dba3a997911e72881_b.png" alt=""></p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/909x537,sRt7tO98U-UPlnqapr2Vues8dKPeTohnyULrL2AoCcz4/https://pic2.zhimg.com/v2-002f73d5bb38dfe66e39ff472aca6c31_b.png" alt=""></p>
+<p>b、网络有监督预训练阶段 （图片数据库：ImageNet ILSVC ）</p>
+<p>参数初始化部分：物体检测的一个难点在于，物体标签训练数据少，如果要直接采用随机初始化CNN参数的方法，那么目前的训练数据量是远远不够的。这种情况下，最好的是采用某些方法，把参数初始化了，然后在进行有监督的参数微调，这里文献采用的是有监督的预训练。所以paper在设计网络结构的时候，是直接用Alexnet的网络，然后连参数也是直接采用它的参数，作为初始的参数值，然后再fine-tuning训练。网络优化求解时采用随机梯度下降法，学习率大小为0.001；</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/646x152,shAQOpQMHQpXOFbdh99fKc4L_YnJHZrgeVGK0qxWX5qY/https://pic2.zhimg.com/v2-4a8097e292784ffaff747417b71c863d_b.png" alt=""></p>
+<p>C、fine-tuning阶段 （图片数据库： PASCAL VOC）</p>
+<p>我们接着采用 selective search 搜索出来的候选框 （PASCAL VOC 数据库中的图片） 继续对上面预训练的CNN模型进行fine-tuning训练。假设要检测的物体类别有N类，那么我们就需要把上面预训练阶段的CNN模型的最后一层给替换掉，替换成N+1个输出的神经元(加1，表示还有一个背景) (20 + 1bg = 21)，然后这一层直接采用参数随机初始化的方法，其它网络层的参数不变；接着就可以开始继续SGD训练了。开始的时候，SGD学习率选择0.001，在每次训练的时候，我们batch size大小选择128，其中32个事正样本、96个事负样本。</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/616x156,sy6gs73fhNJX47X9xhnlBmoDl0D28ua0g2CQVB1NZCps/https://pic2.zhimg.com/v2-728cc0822b07a6db24468698463efb89_b.png" alt=""></p>
+<p>关于正负样本问题：</p>
+<p>一张照片我们得到了2000个候选框。然而人工标注的数据一张图片中就只标注了正确的bounding box，我们搜索出来的2000个矩形框也不可能会出现一个与人工标注完全匹配的候选框。因此在CNN阶段我们需要用IOU为2000个bounding box打标签。如果用selective search挑选出来的候选框与物体的人工标注矩形框（PASCAL VOC的图片都有人工标注）的重叠区域IoU大于0.5，那么我们就把这个候选框标注成物体类别（正样本），否则我们就把它当做背景类别（负样本）。</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/113x103,sJS_aRnB9Z2CgAxAZNApmmfcolSkL_O74AkOzRNvPj54/https://pic1.zhimg.com/v2-f67cd928e318ec00bc6047075c88e0b8_b.png" alt=""></p>
+<p>（备注： 如果不针对特定任务进行fine-tuning，而是把CNN当做特征提取器，卷积层所学到的特征其实就是基础的共享特征提取层，就类似于SIFT算法一样，可以用于提取各种图片的特征，而f6、f7所学习到的特征是用于针对特定任务的特征。打个比方：对于人脸性别识别来说，一个CNN模型前面的卷积层所学习到的特征就类似于学习人脸共性特征，然后全连接层所学习的特征就是针对性别分类的特征了）</p>
+<p><strong>2. 疑惑点</strong>： CNN训练的时候，本来就是对bounding box的物体进行识别分类训练，在训练的时候最后一层softmax就是分类层。那么为什么作者闲着没事干要先用CNN做特征提取（提取fc7层数据），然后再把提取的特征用于训练svm分类器？</p>
+<p>这个是因为svm训练和cnn训练过程的正负样本定义方式各有不同，导致最后采用CNN softmax输出比采用svm精度还低。事情是这样的，cnn在训练的时候，对训练数据做了比较宽松的标注，比如一个bounding box可能只包含物体的一部分，那么我也把它标注为正样本，用于训练cnn；采用这个方法的主要原因在于因为CNN容易过拟合，所以需要大量的训练数据，所以在CNN训练阶段我们是对Bounding box的位置限制条件限制的比较松(IOU只要大于0.5都被标注为正样本了)；然而svm训练的时候，因为svm适用于少样本训练，所以对于训练样本数据的IOU要求比较严格，我们只有当bounding box把整个物体都包含进去了，我们才把它标注为物体类别，然后训练svm，具体请看下文。</p>
+<p><strong>SVM训练、测试阶段</strong></p>
+<p>训练阶段：</p>
+<p>这是一个二分类问题，我么假设我们要检测车辆。我们知道只有当bounding box把整量车都包含在内，那才叫正样本；如果bounding box 没有包含到车辆，那么我们就可以把它当做负样本。但问题是当我们的检测窗口只有部分包含物体，那该怎么定义正负样本呢？作者测试了IOU阈值各种方案数值0,0.1,0.2,0.3,0.4,0.5。最后通过训练发现，如果选择IOU阈值为0.3效果最好（选择为0精度下降了4个百分点，选择0.5精度下降了5个百分点）,即当重叠度小于0.3的时候，我们就把它标注为负样本。一旦CNN f7层特征被提取出来，那么我们将为每个物体类训练一个svm分类器。当我们用CNN提取2000个候选框，可以得到2000*4096这样的特征向量矩阵，然后我们只需要把这样的一个矩阵与svm权值矩阵4096*N点乘(N为分类类别数目，因为我们训练的N个svm，每个svm包含了4096个权值w)，就可以得到结果了。  </p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/733x265,sfuQYisYkcNCZPYGRxNkYZTS4loStYK-pBnwHtDHPlXw/https://pic2.zhimg.com/v2-3ef21dd028fd210f92107c1ded528045_b.png" alt=""></p>
+<p>得到的特征输入到SVM进行分类看看这个feature vector所对应的region proposal是需要的物体还是无关的实物(background) 。 排序，canny边界检测之后就得到了我们需要的bounding-box。  </p>
+<blockquote>
+<p>再回顾总结一下：整个系统分为三个部分：1.产生不依赖与特定类别的region proposals，这些region proposals定义了一个整个检测器可以获得的候选目标2.一个大的卷积神经网络，对每个region产生一个固定长度的特征向量3.一系列特定类别的线性SVM分类器。</p>
+</blockquote>
+<p>位置精修： 目标检测问题的衡量标准是重叠面积：许多看似准确的检测结果，往往因为候选框不够准确，重叠面积很小。故需要一个位置精修步骤。 回归器：对每一类目标，使用一个线性脊回归器进行精修。正则项λ=10000。 输入为深度网络pool5层的4096维特征，输出为xy方向的缩放和平移。 训练样本：判定为本类的候选框中和真值重叠面积大于0.6的候选框。</p>
+<p><img src="https://proxy-prod.omnivore-image-cache.app/868x197,sA3A2978LnuKMnDvj8ukCAwhXiIOKIdWJF-9rLKfx1LA/https://pic1.zhimg.com/v2-7e2c472157f6a4028db9f8ba3c0eb744_b.png" alt=""></p>
+<p>测试阶段：</p>
+<p>使用selective search的方法在测试图片上提取2000个region propasals ，将每个region proposals归一化到227x227，然后再CNN中正向传播，将最后一层得到的特征提取出来。然后对于每一个类别，使用为这一类训练的SVM分类器对提取的特征向量进行打分，得到测试图片中对于所有region proposals的对于这一类的分数，再使用贪心的非极大值抑制（NMS）去除相交的多余的框。再对这些框进行canny边缘检测，就可以得到bounding-box(then B-BoxRegression)。</p>
+<p>（非极大值抑制（NMS）先计算出每一个bounding box的面积，然后根据score进行排序，把score最大的bounding box作为选定的框，计算其余bounding box与当前最大score与box的IoU，去除IoU大于设定的阈值的bounding box。然后重复上面的过程，直至候选bounding box为空，然后再将score小于一定阈值的选定框删除得到这一类的结果（然后继续进行下一个分类）。作者提到花费在region propasals和提取特征的时间是13s/张-GPU和53s/张-CPU，可以看出时间还是很长的，不能够达到及时性。  </p>
+<p>完。 </p>
+<p>本文主要整理自以下文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011534057/article/details/51240387">RCNN学习笔记(0):rcnn简介</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011534057/article/details/51218218">RCNN学习笔记(1):Rich feature hierarchies for accurate object detection and semantic segmentation</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011534057/article/details/51218250">RCNN学习笔记(2):Rich feature hierarchies for accurate object detection and semantic segmentation</a></li>
+<li>《Rich feature hierarchies for Accurate Object Detection and Segmentation》</li>
+<li>《Spatial 《Pyramid Pooling in Deep Convolutional Networks for Visual Recognition》</li>
+</ul>
+</div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2024/05/7acae0827b9d.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item"> </span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2024/05/a3b4c41b6f1c.html"><span class="level-item"> </span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-2-desktop is-2-widescreen  order-1 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#Link"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">Link</span></span></a></li><li><a class="level is-mobile" href="#Highlights-amp-amp-Note"><span class="level-left"><span class="level-item">1.2</span><span class="level-item">Highlights&amp;&amp;Note</span></span></a></li></ul><li><a class="level is-mobile" href="#Content"><span class="level-left"><span class="level-item">2</span><span class="level-item">Content</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-2-desktop is-2-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/02literature/"><span class="level-start"><span class="level-item">02literature</span></span><span class="level-end"><span class="level-item tag">1</span></span></a><ul><li><a class="level is-mobile" href="/categories/02literature/book/"><span class="level-start"><span class="level-item">book</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/05area-of-responsibility/"><span class="level-start"><span class="level-item">05area of responsibility</span></span><span class="level-end"><span class="level-item tag">4</span></span></a><ul><li><a class="level is-mobile" href="/categories/05area-of-responsibility/physical-health/"><span class="level-start"><span class="level-item">physical health</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/05area-of-responsibility/%E6%95%B0%E5%AD%A6/"><span class="level-start"><span class="level-item">数学</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/"><span class="level-start"><span class="level-item">07archive</span></span><span class="level-end"><span class="level-item tag">49</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/"><span class="level-start"><span class="level-item">tech</span></span><span class="level-end"><span class="level-item tag">40</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/"><span class="level-start"><span class="level-item">games</span></span><span class="level-end"><span class="level-item tag">6</span></span></a><ul><li><a class="level is-mobile" href="/categories/07archive/tech/games/101%E5%AE%9E%E9%AA%8C/"><span class="level-start"><span class="level-item">101实验</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="/categories/07archive/tutorial/"><span class="level-start"><span class="level-item">tutorial</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/07/"><span class="level-start"><span class="level-item">七月 2024</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/06/"><span class="level-start"><span class="level-item">六月 2024</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">五月 2024</span></span><span class="level-end"><span class="level-item tag">22</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">四月 2024</span></span><span class="level-end"><span class="level-item tag">7</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">三月 2024</span></span><span class="level-end"><span class="level-item tag">10</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/02/"><span class="level-start"><span class="level-item">二月 2024</span></span><span class="level-end"><span class="level-item tag">33</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">#linux</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/anki/"><span class="tag">anki</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/bazel/"><span class="tag">bazel</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/cmake/"><span class="tag">cmake</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/code/"><span class="tag">code</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/dn11/"><span class="tag">dn11</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/docker/"><span class="tag">docker</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/firewall/"><span class="tag">firewall</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/games/"><span class="tag">games</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/istore/"><span class="tag">istore</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/linux/"><span class="tag">linux</span><span class="tag">7</span></a></div><div class="control"><a class="tags has-addons" href="/tags/minio/"><span class="tag">minio</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/openwrt/"><span class="tag">openwrt</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rss/"><span class="tag">rss</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/rsshub/"><span class="tag">rsshub</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/scoop/"><span class="tag">scoop</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ssh/"><span class="tag">ssh</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/tutorial/"><span class="tag">tutorial</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ubuntu/"><span class="tag">ubuntu</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vim/"><span class="tag">vim</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/vpn/"><span class="tag">vpn</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/windows/"><span class="tag">windows</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/wireguard/"><span class="tag">wireguard</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%89%8D%E7%AB%AF/"><span class="tag">前端</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"><span class="tag">图形学</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/"><span class="tag">服务器</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%BC%96%E8%AF%91/"><span class="tag">编译</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%AE%A1%E7%BD%91/"><span class="tag">计网</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/"><span class="tag">软路由</span><span class="tag">3</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="l4rk&#039;s blog" height="28"></a><p class="is-size-7"><span>&copy; 2024 l4rk</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a><br><span id="busuanzi_container_site_uv">共<span id="busuanzi_value_site_uv">0</span>个访客</span></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-CN");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+            'HTML-CSS': {
+                matchFontHeight: false
+            },
+            SVG: {
+                matchFontHeight: false
+            },
+            CommonHTML: {
+                matchFontHeight: false
+            },
+            tex2jax: {
+                inlineMath: [
+                    ['$','$'],
+                    ['\\(','\\)']
+                ]
+            }
+        });</script><script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><script src="/live2d-widget/autoload.js"></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
